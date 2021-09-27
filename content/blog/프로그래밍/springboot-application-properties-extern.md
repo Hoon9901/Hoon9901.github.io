@@ -12,7 +12,7 @@ draft: false
 
 1. 명령행 인수
 2. 패키징된 애플리케이션 외부의 `application.properties`
-3. 패키징된 애플리케잇녀 내부의 `application.properties`
+3. 패키징된 애플리케이션 내부의 `application.properties`
 
 application-{profile}.properties는 프로필에 관련되지 않은 파일 보다 우선된다.
 

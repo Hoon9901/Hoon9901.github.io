@@ -14,6 +14,6 @@ lang: 'en'
 
 **Github** <https://github.com/Hoon9901>
 <br>
-**Contact** <shonn2323@gmail.com>
+**Contact** <shonn.dev@gmail.com>
 
 </div>
