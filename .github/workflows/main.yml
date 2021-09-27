@@ -15,9 +15,9 @@ jobs:
 
       - name: packages install
         run: yarn install
-
+  
       - name: gatsby build
-        run: yarn build && cp content/googlec168cb0ad54db48b.html public/
+        run: yarn build && cp content/googlec168cb0ad54db48b.html public/ && cp content/naver6f5d61020abe301f5b4d018fb345cfbb.html public/
         env:
           # API_KEY 에는 자신이 secret을 생성할 때 설정한 이름으로 넣어야 한다
           GH_API_KEY: ${{ secrets.API_KEY }}
