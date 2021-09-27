@@ -1,6 +1,6 @@
 module.exports = {
   title: `HOON Blog`,
-  description: `프로그래밍 공부`,
+  description: `Blog posted about Programming and backend development.`,
   author: `Hoon`,
   introduction: `안녕하세요`,
   siteUrl: `https://hoon9901.github.io/`, // Your blog site url
