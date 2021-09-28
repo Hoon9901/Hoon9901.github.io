@@ -22,7 +22,7 @@ body.dark {
 
   .category-container {
     border-top: 1px solid $dark-category-border-color;
-    border-bottom: 1px solid $dark-category-border-color;
+    // border-bottom: 1px solid $dark-category-border-color;
     border-right: 6px solid $dark-category-border-color;
     border-left: 6px solid $dark-category-border-color;
     background-color: $dark-category-background-color;
@@ -70,7 +70,7 @@ body.dark {
 
   h1,
   h2 {
-    border-bottom-color: rgba(255, 255, 255, 0.3);
+    // border-bottom-color: rgba(255, 255, 255, 0.3);
   }
 
   .navigator {
@@ -80,6 +80,6 @@ body.dark {
     }
   }
   td {
-    border-bottom: 1px solid #eee;
+    // border-bottom: 1px solid #eee;
   }
 }
