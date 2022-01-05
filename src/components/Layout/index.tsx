@@ -60,6 +60,7 @@ const Layout = (props: LayoutPropsType) => {
       <Helmet>
         <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
         <meta name="google-site-verification" content={config.googleSearchConsole ?? ''} />
+        <meta name="naver-site-verification" content={config.naverSearch ?? ''} />
         <style>{FaDom.css()}</style>
       </Helmet>
 

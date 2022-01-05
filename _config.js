@@ -36,4 +36,5 @@ module.exports = {
   googleAdsenseSlot: '',   // Google Adsense Slot. ex.'5214956675'
   googleAdsenseClient: '', // Google Adsense Client. ex.'ca-pub-5001380215831339'
     // Please correct the adsense client number(ex.5001380215831339) in the './static/ads.txt' file.
+  naverSearch : '5b2690330086c75c7b3bfa21d1ae6f6d434729e2',
 };
