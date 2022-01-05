@@ -1,7 +1,7 @@
 module.exports = {
   /** Site MetaData (Required all)*/
   title: `Hoon's Blog`,                           // (* Required)
-  description: `Blog Description`,          // (* Required)
+  description: `Hoon's Backend Dev Blog`,          // (* Required)
   author: `Hoon`,                         // (* Required)
   language: 'ko-KR',                        // (* Required) html lang, ex. 'en' | 'en-US' | 'ko' | 'ko-KR' | ...
   siteUrl: 'https://Hoon9901.github.io',                      // (* Required)
