@@ -66,11 +66,11 @@ JWT 는 Json 객체를 사용하여 토큰 자체에 정보들을 저장하고 �
     - Validation
     
 
-![Untitled](1-4.png)
+![Untitled](1-5.png)
 
 - 프로젝트가 생성된 모습
 
-![Untitled](1-5.png)
+![Untitled](1-4.png)
 
 - Lombok을 사용하므로 Enable annotaion processing 을 체크하자.
 
@@ -83,7 +83,7 @@ JWT 는 Json 객체를 사용하여 토큰 자체에 정보들을 저장하고 �
 - `RestController` : 컨트롤러를 JSON을 반환하는 컨트롤러로 만들어 줍니다.
 - `RequestMapping` : 요청에 대해 어떤 Controller가 처리할지를 맵핑하기 위한 어노테이션.
 - `GetMapping` : HTTP Method인 Get인 요청을 받을 수 있는 API를 만들어 준다.
-- [`ResponseEntity](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html)<>` : 사용자의 HttpRequest에 대한 응답 데이터를 포함하는 클래스.
+- `ResponseEntity<>` : 사용자의 HttpRequest에 대한 응답 데이터를 포함하는 클래스.
 - `ResponseEntity.ok()`: 정상적인 요청이면 메소드의 파라미터 내용을 반환한다.
 
 위 코드를 작성하고 애플리케이션을 실행하고 Postman을 통해서 해당 url로 요청을 보내겠습니다.
