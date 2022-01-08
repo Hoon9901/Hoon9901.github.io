@@ -1,4 +1,446 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 07 Jan 2022 08:15:06 GMT</lastBuildDate><item><title><![CDATA[SpringBoot JWT 튜토리얼 - 1장 JWT소개,프로젝트생성]]></title><description><![CDATA[인프런 강의(Spring Boot JWT Tutorial)를 수강하며, 내용들을 기록한 페이지입니다. 배우는 것 Spring Boot를 이용한 JWT 인증, 인가 구현 Spring Security 기초 회원가입, 로그인, 권한로직 JWT 소개 (JW…]]></description><link>https://hoon9901.github.io/springboot-jwt-tutorial1/</link><guid isPermaLink="false">https://hoon9901.github.io/springboot-jwt-tutorial1/</guid><pubDate>Fri, 07 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;인프런 강의(Spring Boot JWT Tutorial)를 수강하며, 내용들을 기록한 페이지입니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 08 Jan 2022 13:51:26 GMT</lastBuildDate><item><title><![CDATA[SpringBoot JWT 튜토리얼 - 2장 Security 설정, Data 설정]]></title><description><![CDATA[1. 401 Unauthorized 해결을 위한 Security 설정 SecurityConfig 생성  config 패키지를 생성한뒤, SecurityConfig 클래스를 작성합니다. SecurityConfigurer 설정을 위한 두가지 방법  를 …]]></description><link>https://hoon9901.github.io/springboot-jwt-tutorial2/</link><guid isPermaLink="false">https://hoon9901.github.io/springboot-jwt-tutorial2/</guid><pubDate>Sat, 08 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;1-401-unauthorized-해결을-위한-security-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-401-unauthorized-%ED%95%B4%EA%B2%B0%EC%9D%84-%EC%9C%84%ED%95%9C-security-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;1 401 unauthorized 해결을 위한 security 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 401 Unauthorized 해결을 위한 Security 설정&lt;/h2&gt;
+&lt;h3 id=&quot;securityconfig-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#securityconfig-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;securityconfig 생성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;SecurityConfig 생성&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/bd81378fcf36fb8eae680949e83efd48/64639/2-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 30.405405405405407%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQY022Q6U7DMBCE8zSQ+L6PxGkrCIFKff/XGdapgkDix6fJ2srOeIZH2vEIH/jMO2J5h2kb0rJhSxvK7Q5z2cHjCpEuEOUGma9g3GCcDCZmfzjnQYmALCuczJhUPGAyQIun9pmrBK4TmM5Eoh/7Qvtn4cnAucMXpdmJLAu4TRAEpyRTWGFiQ7QZlUy5Xyhtw8ifif5jmOhSqgBjMgQhc4MsK3SaobWHpETeVUTC+RmK0L7CkhoyMH22hWrw4ML3hQ4jPeH1RUGmBXa/w68r3NzglysCaQ0ZS5hRyci1N0Q6t66QWT4Mta2HSqpmkIri/+6BDHpHPfnYv0/D496BkTLS3uHrqI9nntr5BpcPvUHCEJqHAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Untitled&quot;
+        title=&quot;Untitled&quot;
+        src=&quot;/static/bd81378fcf36fb8eae680949e83efd48/fcda8/2-1.png&quot;
+        srcset=&quot;/static/bd81378fcf36fb8eae680949e83efd48/12f09/2-1.png 148w,
+/static/bd81378fcf36fb8eae680949e83efd48/e4a3f/2-1.png 295w,
+/static/bd81378fcf36fb8eae680949e83efd48/fcda8/2-1.png 590w,
+/static/bd81378fcf36fb8eae680949e83efd48/efc66/2-1.png 885w,
+/static/bd81378fcf36fb8eae680949e83efd48/c83ae/2-1.png 1180w,
+/static/bd81378fcf36fb8eae680949e83efd48/64639/2-1.png 1568w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;config 패키지를 생성한뒤, SecurityConfig 클래스를 작성합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;SecurityConfigurer 설정을 위한 두가지 방법&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;WebSecurityConfigurer&lt;/code&gt; 를 &lt;code class=&quot;language-text&quot;&gt;implements&lt;/code&gt; 하기&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;WebSecurityConfigurerAdapter&lt;/code&gt; 를 &lt;code class=&quot;language-text&quot;&gt;extends&lt;/code&gt; 하기&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;위 코드에서는 2번째 방법으로 어댑터 클래스를 상속받아서 구현한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;configure(HttpSecurity http)&lt;/code&gt; 메소드 오바라이딩&lt;/p&gt;
+&lt;p&gt;상속받은 클래스 내부를 보면, configure 함수가 오버로딩되어있는데, 이 코드에서는 HTTPSecurity 를 매개변수로 가지는 함수를 오버라이딩하여 작성한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;authorizeRequests()&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HttpServletRequest 를 사용한 요청들에 대한 접근제한&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HttpServletRequest?&lt;/p&gt;
+&lt;p&gt;JSP 기본 내장 객체 중 &lt;strong&gt;request 객체는 JSP에서 가장 많이 사용되는 객체&lt;/strong&gt;입니다.&lt;/p&gt;
+&lt;p&gt;웹브라우저 사용자인 클라이언트로부터 서버로 요청이 들어오면 서버에서는 &lt;strong&gt;HttpServletRequest&lt;/strong&gt;  를 생성하며, 요청정보에 있는 패스로 매핑된 서블릿에게 전달합니다.&lt;/p&gt;
+&lt;p&gt;이렇게 전달받은 내용들을 파라미터로 Get과 Post 형식으로 클라이언트에게 전달합니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;antMatchers(path).permitAll()&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;해당 path 는 인증없이(permitAll) 접근허용한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;anyRequest().authenticated()&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;그외 나머지 요청들은 인증되어야한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;postman으로-테스트&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#postman%EC%9C%BC%EB%A1%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8&quot; aria-label=&quot;postman으로 테스트 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Postman으로 테스트&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;GET - localhost:8080/api/hello&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ea13cddcf88d6151fae90502f151df15/6c86f/2-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 14.864864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAgElEQVQI122NWQoDMQxDc/97FuZjlsZ2nNVRk0xbKFTwkIRt7M59h/cMUgVxwDMEkAR4EuTSUOpNtY7aOpoBohGUFJwiZHBIxeMq4NjgrvPAtm0gIjDzYmaRO4fhWQOmeu+LkfCr8agW1IGbVVOGxrRGZvY9nMxu9vH/tPdOzhkvxxjqt+wq8RIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Untitled&quot;
+        title=&quot;Untitled&quot;
+        src=&quot;/static/ea13cddcf88d6151fae90502f151df15/fcda8/2-2.png&quot;
+        srcset=&quot;/static/ea13cddcf88d6151fae90502f151df15/12f09/2-2.png 148w,
+/static/ea13cddcf88d6151fae90502f151df15/e4a3f/2-2.png 295w,
+/static/ea13cddcf88d6151fae90502f151df15/fcda8/2-2.png 590w,
+/static/ea13cddcf88d6151fae90502f151df15/efc66/2-2.png 885w,
+/static/ea13cddcf88d6151fae90502f151df15/c83ae/2-2.png 1180w,
+/static/ea13cddcf88d6151fae90502f151df15/6c86f/2-2.png 1720w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;위와 같이 문자열 “hello” 가 반환이 된것을 볼수있습니다.&lt;/p&gt;
+&lt;h2 id=&quot;2-datasource-jpa-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-datasource-jpa-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;2 datasource jpa 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Datasource, JPA 설정&lt;/h2&gt;
+&lt;h3 id=&quot;properties-→-yml-로-변경&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#properties-%E2%86%92-yml-%EB%A1%9C-%EB%B3%80%EA%B2%BD&quot; aria-label=&quot;properties → yml 로 변경 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;properties → yml 로 변경&lt;/h3&gt;
+&lt;p&gt;기본적으로 스프링부트는 key - value 형식을 사용하는 &lt;a href=&quot;http://application.properties&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;application.properties&lt;/a&gt; 파일이 있습니다.&lt;/p&gt;
+&lt;p&gt;키에 동일한 접두사를 사용하여, 계층적 데이터를 표현합니다.&lt;/p&gt;
+&lt;p&gt;해당 파일의 각 라인은 단일 구성이고, 모든 키는 spring.datasource에 속합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;spring.datasource.url=jdbc:h2:dev
+spring.datasource.username=SA
+spring.datasource.password=password&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;YAML 형식은 계층적 구성 데이터를 지정하기 편리한 형식입니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;spring&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;datasource&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; password
+        &lt;span class=&quot;token key atrule&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; jdbc&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;h2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;dev
+        &lt;span class=&quot;token key atrule&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; SA&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;따라서 위 두가지 차이를 보면, YAML 형식은 가독성이 좋고, 하나의 파일로, 프로필을 구분할 수 있는 장점이있다.&lt;/p&gt;
+&lt;p&gt;보기 좋은 것을 선호하면 YAML 형식을 사용하거나, 이전 형식대로 사용해도 상관없습니다.&lt;/p&gt;
+&lt;p&gt;인텔리제이의 Refactor를 이용해 application.properties 의 확장자를 yml로 변경합니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ecc0625edd7ee4a72a82d106d404a87f/d69c4/2-3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 97.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAABYlAAAWJQFJUiTwAAACNElEQVQ4y51U23abMBDkU3pOYyPA4iouBhkwGGNSt07Tpu1DXvr/HzHdle0mp23cOA+DbCFGuzO7a91mA+6LCVIq2E4I14sJEVw3gvMGWJlfoI0b+AuFhZdg7gSYiQCCyN8Ca+4GWAYlfup7PJR7KLqgCipDzgeujlC4Id4LCSULlEQcy4zWCpII7dOtfFCc4PDeJUIm+JSNGJI16riGu4hx4/iw6SLW0WhJEjhO8ER2IXKLP5hUjzHdYOr36FYDtusJQztBtyMK3WO+oPT9FIIM+2+EbEIdrbBPtxhUh9t8ix05P6Y9hNIQxRrzrMGMYPuZifQiIae2TTr8WO7xUHyAyjRcP8GNLU2qgtM940KqZ60tFl7JHE1Uk9sVfRTBFkf9xL/wQrmcSa2UymSdtJiREew2b3qs1dnVF+CezvwVIT8+Zlt8p5Tv8h1GMmhKerQUsVIVtO5QNwNW9QZl1UGvelrX5n9LpvEekz+lTBquwpUhZJjSoTb0owKLMDPwyOU/wSTn388bwHKob7kWP1N0d9kOnWrhqAJ+2UAWGp4qSdPLreg809YQVmGFx/KAL/mEiUpmJnzMZ9LAuPyKlvudMk8WrkUdanyjsjlQ17BJKq2QL5ur+9n0MjvMpXNPEe7TAVrV0CR6EObXE7J+CZEFixS+p2goKPPCk0exxbXTZow3eFweUEUa72zP6Me62fOjflfPw6ZR+FpP2JAZfdqhIf1kskTY9Gb1qIQ8GgyefB1+AV9YUmSouRNsAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Untitled&quot;
+        title=&quot;Untitled&quot;
+        src=&quot;/static/ecc0625edd7ee4a72a82d106d404a87f/fcda8/2-3.png&quot;
+        srcset=&quot;/static/ecc0625edd7ee4a72a82d106d404a87f/12f09/2-3.png 148w,
+/static/ecc0625edd7ee4a72a82d106d404a87f/e4a3f/2-3.png 295w,
+/static/ecc0625edd7ee4a72a82d106d404a87f/fcda8/2-3.png 590w,
+/static/ecc0625edd7ee4a72a82d106d404a87f/efc66/2-3.png 885w,
+/static/ecc0625edd7ee4a72a82d106d404a87f/d69c4/2-3.png 1002w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;H2 데이터베이스를 사용할 것 이고, 메모리에 데이터를 저장합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;h2.console.enabled&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;h2 콘솔 페이지 활성화&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;jpa.hibernate.ddl-auto&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hibernate 초기화 전략, create-drop 은 인-메모리 DB 기본 전략입니다.&lt;/li&gt;
+&lt;li&gt;SessionFactory가 시작될 때, Drop, Create, Alter 종료될때 Drop&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;jpa.properties.hibernate&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;콘솔창에서 sql 문을 보기좋게 출력&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;logging.level&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;log4j 의 로그레벨은 ALL &amp;#x3C; DEBUG &amp;#x3C; INFO &amp;#x3C; WARN &amp;#x3C; ERROR &amp;#x3C; FATAL &amp;#x3C; OFF 순으로 지정.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;3-entity-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-entity-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;3 entity 생성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Entity 생성&lt;/h2&gt;
+&lt;p&gt;entity 패키지를 생성하고, User, Authority 를 생성합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;user&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Getter&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Setter&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Builder&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@AllArgsConstructor&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@NoArgsConstructor&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@GeneratedValue&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;strategy &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;GenerationType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;IDENTITY&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt; userId&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; length &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; unique &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; username&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;password&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; length &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; password&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;nickname&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; length &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; nickname&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;activated&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;boolean&lt;/span&gt; activated&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@ManyToMany&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@JoinTable&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;user_authority&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            joinColumns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; referencedColumnName &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            inverseJoinColumns &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;authority_name&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; referencedColumnName &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;authority_name&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Authority&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt; authorities&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;com&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;example&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;jwttutorial&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;entity&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;lombok&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;javax&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;persistence&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Column&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;javax&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;persistence&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Entity&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;javax&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;persistence&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;javax&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;persistence&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;authority&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Getter&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Setter&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Builder&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@AllArgsConstructor&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@NoArgsConstructor&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Authority&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;authority_name&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; length &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; authorityName&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/12e05fbde36df2c28afaaedd16f3645e/6e52c/2-4.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 27.7027027027027%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABQElEQVQY01WRX0+DMBTF+f4fx2cTffHBuajR/WETBnTAgA62gWW60f4sTI02OTm9Off0puc6Y1fwGhXMkoqXSBIVO4zWdF3H/2MGaKude83oP5K+6Jad0cTjYebztBR42Z5N1VhTZ02asRtz/TDl+v6V0TLhKSho1HEw75oPwqxiLa1np0ird8pa4UTBinDl486mbJIY3Z05nT5p2yOTZcB4suBxusCLc2J5oHlXQ49v66vbkR044W4acfPsMRc5jhCCMAjouW1b+9gJpRR1XSOLnH1VUpVbZJ5RbiWHw2HoK6yWpungC8MQ3/eH2skKSZrl9JwV1rgtMcYMOQVJziKIma8EbrBm5oWo9jjEtmsUsc07kRf09+2+xvHFBk+kvEUJ7mpNkkv7JZvh+WwXoy/QxkKj7aDuWzM/i/hFT4Yvf27Dx6C9ASIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Untitled&quot;
+        title=&quot;Untitled&quot;
+        src=&quot;/static/12e05fbde36df2c28afaaedd16f3645e/fcda8/2-4.png&quot;
+        srcset=&quot;/static/12e05fbde36df2c28afaaedd16f3645e/12f09/2-4.png 148w,
+/static/12e05fbde36df2c28afaaedd16f3645e/e4a3f/2-4.png 295w,
+/static/12e05fbde36df2c28afaaedd16f3645e/fcda8/2-4.png 590w,
+/static/12e05fbde36df2c28afaaedd16f3645e/efc66/2-4.png 885w,
+/static/12e05fbde36df2c28afaaedd16f3645e/c83ae/2-4.png 1180w,
+/static/12e05fbde36df2c28afaaedd16f3645e/6e52c/2-4.png 1948w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;User 클래스를 보면 @ManyToMany, @JoinTable 은 유저와 권한 객체의 다대다 관계를 위 테이블 처럼 일대다, 다대일 관계의 조인 테이블로 정의했습니다. &lt;/p&gt;
+&lt;p&gt;이 부분은 추후 강의자의 JPA 강의에서 자세히 설명합니다. &lt;/p&gt;
+&lt;h3 id=&quot;datasql-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#datasql-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;datasql 생성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;data.sql 생성&lt;/h3&gt;
+&lt;p&gt;편의를 위해, 서버를 시작할때마다 Data를 자동으로 DB에 넣어주는 기능을 활용하겠습니다.&lt;/p&gt;
+&lt;p&gt; resource 폴더 밑에 data.sql 파일을 만들겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USER_ID&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; USERNAME&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; PASSWORD&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; NICKNAME&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; ACTIVATED&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;admin&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;admin&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USER_ID&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; USERNAME&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; PASSWORD&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; NICKNAME&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; ACTIVATED&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;user&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;user&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; AUTHORITY &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;AUTHORITY_NAME&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;values&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;ROLE_USER&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; AUTHORITY &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;AUTHORITY_NAME&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;values&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;ROLE_ADMIN&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; USER_AUTHORITY &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USER_ID&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; AUTHORITY_NAME&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;values&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;ROLE_USER&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; USER_AUTHORITY &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USER_ID&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; AUTHORITY_NAME&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;values&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;ROLE_ADMIN&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; USER_AUTHORITY &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USER_ID&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; AUTHORITY_NAME&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;values&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;ROLE_USER&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;4-h2-console-결과-확인&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-h2-console-%EA%B2%B0%EA%B3%BC-%ED%99%95%EC%9D%B8&quot; aria-label=&quot;4 h2 console 결과 확인 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. H2 Console 결과 확인&lt;/h2&gt;
+&lt;p&gt;우리가 만들었던 엔티티들이 DB에 생성이 되는지 확인을 해봅니다. &lt;/p&gt;
+&lt;p&gt;그 전에 Security 설정을 추가해줘야지 h2-console 접근을 원할하게 할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6314369f86eb782b273b83bda8c32d78/78958/2-5.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 24.324324324324326%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA6ElEQVQY02WQS3LEIAxEfZlkjPhYgMH4P5NKdqnc/zYdYVPZZPGq1SBahbrTH3jxgeIWkIkgN97wBOUSjMtwdgQbqeVe1x4ToMhDKX9roxffHbzj5/zGR3rBhRk6rxjKBrd/gfKBUJ4oacFThkaeMUiP5YxeezwU/9G38O5NOSgb8N47kM+wywlOCdRbaGKQoKg+GGBErWDauZNQ26Crh9HVaUa+ps0Ilzfw+QleJXQsiGlFmnYE0RwKtjhjG2cUUS8rWUWXWH0B+wlkEzpy8d6doEh2I1Ou3ehw+Z6ain80aq10/Odrxi/RB5xoydCMDgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Untitled&quot;
+        title=&quot;Untitled&quot;
+        src=&quot;/static/6314369f86eb782b273b83bda8c32d78/fcda8/2-5.png&quot;
+        srcset=&quot;/static/6314369f86eb782b273b83bda8c32d78/12f09/2-5.png 148w,
+/static/6314369f86eb782b273b83bda8c32d78/e4a3f/2-5.png 295w,
+/static/6314369f86eb782b273b83bda8c32d78/fcda8/2-5.png 590w,
+/static/6314369f86eb782b273b83bda8c32d78/efc66/2-5.png 885w,
+/static/6314369f86eb782b273b83bda8c32d78/c83ae/2-5.png 1180w,
+/static/6314369f86eb782b273b83bda8c32d78/78958/2-5.png 1320w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;h2-console 하위 모든 요청들과 파비콘 관련 요청은 Spring Security 로직을 수행하지 않고 접근할 수 있도록 &lt;/p&gt;
+&lt;p&gt;configure(WebSecurity) 메소드를 오버라이딩 합니다.&lt;/p&gt;
+&lt;p&gt;그 후 서버를 시작합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;DB 초기화 중 에러 발생&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token number&quot;&gt;2022&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;01&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;07&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;36&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;18.468&lt;/span&gt;  WARN &lt;span class=&quot;token number&quot;&gt;2873&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;           main&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ConfigServletWebServerApplicationContext&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Exception&lt;/span&gt; encountered during context initialization &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; cancelling refresh attempt&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;springframework&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;beans&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;factory&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;BeanCreationException&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Error&lt;/span&gt; creating bean &lt;span class=&quot;token keyword&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;dataSourceScriptDatabaseInitializer&apos;&lt;/span&gt; defined in &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; path resource &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;org&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;springframework&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;boot&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;autoconfigure&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;sql&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;init&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;DataSourceInitializationConfiguration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Invocation&lt;/span&gt; of init method failed&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; nested exception is org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;springframework&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;jdbc&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;datasource&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;init&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;ScriptStatementFailedException&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Failed&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;execute&lt;/span&gt; SQL script statement #&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; of URL &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;file&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Users&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;seonghun&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Desktop&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;dev&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;projects&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;jwt&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;tutorial&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;build&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;resources&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;main&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;sql&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; INSERT &lt;span class=&quot;token class-name&quot;&gt;INTO&lt;/span&gt; USER &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USER_ID&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; USERNAME&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; PASSWORD&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; NICKNAME&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; ACTIVATED&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; VALUES &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;admin&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;admin&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; 
+nested exception is org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;h2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;jdbc&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;JdbcSQLSyntaxErrorException&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Table&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;USER&quot;&lt;/span&gt; not found&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; SQL statement&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+
+INSERT &lt;span class=&quot;token class-name&quot;&gt;INTO&lt;/span&gt; USER &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USER_ID&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; USERNAME&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; PASSWORD&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; NICKNAME&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; ACTIVATED&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; VALUES &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;admin&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;admin&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;42102&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+hibernate 초기화 과정에 에러가 발생했습니다.
+&lt;p&gt;Spring Boot Application 구동하는 과정 중에 &lt;code class=&quot;language-text&quot;&gt;data.sql&lt;/code&gt;을 실행하는 도중, User 테이블을 찾을 수 없어 Insert 구문에서 오류가 발생하는 것인데. &lt;/p&gt;
+&lt;p&gt;강의에서 스프링부트의 버전은 2.4이고 현재 2.6 인데 버전이 업데이트 되면서 이러한 오류가 발생하는 듯 합니다.(대부분의 오류는 버전업데이트 관련을 많이겪음)
+&lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hibernate and data.sql 공식 노트 내용 (&lt;a href=&quot;https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.5-Release-Notes&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;릴리즈 노트 링크)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;By default, data.sql scripts are now run before Hibernate is initialized. This aligns the behavior of basic script-based initialization with that of Flyway and Liquibase. If you want to use data.sql to populate a schema created by Hibernate, set spring.jpa.defer-datasource-initialization to true. While mixing database initialization technologies is not recommended, this will also allow you to use a schema.sql script to build upon a Hibernate-created schema before it’s populated via data.sql.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Spring Boot 2.5버전 부터 스크립트 기반 초기화의 동작과정을 Flyway, Liquibase와 일치시키기 위해서 &lt;code class=&quot;language-text&quot;&gt;data.sql&lt;/code&gt; 은 Hibernate 초기화되기 전에 실행된다는 내용인것 같습니다.&lt;/p&gt;
+&lt;p&gt;따라서 Hibernate 초기화를 통해 생성된 스키마에다가 데이터를 채우기를 위해서 &lt;code class=&quot;language-text&quot;&gt;data.sql&lt;/code&gt;가 실행되기를 원한다면 &lt;strong&gt;application.yml&lt;/strong&gt;(또는 properties)에 &lt;strong&gt;&lt;code class=&quot;language-text&quot;&gt;spring.jpa.defer-datasource-initialization&lt;/code&gt;&lt;/strong&gt; 옵션 값을 &lt;strong&gt;true&lt;/strong&gt;로 추가해주어야 합니다. &lt;/p&gt;
+&lt;p&gt;또는 &lt;code class=&quot;language-text&quot;&gt;schema.sql&lt;/code&gt;을 추가해서 hibernate 가 스키마를 생성하는 과정보다 먼저 실행되도록하여 해당 스키마에 data.sql을 채우도록하는 방법도 있다고 합니다. 그러나 DB 초기화 기술을 혼합하여 사용하는 것은 권장하지 않는 방법이라고 합니다.&lt;/p&gt;
+&lt;p&gt;따라서 application.yml 에 &lt;code class=&quot;language-text&quot;&gt;defer-datasource-initialization: true&lt;/code&gt; 옵션을 권장하지 않지만 추가합니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;2022&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;01&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;07&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt;:&lt;span class=&quot;token number&quot;&gt;43&lt;/span&gt;:&lt;span class=&quot;token number&quot;&gt;40.706&lt;/span&gt;  INFO &lt;span class=&quot;token number&quot;&gt;2951&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;--- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect&lt;/span&gt;
+Hibernate: 
+    
+    &lt;span class=&quot;token keyword&quot;&gt;drop&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;exists&lt;/span&gt; authority &lt;span class=&quot;token keyword&quot;&gt;CASCADE&lt;/span&gt; 
+Hibernate: 
+    
+    &lt;span class=&quot;token keyword&quot;&gt;drop&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;exists&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;CASCADE&lt;/span&gt; 
+Hibernate: 
+    
+    &lt;span class=&quot;token keyword&quot;&gt;drop&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;exists&lt;/span&gt; user_authority &lt;span class=&quot;token keyword&quot;&gt;CASCADE&lt;/span&gt; 
+Hibernate: 
+    
+    &lt;span class=&quot;token keyword&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt; authority &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+       authority_name &lt;span class=&quot;token keyword&quot;&gt;varchar&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;primary&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;authority_name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Hibernate: 
+    
+    &lt;span class=&quot;token keyword&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+       user_id &lt;span class=&quot;token keyword&quot;&gt;bigint&lt;/span&gt; generated &lt;span class=&quot;token keyword&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;identity&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        activated &lt;span class=&quot;token keyword&quot;&gt;boolean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        nickname &lt;span class=&quot;token keyword&quot;&gt;varchar&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        password &lt;span class=&quot;token keyword&quot;&gt;varchar&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        username &lt;span class=&quot;token keyword&quot;&gt;varchar&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;primary&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user_id&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Hibernate: 
+    
+    &lt;span class=&quot;token keyword&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt; user_authority &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+       user_id &lt;span class=&quot;token keyword&quot;&gt;bigint&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        authority_name &lt;span class=&quot;token keyword&quot;&gt;varchar&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;primary&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; authority_name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Hibernate: 
+    
+    &lt;span class=&quot;token keyword&quot;&gt;alter&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;user&lt;/span&gt; 
+       &lt;span class=&quot;token keyword&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;constraint&lt;/span&gt; UK_sb8bbouer5wak8vyiiy4pf2bx &lt;span class=&quot;token keyword&quot;&gt;unique&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;username&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Hibernate: 
+    
+    &lt;span class=&quot;token keyword&quot;&gt;alter&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt; user_authority 
+       &lt;span class=&quot;token keyword&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;constraint&lt;/span&gt; FK6ktglpl5mjosa283rvken2py5 
+       &lt;span class=&quot;token keyword&quot;&gt;foreign&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;authority_name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; 
+       &lt;span class=&quot;token keyword&quot;&gt;references&lt;/span&gt; authority
+Hibernate: 
+    
+    &lt;span class=&quot;token keyword&quot;&gt;alter&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;table&lt;/span&gt; user_authority 
+       &lt;span class=&quot;token keyword&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;constraint&lt;/span&gt; FKpqlsjpkybgos9w2svcri7j8xy 
+       &lt;span class=&quot;token keyword&quot;&gt;foreign&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user_id&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; 
+       &lt;span class=&quot;token keyword&quot;&gt;references&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;user&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Hibernate DB 초기화 오류를 해결하고 실행을 하니, 로그에 SQL 문을 볼수있습니다. &lt;/p&gt;
+&lt;p&gt;이 로그들을 보면, 우리가 만들어둔 Entity 내용들을 기반으로 DB 관련 정보들을 생성하는 쿼리들이 잘 수행 된것을 볼수있습니다.&lt;/p&gt;
+&lt;h3 id=&quot;실제-db-반영-확인&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8B%A4%EC%A0%9C-db-%EB%B0%98%EC%98%81-%ED%99%95%EC%9D%B8&quot; aria-label=&quot;실제 db 반영 확인 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;실제 DB 반영 확인&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://localhost:8080/h2-console&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;localhost:8080/h2-console&lt;/a&gt; 에 접속합니다. (인증을 무시하도록 설정했으므로,접속이 잘 되야합니다)&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/52fdece3e289fe6db78f867fb0ee06cb/d544a/2-6.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 35.810810810810814%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABE0lEQVQoz6XQ23KCMBCAYd7/5ayAispBkKDYgoAcFfI38TDTXtib7sw3m51kdndiJCJk5WzIswwdvu8xN2dYtkmw8wijgDg5kBwzyrqjGyaafqR9w0iSGNu2EEJQFAXD9cZtlFxvE6+QT+Mk1d3E+AfDjwTrjdowz+n7nv+GoSdOk+4+IqWkrivKKqeqzrRtRdfVDEND1yvdG32t8oWmbTB+95dEYYQ1t5nPLNxNQOCFmB8OO3+NiB3E/iHWopU6r/DdrXq3p8wDDL3Vg+43UeQp+9AnPcacUsHX6cByYeK5S2WBt108s42r6KyHFedP6jL62VDed0wT9Z8nh6bc0RQBtdJW4aNW2jK8e9Uv+t3lHPANws8VBrDe+JEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Untitled&quot;
+        title=&quot;Untitled&quot;
+        src=&quot;/static/52fdece3e289fe6db78f867fb0ee06cb/fcda8/2-6.png&quot;
+        srcset=&quot;/static/52fdece3e289fe6db78f867fb0ee06cb/12f09/2-6.png 148w,
+/static/52fdece3e289fe6db78f867fb0ee06cb/e4a3f/2-6.png 295w,
+/static/52fdece3e289fe6db78f867fb0ee06cb/fcda8/2-6.png 590w,
+/static/52fdece3e289fe6db78f867fb0ee06cb/efc66/2-6.png 885w,
+/static/52fdece3e289fe6db78f867fb0ee06cb/c83ae/2-6.png 1180w,
+/static/52fdece3e289fe6db78f867fb0ee06cb/d544a/2-6.png 1950w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;우리가 만들었던 Entity 정보들과 data.sql 파일의 쿼리내용들이 잘 들어와있는것을 볼수있습니다.&lt;/p&gt;
+&lt;p&gt;다음 강의에는 JWT 관련 코드들을 작성하겠습니다.&lt;/p&gt;
+&lt;h3 id=&quot;reference&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#reference&quot; aria-label=&quot;reference permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Reference&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://chobopark.tistory.com/43&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;HttpServletRequest 개념&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://devgoat.tistory.com/15&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;properties → YAML&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://myblog.opendocs.co.kr/archives/950&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;log4j loggin level&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://pravusid.kr/java/2018/10/10/spring-database-initialization.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;hibernate ddl-auto 초기화전략&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://velog.io/@khsb2012/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B6%80%ED%8A%B8-2.5-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8-hibernate-data.sql-%EA%B4%80%EB%A0%A8-%EB%B3%80%EB%8F%99%EC%82%AC%ED%95%AD&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;스프링부트 2.5 hibernate data.sql&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[SpringBoot JWT 튜토리얼 - 1장 JWT소개,프로젝트생성]]></title><description><![CDATA[인프런 강의(Spring Boot JWT Tutorial)를 수강하며, 내용들을 기록한 페이지입니다. 배우는 것 Spring Boot를 이용한 JWT 인증, 인가 구현 Spring Security 기초 회원가입, 로그인, 권한로직 JWT 소개 (JW…]]></description><link>https://hoon9901.github.io/springboot-jwt-tutorial1/</link><guid isPermaLink="false">https://hoon9901.github.io/springboot-jwt-tutorial1/</guid><pubDate>Fri, 07 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;인프런 강의(Spring Boot JWT Tutorial)를 수강하며, 내용들을 기록한 페이지입니다.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;배우는 것&lt;/p&gt;
