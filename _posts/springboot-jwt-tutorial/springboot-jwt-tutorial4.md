@@ -21,7 +21,7 @@ keywords :
 
 외부와의 통신에 사용할 DTO 패키지 및 클래스를 생성합니다.
 
-```clike
+```java
 @Getter
 @Setter
 @Builder
@@ -47,7 +47,7 @@ Lombok 어노테이션(Get, Set 등)이 추가되었고 @Valid 관련 어노테�
 
 Token 정보를 Response 할때 사용할 TokenDto를 만들겠습니다.
 
-```clike
+```java
 @Getter
 @Setter
 @Builder
@@ -63,7 +63,7 @@ public class TokenDto {
 
 회원가입시에 사용할 UserDto 클래스도 미리 만들어주겠습니다.
 
-```clike
+```java
 @Getter
 @Setter
 @Builder
@@ -94,7 +94,7 @@ public class UserDto {
 
 이전에 만들었던 User 엔티티에 매핑되는 UserRepository 인터페이스를 만들겠습니다.
 
-```clike
+```java
 public interface UserRepository extends JpaRepository<User, Long> {
     @EntityGraph(attributePaths = "authorities")
     Optional<User> findOneWithAuthoritiesByUsername(String username);
@@ -116,7 +116,7 @@ Spring Security에서 중요한 부분중 하나인 UserDetailsService를 구현
 
 먼저 service 패키지를 만들어고 해당 패키지에 클래스를 생성합니다.
 
-```clike
+```java
 @Component("userDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
@@ -155,7 +155,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 로그인 API를 추가하기 위해서 AuthController 클래스를 만들겠습니다.
 
-```clike
+```java
 @RestController
 @RequestMapping("/api")
 public class AuthController {
@@ -239,7 +239,7 @@ admin 계정 정보는 data.sql의 insert문이 서버가 시작될때 자동실
 
 정상적으로 요청이 응답된다면 서버에선 해당 sql문 query 내용이 로그로 나타납니다
 
-```json
+```sql
 Hibernate: 
     select
         user0_.user_id as user_id1_1_0_,
