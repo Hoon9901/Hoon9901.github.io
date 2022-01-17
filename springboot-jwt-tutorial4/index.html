@@ -562,63 +562,63 @@
 </ul></div></div><div class="blog-post-content"><h1 id="1-dto-클래스-생성" style="position:relative;"><a href="#1-dto-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%83%9D%EC%84%B1" aria-label="1 dto 클래스 생성 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. DTO 클래스 생성</h1>
 <h2 id="logindto-클래스" style="position:relative;"><a href="#logindto-%ED%81%B4%EB%9E%98%EC%8A%A4" aria-label="logindto 클래스 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>LoginDto 클래스</h2>
 <p>외부와의 통신에 사용할 DTO 패키지 및 클래스를 생성합니다.</p>
-<div class="gatsby-highlight" data-language="clike"><pre class="language-clike"><code class="language-clike">@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class <span class="token class-name">LoginDto</span> <span class="token punctuation">{</span>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Getter</span>
+<span class="token annotation punctuation">@Setter</span>
+<span class="token annotation punctuation">@Builder</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LoginDto</span> <span class="token punctuation">{</span>
 
-    @NotNull
-    @<span class="token function">Size</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">)</span>
-    private String username<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@NotNull</span>
+    <span class="token annotation punctuation">@Size</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> username<span class="token punctuation">;</span>
 
-    @NotNull
-    @<span class="token function">Size</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">)</span>
-    private String password<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@NotNull</span>
+    <span class="token annotation punctuation">@Size</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> password<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>Lombok 어노테이션(Get, Set 등)이 추가되었고 @Valid 관련 어노테이션을 추가했습니다.</p>
 <p>로그인 할 이용자의 아이디, 비밀번호를 담을 username, password 필드를 가집니다.</p>
 <h2 id="tokendto-클래스" style="position:relative;"><a href="#tokendto-%ED%81%B4%EB%9E%98%EC%8A%A4" aria-label="tokendto 클래스 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TokenDto 클래스</h2>
 <p>Token 정보를 Response 할때 사용할 TokenDto를 만들겠습니다.</p>
-<div class="gatsby-highlight" data-language="clike"><pre class="language-clike"><code class="language-clike">@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class <span class="token class-name">TokenDto</span> <span class="token punctuation">{</span>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Getter</span>
+<span class="token annotation punctuation">@Setter</span>
+<span class="token annotation punctuation">@Builder</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TokenDto</span> <span class="token punctuation">{</span>
 
-    private String token<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> token<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
 <h2 id="userdto-클래스" style="position:relative;"><a href="#userdto-%ED%81%B4%EB%9E%98%EC%8A%A4" aria-label="userdto 클래스 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>UserDto 클래스</h2>
 <p>회원가입시에 사용할 UserDto 클래스도 미리 만들어주겠습니다.</p>
-<div class="gatsby-highlight" data-language="clike"><pre class="language-clike"><code class="language-clike">@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class <span class="token class-name">UserDto</span> <span class="token punctuation">{</span>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Getter</span>
+<span class="token annotation punctuation">@Setter</span>
+<span class="token annotation punctuation">@Builder</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserDto</span> <span class="token punctuation">{</span>
 
-    @NotNull
-    @<span class="token function">Size</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">)</span>
-    private String username<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@NotNull</span>
+    <span class="token annotation punctuation">@Size</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> username<span class="token punctuation">;</span>
 
-    @<span class="token function">JsonProperty</span><span class="token punctuation">(</span>access <span class="token operator">=</span> JsonProperty<span class="token punctuation">.</span>Access<span class="token punctuation">.</span>WRITE_ONLY<span class="token punctuation">)</span>
-    @NotNull
-    @<span class="token function">Size</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">)</span>
-    private String password<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@JsonProperty</span><span class="token punctuation">(</span>access <span class="token operator">=</span> <span class="token class-name">JsonProperty</span><span class="token punctuation">.</span><span class="token class-name">Access</span><span class="token punctuation">.</span>WRITE_ONLY<span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@NotNull</span>
+    <span class="token annotation punctuation">@Size</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> password<span class="token punctuation">;</span>
 
-    @NotNull
-    @<span class="token function">Size</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">)</span>
-    private String nickname<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@NotNull</span>
+    <span class="token annotation punctuation">@Size</span><span class="token punctuation">(</span>min <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> max <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> nickname<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
 <h1 id="2-repository-관련-코드-작성" style="position:relative;"><a href="#2-repository-%EA%B4%80%EB%A0%A8-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1" aria-label="2 repository 관련 코드 작성 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Repository 관련 코드 작성</h1>
 <p>이제 Repository들을 만들어주기 위해 repository 패키지를 생성합니다.</p>
 <h2 id="userrepository-인터페이스" style="position:relative;"><a href="#userrepository-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4" aria-label="userrepository 인터페이스 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>UserRepository 인터페이스</h2>
 <p>이전에 만들었던 User 엔티티에 매핑되는 UserRepository 인터페이스를 만들겠습니다.</p>
-<div class="gatsby-highlight" data-language="clike"><pre class="language-clike"><code class="language-clike">public interface <span class="token class-name">UserRepository</span> extends <span class="token class-name">JpaRepository</span><span class="token operator">&lt;</span>User<span class="token punctuation">,</span> Long<span class="token operator">></span> <span class="token punctuation">{</span>
-    @<span class="token function">EntityGraph</span><span class="token punctuation">(</span>attributePaths <span class="token operator">=</span> <span class="token string">"authorities"</span><span class="token punctuation">)</span>
-    Optional<span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token function">findOneWithAuthoritiesByUsername</span><span class="token punctuation">(</span>String username<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UserRepository</span> <span class="token keyword">extends</span> <span class="token class-name">JpaRepository</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">,</span> <span class="token class-name">Long</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@EntityGraph</span><span class="token punctuation">(</span>attributePaths <span class="token operator">=</span> <span class="token string">"authorities"</span><span class="token punctuation">)</span>
+    <span class="token class-name">Optional</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">></span></span> <span class="token function">findOneWithAuthoritiesByUsername</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
 <ul>
 <li>
@@ -634,30 +634,30 @@ public class <span class="token class-name">UserDto</span> <span class="token pu
 <h2 id="customuserdetailsservice-클래스" style="position:relative;"><a href="#customuserdetailsservice-%ED%81%B4%EB%9E%98%EC%8A%A4" aria-label="customuserdetailsservice 클래스 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CustomUserDetailsService 클래스</h2>
 <p>Spring Security에서 중요한 부분중 하나인 UserDetailsService를 구현한 CustomUserDetailsService 클래스를 생성하겠습니다. </p>
 <p>먼저 service 패키지를 만들어고 해당 패키지에 클래스를 생성합니다.</p>
-<div class="gatsby-highlight" data-language="clike"><pre class="language-clike"><code class="language-clike">@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token string">"userDetailsService"</span><span class="token punctuation">)</span>
-public class <span class="token class-name">CustomUserDetailsService</span> implements <span class="token class-name">UserDetailsService</span> <span class="token punctuation">{</span>
-    private final UserRepository userRepository<span class="token punctuation">;</span>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span><span class="token punctuation">(</span><span class="token string">"userDetailsService"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CustomUserDetailsService</span> <span class="token keyword">implements</span> <span class="token class-name">UserDetailsService</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">UserRepository</span> userRepository<span class="token punctuation">;</span>
 
-    public <span class="token function">CustomUserDetailsService</span><span class="token punctuation">(</span>UserRepository userRepository<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        this<span class="token punctuation">.</span>userRepository <span class="token operator">=</span> userRepository<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token class-name">CustomUserDetailsService</span><span class="token punctuation">(</span><span class="token class-name">UserRepository</span> userRepository<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>userRepository <span class="token operator">=</span> userRepository<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    @Override
-    @Transactional
-    public UserDetails <span class="token function">loadUserByUsername</span><span class="token punctuation">(</span>final String username<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token annotation punctuation">@Transactional</span>
+    <span class="token keyword">public</span> <span class="token class-name">UserDetails</span> <span class="token function">loadUserByUsername</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">String</span> username<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> userRepository<span class="token punctuation">.</span><span class="token function">findOneWithAuthoritiesByUsername</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>user <span class="token operator">-</span><span class="token operator">></span> <span class="token function">createUser</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> user<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">orElseThrow</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">UsernameNotFoundException</span><span class="token punctuation">(</span>username <span class="token operator">+</span> <span class="token string">" -> 데이터베이스에서 찾을 수 없습니다."</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>user <span class="token operator">-></span> <span class="token function">createUser</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> user<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">orElseThrow</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token keyword">new</span> <span class="token class-name">UsernameNotFoundException</span><span class="token punctuation">(</span>username <span class="token operator">+</span> <span class="token string">" -> 데이터베이스에서 찾을 수 없습니다."</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    private org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>core<span class="token punctuation">.</span>userdetails<span class="token punctuation">.</span>User <span class="token function">createUser</span><span class="token punctuation">(</span>String username<span class="token punctuation">,</span> User user<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>core<span class="token punctuation">.</span>userdetails<span class="token punctuation">.</span><span class="token class-name">User</span> <span class="token function">createUser</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">,</span> <span class="token class-name">User</span> user<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>user<span class="token punctuation">.</span><span class="token function">isActivated</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span>username <span class="token operator">+</span> <span class="token string">" -> 활성화되어 있지 않습니다."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        List<span class="token operator">&lt;</span>GrantedAuthority<span class="token operator">></span> grantedAuthorities <span class="token operator">=</span> user<span class="token punctuation">.</span><span class="token function">getAuthorities</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>authority <span class="token operator">-</span><span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">SimpleGrantedAuthority</span><span class="token punctuation">(</span>authority<span class="token punctuation">.</span><span class="token function">getAuthorityName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>core<span class="token punctuation">.</span>userdetails<span class="token punctuation">.</span>User</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">GrantedAuthority</span><span class="token punctuation">></span></span> grantedAuthorities <span class="token operator">=</span> user<span class="token punctuation">.</span><span class="token function">getAuthorities</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>authority <span class="token operator">-></span> <span class="token keyword">new</span> <span class="token class-name">SimpleGrantedAuthority</span><span class="token punctuation">(</span>authority<span class="token punctuation">.</span><span class="token function">getAuthorityName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>security<span class="token punctuation">.</span>core<span class="token punctuation">.</span>userdetails<span class="token punctuation">.</span><span class="token class-name">User</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
                 user<span class="token punctuation">.</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
                 grantedAuthorities<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -666,32 +666,32 @@ public class <span class="token class-name">CustomUserDetailsService</span> impl
 <p>해당 정보를 기반으로 해서 <code class="language-text">userdetails.user</code> 객체를 생성해서 리턴합니다.</p>
 <h2 id="authcontroller-클래스" style="position:relative;"><a href="#authcontroller-%ED%81%B4%EB%9E%98%EC%8A%A4" aria-label="authcontroller 클래스 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>AuthController 클래스</h2>
 <p>로그인 API를 추가하기 위해서 AuthController 클래스를 만들겠습니다.</p>
-<div class="gatsby-highlight" data-language="clike"><pre class="language-clike"><code class="language-clike">@RestController
-@<span class="token function">RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/api"</span><span class="token punctuation">)</span>
-public class <span class="token class-name">AuthController</span> <span class="token punctuation">{</span>
-    private final TokenProvider tokenProvider<span class="token punctuation">;</span>
-    private final AuthenticationManagerBuilder authenticationManagerBuilder<span class="token punctuation">;</span>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/api"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AuthController</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">TokenProvider</span> tokenProvider<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">AuthenticationManagerBuilder</span> authenticationManagerBuilder<span class="token punctuation">;</span>
 
-    public <span class="token function">AuthController</span><span class="token punctuation">(</span>TokenProvider tokenProvider<span class="token punctuation">,</span> AuthenticationManagerBuilder authenticationManagerBuilder<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        this<span class="token punctuation">.</span>tokenProvider <span class="token operator">=</span> tokenProvider<span class="token punctuation">;</span>
-        this<span class="token punctuation">.</span>authenticationManagerBuilder <span class="token operator">=</span> authenticationManagerBuilder<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token class-name">AuthController</span><span class="token punctuation">(</span><span class="token class-name">TokenProvider</span> tokenProvider<span class="token punctuation">,</span> <span class="token class-name">AuthenticationManagerBuilder</span> authenticationManagerBuilder<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>tokenProvider <span class="token operator">=</span> tokenProvider<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>authenticationManagerBuilder <span class="token operator">=</span> authenticationManagerBuilder<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    @<span class="token function">PostMapping</span><span class="token punctuation">(</span><span class="token string">"/authenticate"</span><span class="token punctuation">)</span>
-    public ResponseEntity<span class="token operator">&lt;</span>TokenDto<span class="token operator">></span> <span class="token function">authorize</span><span class="token punctuation">(</span>@Valid @RequestBody LoginDto loginDto<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/authenticate"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">TokenDto</span><span class="token punctuation">></span></span> <span class="token function">authorize</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Valid</span> <span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">LoginDto</span> loginDto<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-        UsernamePasswordAuthenticationToken authenticationToken <span class="token operator">=</span>
+        <span class="token class-name">UsernamePasswordAuthenticationToken</span> authenticationToken <span class="token operator">=</span>
                 <span class="token keyword">new</span> <span class="token class-name">UsernamePasswordAuthenticationToken</span><span class="token punctuation">(</span>loginDto<span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> loginDto<span class="token punctuation">.</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        Authentication authentication <span class="token operator">=</span> authenticationManagerBuilder<span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authenticate</span><span class="token punctuation">(</span>authenticationToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        SecurityContextHolder<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setAuthentication</span><span class="token punctuation">(</span>authentication<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Authentication</span> authentication <span class="token operator">=</span> authenticationManagerBuilder<span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authenticate</span><span class="token punctuation">(</span>authenticationToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">SecurityContextHolder</span><span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setAuthentication</span><span class="token punctuation">(</span>authentication<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        String jwt <span class="token operator">=</span> tokenProvider<span class="token punctuation">.</span><span class="token function">createToken</span><span class="token punctuation">(</span>authentication<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> jwt <span class="token operator">=</span> tokenProvider<span class="token punctuation">.</span><span class="token function">createToken</span><span class="token punctuation">(</span>authentication<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        HttpHeaders httpHeaders <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        httpHeaders<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>JwtFilter<span class="token punctuation">.</span>AUTHORIZATION_HEADER<span class="token punctuation">,</span> <span class="token string">"Bearer "</span> <span class="token operator">+</span> jwt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">HttpHeaders</span> httpHeaders <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        httpHeaders<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">JwtFilter</span><span class="token punctuation">.</span>AUTHORIZATION_HEADER<span class="token punctuation">,</span> <span class="token string">"Bearer "</span> <span class="token operator">+</span> jwt<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">TokenDto</span><span class="token punctuation">(</span>jwt<span class="token punctuation">)</span><span class="token punctuation">,</span> httpHeaders<span class="token punctuation">,</span> HttpStatus<span class="token punctuation">.</span>OK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">TokenDto</span><span class="token punctuation">(</span>jwt<span class="token punctuation">)</span><span class="token punctuation">,</span> httpHeaders<span class="token punctuation">,</span> <span class="token class-name">HttpStatus</span><span class="token punctuation">.</span>OK<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>이전에 만들었던 <code class="language-text">TokenProvider</code>, <code class="language-text">AuthenticationManagerBuilder</code> 를 주입받습니다.</p>
@@ -761,26 +761,26 @@ public class <span class="token class-name">AuthController</span> <span class="t
 </ul>
 <h2 id="정상-응답" style="position:relative;"><a href="#%EC%A0%95%EC%83%81-%EC%9D%91%EB%8B%B5" aria-label="정상 응답 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>정상 응답</h2>
 <p>정상적으로 요청이 응답된다면 서버에선 해당 sql문 query 내용이 로그로 나타납니다</p>
-<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json">Hibernate<span class="token operator">:</span> 
-    select
-        user0_.user_id as user_id1_1_0_<span class="token punctuation">,</span>
-        authority2_.authority_name as authorit1_0_1_<span class="token punctuation">,</span>
-        user0_.activated as activate2_1_0_<span class="token punctuation">,</span>
-        user0_.nickname as nickname3_1_0_<span class="token punctuation">,</span>
-        user0_.password as password4_1_0_<span class="token punctuation">,</span>
-        user0_.username as username5_1_0_<span class="token punctuation">,</span>
-        authoritie1_.user_id as user_id1_2_0__<span class="token punctuation">,</span>
-        authoritie1_.authority_name as authorit2_2_0__ 
-    from
-        user user0_ 
-    left outer join
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql">Hibernate: 
+    <span class="token keyword">select</span>
+        user0_<span class="token punctuation">.</span>user_id <span class="token keyword">as</span> user_id1_1_0_<span class="token punctuation">,</span>
+        authority2_<span class="token punctuation">.</span>authority_name <span class="token keyword">as</span> authorit1_0_1_<span class="token punctuation">,</span>
+        user0_<span class="token punctuation">.</span>activated <span class="token keyword">as</span> activate2_1_0_<span class="token punctuation">,</span>
+        user0_<span class="token punctuation">.</span>nickname <span class="token keyword">as</span> nickname3_1_0_<span class="token punctuation">,</span>
+        user0_<span class="token punctuation">.</span>password <span class="token keyword">as</span> password4_1_0_<span class="token punctuation">,</span>
+        user0_<span class="token punctuation">.</span>username <span class="token keyword">as</span> username5_1_0_<span class="token punctuation">,</span>
+        authoritie1_<span class="token punctuation">.</span>user_id <span class="token keyword">as</span> user_id1_2_0__<span class="token punctuation">,</span>
+        authoritie1_<span class="token punctuation">.</span>authority_name <span class="token keyword">as</span> authorit2_2_0__ 
+    <span class="token keyword">from</span>
+        <span class="token keyword">user</span> user0_ 
+    <span class="token keyword">left</span> <span class="token keyword">outer</span> <span class="token keyword">join</span>
         user_authority authoritie1_ 
-            on user0_.user_id=authoritie1_.user_id 
-    left outer join
+            <span class="token keyword">on</span> user0_<span class="token punctuation">.</span>user_id<span class="token operator">=</span>authoritie1_<span class="token punctuation">.</span>user_id 
+    <span class="token keyword">left</span> <span class="token keyword">outer</span> <span class="token keyword">join</span>
         authority authority2_ 
-            on authoritie1_.authority_name=authority2_.authority_name 
-    where
-        user0_.username=?</code></pre></div>
+            <span class="token keyword">on</span> authoritie1_<span class="token punctuation">.</span>authority_name<span class="token operator">=</span>authority2_<span class="token punctuation">.</span>authority_name 
+    <span class="token keyword">where</span>
+        user0_<span class="token punctuation">.</span>username<span class="token operator">=</span>?</code></pre></div>
 <p>그리고 Repsonse 내용으로 아래와 같이 Token이 정상적으로 리턴됩니다.</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
     <span class="token property">"token"</span><span class="token operator">:</span> <span class="token string">"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTY0MjA2NjU2NH0.QLtuqh874mipMl-h0cO6p4Jf430RGf2uBArr5nWcnmnvG6YqVo0qFXGxEwbPHD9u7J4Zl1GIL0YuWQTXWdUYHA"</span>
