@@ -13,15 +13,12 @@ keywords :
 ---
 # asdf란? ([asdf 설치 하기](https://subicura.com/mac/dev/terminal-apps.html#asdf))
 
-asdf-vm은 각종 프로그램의 버전을 손쉽게 관리해주는 **성의 없어 보이는 이름**의 도구입니다.<br/>
+asdf-vm은 mac OS의 각종 프로그램의 버전을 손쉽게 관리해주는 **성의 없어 보이는 이름**의 도구입니다.<br/>
 기존에 nvm, rbenv등 언어, 프로그램별로 달랐던 관리 도구를 하나로 통합해서 사용할 수 있습니다. <br/>
 homebrew도 일부 버전 관리 기능을 제공하지만 asdf만큼 강력하지 않습니다.<br/>
 asdf를 이용하면 버전 별로 설치할 수 있는 장점이 있습니다.<br/>
 그래서 이번에는 Java 8 JDK와, Java 11 JDK 를 둘다 설치하는 것을 해보겠습니다.<br/>
 
-### 주의
-
-맥 OS 가 아닌 분들을 아쉽지만 들어온 문으로 나가주세요. 
 
 ## 시작
 
