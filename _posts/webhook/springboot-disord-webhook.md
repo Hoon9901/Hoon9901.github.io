@@ -17,7 +17,7 @@ keywords :
 
 이 글에서는 스프링부트에서 디스코드 WebHook을 사용하여, 어떠한 이벤트 요청이 오면, 알림을 알려주는 것을 해보겠습니다.
 
-# WebHooks 이란?
+# WebHook 이란?
 
 ![Untitled](2.png)
 
