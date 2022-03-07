@@ -49,6 +49,16 @@ config server 를 구성서버라고 부르겠습니다.
 스프링 구성 서버를 제작하고, 설정을 받는 것을 해보겠습니다
 
 ### 구성 서버 설정
+- build.gradle
+```groovy
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-config-server:3.1.0'
+
+    implementation 'org.springframework.vault:spring-vault-core:2.3.2'
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.6.3'
+```
+해당 의존성을 추가합나디.
 
 - Main 클래스
 
