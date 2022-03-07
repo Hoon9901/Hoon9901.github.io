@@ -3,14 +3,14 @@ title: 'Spring Cloud Config Server/Client'
 date: 2022-03-07
 tags:
   - SpringBoot
-  - Discord
-  - WebHook
+  - Cloud
+  - Config
 keywords :
   - 스프링
   - 스프링부트
   - SpringBoot
-  - 웹훅
-  - WebHook
+  - CloudConfig
+  - Config
 ---
 
 # Spring Cloud - Config Server/Client
