@@ -1,4 +1,237 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 19 Feb 2022 12:43:56 GMT</lastBuildDate><item><title><![CDATA[[SpringBoot] 디스코드 WebHook으로 알림 보내기]]></title><description><![CDATA[이 글에서는 스프링부트에서 디스코드 WebHook을 사용하여, 어떠한 이벤트 요청이 오면, 알림을 알려주는 것을 해보겠습니다. WebHook 이란?  WebHook은 웹페이지 또는 웹앱에서 발생하는 특정 행동(이벤트)들을 커스텀 Callback 형식…]]></description><link>https://hoon9901.github.io/springboot-disord-webhook/</link><guid isPermaLink="false">https://hoon9901.github.io/springboot-disord-webhook/</guid><pubDate>Sat, 19 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 07 Mar 2022 13:18:19 GMT</lastBuildDate><item><title><![CDATA[Spring Cloud Config Server/Client]]></title><description><![CDATA[Spring Cloud - Config Server/Client  spring cloud config server 구성 아키텍쳐 Spring Cloud Config Server 의 저장소는 git, vault, aws s3, redis, jdbc 등…]]></description><link>https://hoon9901.github.io/spring-cloud-config/</link><guid isPermaLink="false">https://hoon9901.github.io/spring-cloud-config/</guid><pubDate>Mon, 07 Mar 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;spring-cloud---config-serverclient&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud---config-serverclient&quot; aria-label=&quot;spring cloud   config serverclient permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud - Config Server/Client&lt;/h1&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/665b35f946fefa0dcc9899ada69dbcd9/fcda8/1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 48.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsSAAALEgHS3X78AAAB60lEQVQoz32S608aURDF95/vB2PTpvqliR+MjWljg1JLeZhaVNQFQUpFjTzCQ0xZlgV2b1lZ7iL+eoVgSIM9yeQmc89M5swc7axk8jZSYjfdYDwe84THx8cXY9G/9Ed4UuL7PtqHowrLoQKrsTJGRzCPacH4OZi9/6Df6+L3BbZjo1UMh+C5wVnJwnX7nFyl2D4JcZA7njadK5y1kr7EtC3Mrsn9wxg7q9MIb/E58BFtMJRc1LuK4E7IyUKGoP6NxJXOYODhti6xaoeUyvv075IMRYtbq8n7yDqrX9fIFn8hFU96A8UfoO1mbnkTrbB+WKPr/CFT+kkovUcin1QTu4ibAFH9FXs3X6jm1xC3acRgSNWoU2s16HvuZPeOEBO+tpOqsxQqshavKAkOp9cpto6CHOZPEcLBKQTRD5b5EX9HKbWipsziKlWmaGM4pjrGcKLMcRzFF2j3npJcs54lp8s5Irl9Epc6npJi353TuIxRu4hhFr8jhUGjY7B5GmDjeIvrRoF2q43V6SDVpbW6KQhlm2QrlmpwP5nsU3yb/dwRL0GOJIZt0uy1kA8+4XCEaDSGrutoGwdlXofLrCjb/LbsBbZZ7MV52LaN53n0eso2qYLBUiDHTrI6LeD/Jp7lxnO5kTL2k9zRaMRfB5jidVNGodAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;spring cloud config server 구성 아키텍쳐&quot;
+        title=&quot;spring cloud config server 구성 아키텍쳐&quot;
+        src=&quot;/static/665b35f946fefa0dcc9899ada69dbcd9/fcda8/1.png&quot;
+        srcset=&quot;/static/665b35f946fefa0dcc9899ada69dbcd9/12f09/1.png 148w,
+/static/665b35f946fefa0dcc9899ada69dbcd9/e4a3f/1.png 295w,
+/static/665b35f946fefa0dcc9899ada69dbcd9/fcda8/1.png 590w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;spring cloud config server 구성 아키텍쳐&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Cloud Config Server 의 저장소는&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;git, vault, aws s3, redis, jdbc 등 과 같은 저장소를 사용할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;스프링-클라우드-config&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8A%A4%ED%94%84%EB%A7%81-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-config&quot; aria-label=&quot;스프링 클라우드 config permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;스프링 클라우드 Config&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;스프링 클라우드 구성 서버는 애플리케이션의 모든 마이크로서비스가 구성에 의존할 수 있는 서버를 사용해서중앙 집중식 구성을 제공할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;중앙-집중식-구성의-장점--스프링-클라우드-구성-서버의-장점-&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%A4%91%EC%95%99-%EC%A7%91%EC%A4%91%EC%8B%9D-%EA%B5%AC%EC%84%B1%EC%9D%98-%EC%9E%A5%EC%A0%90--%EC%8A%A4%ED%94%84%EB%A7%81-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EA%B5%AC%EC%84%B1-%EC%84%9C%EB%B2%84%EC%9D%98-%EC%9E%A5%EC%A0%90-&quot; aria-label=&quot;중앙 집중식 구성의 장점  스프링 클라우드 구성 서버의 장점  permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;중앙 집중식 구성의 장점 (= 스프링 클라우드 구성 서버의 장점 )&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;구성이 더 이상 애플리케이션 코드에 패키징되어 배포되지 않는다. 따라서 애플리케이션을 다시 빌드하거나 배포하지 않고 구성을 변경하거나 원래 값으로 환원할 수 있다.&lt;/li&gt;
+&lt;li&gt;공통적인 구성을 공유하는 마이크로서비스가 자신의 속성 설정으로 유지/관리하지않고도 동일한 속성들을 공유할 수 있다. 그리고 속성 변경이 필요하면 한 곳에서 한번만 변경해도 모든 마이크로서비스에 적용할 수 있다.&lt;/li&gt;
+&lt;li&gt;보안에 민감한 구성 속성은 애플리케이션 코드와는 별도로 암호화하고 유지/관리할 수 있다. 그리고 복호화된 속성 값을 언제든지 애플리케이션에서 사용할 수 있으므로 복호화를 하는 코드가 애플리케이션에 없어도 된다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;구성서버---자동-속성-갱신&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%AC%EC%84%B1%EC%84%9C%EB%B2%84---%EC%9E%90%EB%8F%99-%EC%86%8D%EC%84%B1-%EA%B0%B1%EC%8B%A0&quot; aria-label=&quot;구성서버   자동 속성 갱신 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;구성서버 - 자동 속성 갱신&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/34938c65d75a5bb41532e42e2be2988a/d8817/2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.05405405405405%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAABfUlEQVQoz41Sa2+CQBDk//+sWvSDFkMDFtQEDC9FRQEFn0xvzhxF0zTdZHN7+5jdnTutaRpQKcpW91f5T0zrOrqyTlM4Xw622y0Oh8NT/H6/43Q64Xw+S+2K1u1aliXW67UESVcrJHGMVAD7ni/9U3eKyWSC5XKJOIrhOA4MY4wgCGXt9Xp9BowFgGl+wrIsrAQgp1BN5rM5xqKYIPRRmDOxbcxELEkSHI/Hn5UpBKjrWq6RZZmYIpJNsmyHy+WC2+0mT7Um74oC2jw1GuzEwqIofiWcOaWIlUWJuqpQVXULxgZ5nuMoeC7y4jEhkdmVZ5cCckKbqwRBILkjt/t9LnPV44RhKPhOEImNNE7leV67Bs9IJBiGAf1dl49Sial8f4HhcCh5JMhms4Ft2ei99WR9+8okc9AfYLfbtYCu66Kv9yUAueRKo9GH9JmmKXlm05GI68K3EM0Uvxqa53/IAEG5JgvVI3BK/kfl56nuVOY8AF9+e9dWPHWVDf/SbwedTCiBj+X9AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;spring actuator 를 통한 속성 자동 리프레시&quot;
+        title=&quot;spring actuator 를 통한 속성 자동 리프레시&quot;
+        src=&quot;/static/34938c65d75a5bb41532e42e2be2988a/fcda8/2.png&quot;
+        srcset=&quot;/static/34938c65d75a5bb41532e42e2be2988a/12f09/2.png 148w,
+/static/34938c65d75a5bb41532e42e2be2988a/e4a3f/2.png 295w,
+/static/34938c65d75a5bb41532e42e2be2988a/fcda8/2.png 590w,
+/static/34938c65d75a5bb41532e42e2be2988a/efc66/2.png 885w,
+/static/34938c65d75a5bb41532e42e2be2988a/c83ae/2.png 1180w,
+/static/34938c65d75a5bb41532e42e2be2988a/d8817/2.png 1238w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;spring actuator 를 통한 속성 자동 리프레시&lt;/p&gt;
+&lt;p&gt;구성 서버를 중앙 속성 서버로 두고, 스프링 Actuator 와, cloud bus, RabbitMQ 를 통해&lt;/p&gt;
+&lt;p&gt;해당 이미지 처럼 개발자가 속성을 새롭게 수정하였으면, WebHook (/actuator/bus-refresh) 경로로 요청을 보내 변경된 속성을 갱신하고, 운영중인 서버로 부터 설정을 업데이트 하라고 요청을 할 수 있습니다.&lt;/p&gt;
+&lt;h2 id=&quot;구성-서버&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%AC%EC%84%B1-%EC%84%9C%EB%B2%84&quot; aria-label=&quot;구성 서버 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;구성 서버&lt;/h2&gt;
+&lt;p&gt;config server 를 구성서버라고 부르겠습니다.&lt;/p&gt;
+&lt;p&gt;스프링 구성 서버를 제작하고, 설정을 받는 것을 해보겠습니다&lt;/p&gt;
+&lt;h3 id=&quot;구성-서버-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%AC%EC%84%B1-%EC%84%9C%EB%B2%84-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;구성 서버 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;구성 서버 설정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Main 클래스&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@SpringBootApplication&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@EnableConfigServer&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;VaultdemoApplication&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; args&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token class-name&quot;&gt;SpringApplication&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;VaultdemoApplication&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; args&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;EnableConfigServer&lt;/strong&gt; 어노테이션을 달아서, 구성서버 자동 설정합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;application.yml&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8888&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;spring&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;profiles&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;active&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; native
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; vault
+
+  &lt;span class=&quot;token key atrule&quot;&gt;cloud&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;native&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;search-locations&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; file&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;./config
+        &lt;span class=&quot;token key atrule&quot;&gt;vault&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;kv-version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;authentication&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; token
+          &lt;span class=&quot;token key atrule&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;vault token&quot;&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; localhost
+          &lt;span class=&quot;token key atrule&quot;&gt;scheme&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; http
+          &lt;span class=&quot;token key atrule&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8200&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위 설정들은 구성 서버 자체 구성에 필요한 속성들입니다.&lt;/p&gt;
+&lt;p&gt;구성 서버가 클라이언트(개발 서버[config가 필요한 곳])에 제공하는 config 는 git, vault, native 등(서버 파일 시스템)의 repository (저장소)에서 가져옵니다.&lt;/p&gt;
+&lt;p&gt;현재 서버의 속성을 보시면은 구성을 가져올 저장소가 두 곳 인것을 볼 수 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;native : 프로젝트 경로의 config 디렉터리 내부 파일(설정 파일들이 위치)&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;vault : vault 의 secret 경로&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;클라이언트에서 vault의 token 을 발급 하지 않고 속성만 받을 수 있게 구성 서버에서 token을 지정하였습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;구성-서버-native-속성-파일&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%AC%EC%84%B1-%EC%84%9C%EB%B2%84-native-%EC%86%8D%EC%84%B1-%ED%8C%8C%EC%9D%BC&quot; aria-label=&quot;구성 서버 native 속성 파일 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;구성 서버 native 속성 파일&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;/config/test.yml&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;message:
+  hello: &lt;span class=&quot;token string&quot;&gt;&quot;hi&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;native 저장소에 있는 설정 파일입니다.&lt;/p&gt;
+&lt;h3 id=&quot;구성-서버-vault-secret&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%AC%EC%84%B1-%EC%84%9C%EB%B2%84-vault-secret&quot; aria-label=&quot;구성 서버 vault secret permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;구성 서버 vault secret&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;❯ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -X GET http://localhost:8200/v1/test-app/dev -H &lt;span class=&quot;token string&quot;&gt;&quot;X-Vault-Token: token값&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; jq
+
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;request_id&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;0f62463e-fec4-7c60-7103-d6baf2fc04c7&quot;&lt;/span&gt;,
+  &lt;span class=&quot;token string&quot;&gt;&quot;lease_id&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;,
+  &lt;span class=&quot;token string&quot;&gt;&quot;renewable&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; false,
+  &lt;span class=&quot;token string&quot;&gt;&quot;lease_duration&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3153600000&lt;/span&gt;,
+  &lt;span class=&quot;token string&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    **&lt;span class=&quot;token string&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;world&quot;&lt;/span&gt;,
+    &lt;span class=&quot;token string&quot;&gt;&quot;this&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;is&quot;&lt;/span&gt;**
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;,
+  &lt;span class=&quot;token string&quot;&gt;&quot;wrap_info&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; null,
+  &lt;span class=&quot;token string&quot;&gt;&quot;warnings&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; null,
+  &lt;span class=&quot;token string&quot;&gt;&quot;auth&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; null
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;test-app/dev [key , value 저장소]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hello : world&lt;/li&gt;
+&lt;li&gt;this : is&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;구성-서버-테스트-하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%AC%EC%84%B1-%EC%84%9C%EB%B2%84-%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%95%98%EA%B8%B0&quot; aria-label=&quot;구성 서버 테스트 하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;구성 서버 테스트 하기&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 464px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e63e75d0060915dc15354c324c0ae766/69096/3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 36.486486486486484%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsSAAALEgHS3X78AAABB0lEQVQoz31RWYuDYAz0//+xCl2pLd1an8SriveJt7OdLErdhw0MxsyXZJgoeEfbtrheb1BVFZeLDl3XUZYlKazrKmA0TYM8zwVZlqEoCiRJsvP8KkxIhGGINE0RBAGiKJamvwP5jrxt2/A8T3Lf9zHP83EgY1kWdF33biqlcRgGVFW1D/sMLqvrGtM0Heoy0HFckR9FkWx0XVfUcrNlWXAcB8ErkBpBngp/1b2EZ30cRxmqcAtBhQTlE8xZp5dxHIsdVMX/je/7YRezqVXwT/BYBIfxILTkMzZbeBjyXKhspm9eUTofxHGC+/0bmqbh+TRhGE+Ypnm4bN/3eDwMnE4qzucvseIHP/8XxIfuJBYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Untitled&quot;
+        title=&quot;Untitled&quot;
+        src=&quot;/static/e63e75d0060915dc15354c324c0ae766/69096/3.png&quot;
+        srcset=&quot;/static/e63e75d0060915dc15354c324c0ae766/12f09/3.png 148w,
+/static/e63e75d0060915dc15354c324c0ae766/e4a3f/3.png 295w,
+/static/e63e75d0060915dc15354c324c0ae766/69096/3.png 464w&quot;
+        sizes=&quot;(max-width: 464px) 100vw, 464px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;localhost:8888 : 구성 서버의 호스트 이름과 포트&lt;/li&gt;
+&lt;li&gt;application : 애플리케이션 이름(spring.application.name)&lt;/li&gt;
+&lt;li&gt;default : 활성화된 스프링 프로파일(E.g. production) (14.2.2)&lt;/li&gt;
+&lt;li&gt;master : Git 라벨/분기(생략 가능, master가 기본값)&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;test 속성 받기&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;❯ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -X GET http://localhost:8888/test/default &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; jq
+&lt;span class=&quot;token string&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;test&quot;&lt;/span&gt;,
+&lt;span class=&quot;token string&quot;&gt;&quot;profiles&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;default&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;,
+&lt;span class=&quot;token string&quot;&gt;&quot;label&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; null,
+&lt;span class=&quot;token string&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; null,
+&lt;span class=&quot;token string&quot;&gt;&quot;state&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; null,
+&lt;span class=&quot;token string&quot;&gt;&quot;propertySources&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    **&lt;span class=&quot;token string&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;file:config/test.yml&quot;&lt;/span&gt;,**
+    &lt;span class=&quot;token string&quot;&gt;&quot;source&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      **&lt;span class=&quot;token string&quot;&gt;&quot;message.hello&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;hi&quot;&lt;/span&gt;**
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;http://localhost:8888&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;localhost:8888&lt;/a&gt;/test/default 로 요청을 보냈습니다.
+test.yml 속성을 받아온것을 볼 수 있습니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;레퍼런스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4&quot; aria-label=&quot;레퍼런스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;레퍼런스&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://cloud.spring.io/spring-cloud-config/reference/html/#_environment_repository&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://cloud.spring.io/spring-cloud-config/reference/html/#_environment_repository&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://lejewk.github.io/vault-get-started/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://lejewk.github.io/vault-get-started/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.vaultproject.io/docs/commands&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://www.vaultproject.io/docs/commands&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://wonit.tistory.com/502&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://wonit.tistory.com/502&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://velog.io/@ha0kim/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9D%B8-%EC%95%A1%EC%85%98-14.%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8D%BC%EC%8B%9C%EC%8A%A4%ED%84%B4%EC%8A%A4&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://velog.io/@ha0kim/스프링-인-액션-14.리액티브-데이터-퍼시스턴스&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[SpringBoot] 디스코드 WebHook으로 알림 보내기]]></title><description><![CDATA[이 글에서는 스프링부트에서 디스코드 WebHook을 사용하여, 어떠한 이벤트 요청이 오면, 알림을 알려주는 것을 해보겠습니다. WebHook 이란?  WebHook은 웹페이지 또는 웹앱에서 발생하는 특정 행동(이벤트)들을 커스텀 Callback 형식…]]></description><link>https://hoon9901.github.io/springboot-disord-webhook/</link><guid isPermaLink="false">https://hoon9901.github.io/springboot-disord-webhook/</guid><pubDate>Sat, 19 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 576px; &quot;
     &gt;
@@ -2429,34 +2662,4 @@ OpenJDK &lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt;-Bit Server VM
 &lt;hr&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.wiserfirst.com/blog/install-java-with-asdf/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;참고&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://subicura.com/mac/dev/terminal-apps.html#asdf/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;subicura 님 mac asdf 설치&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://llighter.github.io/install-java-on-mac/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;맥에서 Brew로 자바 설치하기(자바 버전 바꾸기)&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[SpringSecurity 란?]]></title><description><![CDATA[Spring Security란? Spring 기반의 애플리케이션의 보안(인증과 권한, 인가 등)을 담당하는 스프링 하위 프레임워크 인증과 권한에 대한 부분을 Filter 흐름에 따라 처리 Filter는 Dispatcher Servlet 으로 가기전에…]]></description><link>https://hoon9901.github.io/spring-security-1/</link><guid isPermaLink="false">https://hoon9901.github.io/spring-security-1/</guid><pubDate>Tue, 04 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;spring-security란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-security%EB%9E%80&quot; aria-label=&quot;spring security란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Security란?&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Spring 기반의 애플리케이션의 보안(인증과 권한, 인가 등)을 담당하는 스프링 하위 프레임워크&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;인증&lt;/strong&gt;과 &lt;strong&gt;권한&lt;/strong&gt;에 대한 부분을 &lt;strong&gt;Filter&lt;/strong&gt; 흐름에 따라 처리&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Filter는 Dispatcher Servlet 으로 가기전에 적용&lt;/li&gt;
-&lt;li&gt;따라서 가장 먼저 URL 요청을 받는다.&lt;/li&gt;
-&lt;li&gt;하지만, Interceptor는 Dispatcher와 Contoller 사이에 위치한다는 점에서 적용 시기의 차이가 있다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;인증authentication과-인가authorization&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%9D%B8%EC%A6%9Dauthentication%EA%B3%BC-%EC%9D%B8%EA%B0%80authorization&quot; aria-label=&quot;인증authentication과 인가authorization permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;인증(Authentication)과 인가(Authorization)&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;인증(Authentiacation) : 해당 사용자가 본인이 맞는지를 &lt;strong&gt;확인&lt;/strong&gt;하는 절차&lt;/li&gt;
-&lt;li&gt;인가(Authorization) : 인증된 사용자가 요청한 자원에 접근 가능한지를 결정하는 절차&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Authentiacation → (인증 성공 후) → Authorization&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Spring Security는 기본적으로 인증 절차를 거친 후, 인가 절차를 진행&lt;/li&gt;
-&lt;li&gt;인가 과정에서 해당 리소스에 대한 접근 권한이 있는지를 확인하게 된다.&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Spring Security에서는 이러한 인증과 인가를 위해 Principal을 아이디로, Credential을 비밀번호로 사용하는 &lt;strong&gt;Credential 기반의 인증 방식을&lt;/strong&gt; 사용한다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Principal(접근 주체) : 보호받는 리소스에 접근하는 대상&lt;/li&gt;
-&lt;li&gt;Credential(비밀전호) : 리소스에 접근하는 대상의 비밀번호&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;&lt;a href=&quot;https://llighter.github.io/install-java-on-mac/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;맥에서 Brew로 자바 설치하기(자바 버전 바꾸기)&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
