@@ -1,4 +1,116 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 21 Mar 2022 12:28:35 GMT</lastBuildDate><item><title><![CDATA[[Spring] 주입 대상 객체를 모두 빈으로 해야하나?]]></title><description><![CDATA[주입 대상 객체를 모두 빈 객체로 설정해야 하나? 주입할 객체가 꼭 스프링 빈이어야 할 필요는 없다. 이 설정 코드는 를 빈으로 등록하지 않았다.
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 23 Jun 2022 06:30:09 GMT</lastBuildDate><item><title><![CDATA[[Spring] @Autowird 어노테이션을 이용한 의존 자동 주입과 @Qualifier 빈 한정자]]></title><description><![CDATA[@Autowired 어노테이션을 이용한 의존 자동 주입 자동 주입 기능을 사용하지 않은 코드 (직접 의존 주입) 위 코드에서는 직접 세터 메소드를 통해 의존 주입을 하고있다 
+자동 주입 기능을 사용하면 스프링이 알아서 의존 객체를 찾아서 주입한다. …]]></description><link>https://hoon9901.github.io/spring_autowired/</link><guid isPermaLink="false">https://hoon9901.github.io/spring_autowired/</guid><pubDate>Thu, 23 Jun 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;autowired-어노테이션을-이용한-의존-자동-주입&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#autowired-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9D%98%EC%A1%B4-%EC%9E%90%EB%8F%99-%EC%A3%BC%EC%9E%85&quot; aria-label=&quot;autowired 어노테이션을 이용한 의존 자동 주입 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;@Autowired 어노테이션을 이용한 의존 자동 주입&lt;/h1&gt;
+&lt;h2 id=&quot;자동-주입-기능을-사용하지-않은-코드-직접-의존-주입&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%9E%90%EB%8F%99-%EC%A3%BC%EC%9E%85-%EA%B8%B0%EB%8A%A5%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EC%95%8A%EC%9D%80-%EC%BD%94%EB%93%9C-%EC%A7%81%EC%A0%91-%EC%9D%98%EC%A1%B4-%EC%A3%BC%EC%9E%85&quot; aria-label=&quot;자동 주입 기능을 사용하지 않은 코드 직접 의존 주입 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;자동 주입 기능을 사용하지 않은 코드 (직접 의존 주입)&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ChangePasswordService&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;changePwdSvc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token class-name&quot;&gt;ChangePasswordService&lt;/span&gt; pwdSvc &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ChangePasswordService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;pwdSvc&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setMemberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;memberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; pwdSvc&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위 코드에서는 직접 세터 메소드를 통해 의존 주입을 하고있다 &lt;br/&gt;
+자동 주입 기능을 사용하면 스프링이 알아서 의존 객체를 찾아서 주입한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ChangePasswordService&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;changePwdSvc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token class-name&quot;&gt;ChangePasswordService&lt;/span&gt; pwdSvc &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ChangePasswordService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; pwdSvc&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;자동 주입 기능을 사용하면, 위 코드 처럼 의존 객체를 명시하지 않아도,&lt;br/&gt;
+스프링이 필요한 의존 Bean 객체를 찾아서 주입해준다.&lt;/p&gt;
+&lt;h1 id=&quot;자동-주입-기능-사용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%9E%90%EB%8F%99-%EC%A3%BC%EC%9E%85-%EA%B8%B0%EB%8A%A5-%EC%82%AC%EC%9A%A9&quot; aria-label=&quot;자동 주입 기능 사용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;자동 주입 기능 사용&lt;/h1&gt;
+&lt;p&gt;매우 간단하다. 의존을 주입할 대상에 @Autowired 어노테이션을 붙이기만 하면 된다.&lt;/p&gt;
+&lt;h2 id=&quot;autowired&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#autowired&quot; aria-label=&quot;autowired permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;@Autowired&lt;/h2&gt;
+&lt;p&gt;Bean 객체의 메소드에 @Autowired 어노테이션을 붙이면 스프링은 해당 메서드를 호출한다.
+&lt;/br&gt; 이때 메서드 파라미터 타입에 해당하는 Bean 객체를 찾아 인자로 주입한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;token comment&quot;&gt;// 1. 필드 자동 주입&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Autowired&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; mebmerDao&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// 2. 메서드 자동 주입&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Autowired&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;setMemberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; memberDao&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;memberDao &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; memberDao&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;@Autowired 어노테이션을 필드나, 세터 메서드에 붙이면
+&lt;/br&gt; 스프링은 타입이 일치하는 Bean 객체를 찾아서 주입한다.&lt;/p&gt;
+&lt;h2 id=&quot;자동-주입-예외-케이스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%9E%90%EB%8F%99-%EC%A3%BC%EC%9E%85-%EC%98%88%EC%99%B8-%EC%BC%80%EC%9D%B4%EC%8A%A4&quot; aria-label=&quot;자동 주입 예외 케이스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;자동 주입 예외 케이스&lt;/h2&gt;
+&lt;h3 id=&quot;주입해야할-빈-객체가-없다면&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%A3%BC%EC%9E%85%ED%95%B4%EC%95%BC%ED%95%A0-%EB%B9%88-%EA%B0%9D%EC%B2%B4%EA%B0%80-%EC%97%86%EB%8B%A4%EB%A9%B4&quot; aria-label=&quot;주입해야할 빈 객체가 없다면 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;주입해야할 빈 객체가 없다면?&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Error creating bean with name &amp;#39;memberRegSvc&amp;#39;: Unsatisfied dependency expressed through field &amp;#39;memberDao&amp;#39;; 
+nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type &amp;#39;com.example.sp5chap04.spring.MemberDao&amp;#39; available: expected at least 1 bean which qualifies as autowire candidate&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;memberRegSvc Bean 객체가 생성하는 도중, 의존하는 memberDao 객체를 스프링이 찾이를 못해 &lt;code class=&quot;language-text&quot;&gt;NoSuchBeanDefinitionException&lt;/code&gt;
+&lt;/br&gt; 예외가 발생했다.&lt;/p&gt;
+&lt;h3 id=&quot;주입해야할-빈이-두개-이상이면&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%A3%BC%EC%9E%85%ED%95%B4%EC%95%BC%ED%95%A0-%EB%B9%88%EC%9D%B4-%EB%91%90%EA%B0%9C-%EC%9D%B4%EC%83%81%EC%9D%B4%EB%A9%B4&quot; aria-label=&quot;주입해야할 빈이 두개 이상이면 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;주입해야할 빈이 두개 이상이면?&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;    &lt;span class=&quot;token comment&quot;&gt;// MemberPrinter 를 주입받는 세터 메서드&lt;/span&gt;
+	&lt;span class=&quot;token annotation punctuation&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;setMemberPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt; printer&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;printer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; printer&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;token comment&quot;&gt;// 동일한 Bean 객체를 생성한다&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberPrinter1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberPrinter2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;해당 코드 처럼, MemberPrinter 타입의 Bean 객체가 2개 정도 만들어진 상태에서는 어떻게 될까?&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type &amp;#39;com.example.sp5chap04.spring.MemberPrinter&amp;#39; available: expected single matching bean but found 2: memberPrinter1,memberPrinter2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;MemberPrinter 타입의 빈이 여러개 있어서, 한정할 수 없는데, &lt;/br&gt;
+해당 타입 빈이 한개가 아니라, 이름이 memberPrinter1, memberPrinter2 인 두개의 빈을 &lt;/br&gt;
+발견 했다는 사실을 알려준다. &lt;/br&gt;&lt;/p&gt;
+&lt;h2 id=&quot;qualifier-어노테이션&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#qualifier-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98&quot; aria-label=&quot;qualifier 어노테이션 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;@Qualifier 어노테이션&lt;/h2&gt;
+&lt;p&gt;자동 주입 가능한 빈이 두 개 이상이면 자동 주입할 빈을 지정하는 방법이 필요할 때 시용한다. &lt;br/&gt;
+@Qualifier 어노테이션을 사용하면 자동 주입 대상 빈을 한정할 수 있다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppCtx&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+    
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Qualifier&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;printer&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberPrinter1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberPrinter2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위 코드에서 memberPrinter1() 메소드에 &quot;printer&quot; 값을 갖는 @Qualifier 어노테이션을 붙였다 &lt;br/&gt;
+이 설정은 해당 Bean의 한정 값으로 &quot;printer&quot;를 지정한다.&lt;/p&gt;
+&lt;p&gt;이렇게 지정한 한정 값은 @Autowired 어노테이션에서 자동 주입할 빈을 한정할 때 사용한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberListPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+    
+	&lt;span class=&quot;token annotation punctuation&quot;&gt;@Autowired&lt;/span&gt;
+	&lt;span class=&quot;token annotation punctuation&quot;&gt;@Qualifier&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;printer&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;setMemberPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt; printer&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;printer &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; printer&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;setMemberPrinter() 메소드에 @Autowired 어노테이션을 붙였으므로 MemberPrinter 타입의 빈을 자동 주입한다. &lt;br/&gt;
+이떄 @Qualifier 어노테이션 값이 &quot;printer&quot; 이므로 한정 값이 &quot;printer&quot;인 Bean을 의존 주입 후보로 사용한다.&lt;/p&gt;
+&lt;p&gt;@Autowired 어노테이션을 필드, 메서드에 모두 적용할 수 있으므로 @Qualifier 어노테이션도 필드, 메소드 모두 적용할 수 있다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Spring] 주입 대상 객체를 모두 빈으로 해야하나?]]></title><description><![CDATA[주입 대상 객체를 모두 빈 객체로 설정해야 하나? 주입할 객체가 꼭 스프링 빈이어야 할 필요는 없다. 이 설정 코드는 를 빈으로 등록하지 않았다.
 이렇게 해도 정상적으로 작동한다. 객체를 스프링 빈으로 등록할 때와, 하지 않을 떄의 차이점 스프링 컨…]]></description><link>https://hoon9901.github.io/injection_object_is_bean/</link><guid isPermaLink="false">https://hoon9901.github.io/injection_object_is_bean/</guid><pubDate>Mon, 21 Mar 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;주입-대상-객체를-모두-빈-객체로-설정해야-하나&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%A3%BC%EC%9E%85-%EB%8C%80%EC%83%81-%EA%B0%9D%EC%B2%B4%EB%A5%BC-%EB%AA%A8%EB%91%90-%EB%B9%88-%EA%B0%9D%EC%B2%B4%EB%A1%9C-%EC%84%A4%EC%A0%95%ED%95%B4%EC%95%BC-%ED%95%98%EB%82%98&quot; aria-label=&quot;주입 대상 객체를 모두 빈 객체로 설정해야 하나 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;주입 대상 객체를 모두 빈 객체로 설정해야 하나?&lt;/h1&gt;
 &lt;p&gt;주입할 객체가 꼭 스프링 빈이어야 할 필요는 없다.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;springframework&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;context&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;annotation&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Configuration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
@@ -2272,308 +2384,4 @@ Hibernate:
 &lt;p&gt;&lt;a href=&quot;https://devgoat.tistory.com/15&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;properties → YAML&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://myblog.opendocs.co.kr/archives/950&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;log4j loggin level&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://pravusid.kr/java/2018/10/10/spring-database-initialization.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;hibernate ddl-auto 초기화전략&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://velog.io/@khsb2012/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B6%80%ED%8A%B8-2.5-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8-hibernate-data.sql-%EA%B4%80%EB%A0%A8-%EB%B3%80%EB%8F%99%EC%82%AC%ED%95%AD&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;스프링부트 2.5 hibernate data.sql&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[SpringBoot JWT 튜토리얼 - 1장 JWT소개,프로젝트생성]]></title><description><![CDATA[인프런 강의(Spring Boot JWT Tutorial)를 수강하며, 내용들을 기록한 페이지입니다. 배우는 것 Spring Boot를 이용한 JWT 인증, 인가 구현 Spring Security 기초 회원가입, 로그인, 권한로직 JWT 소개 (JW…]]></description><link>https://hoon9901.github.io/springboot-jwt-tutorial1/</link><guid isPermaLink="false">https://hoon9901.github.io/springboot-jwt-tutorial1/</guid><pubDate>Fri, 07 Jan 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;인프런 강의(Spring Boot JWT Tutorial)를 수강하며, 내용들을 기록한 페이지입니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;배우는 것&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Spring Boot를 이용한 JWT 인증, 인가 구현&lt;/li&gt;
-&lt;li&gt;Spring Security 기초&lt;/li&gt;
-&lt;li&gt;회원가입, 로그인, 권한로직&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;jwt-소개-jwtio-홈페이지&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#jwt-%EC%86%8C%EA%B0%9C-jwtio-%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80&quot; aria-label=&quot;jwt 소개 jwtio 홈페이지 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;JWT 소개 (&lt;a href=&quot;http://JWT.io&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;JWT.io&lt;/a&gt; &lt;a href=&quot;https://jwt.io&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;홈페이지&lt;/a&gt;)&lt;/h1&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/88a3671ae2a14a75a78cab96fd2c59f8/9e9da/1-1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 52.02702702702703%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABIElEQVQoz42T626EIBCFff8HbLLZTexm2x/VrBfuIMzpANrabi+SfIwYOHNmxEZrjevLDaOYkECIDAE78gz0fY/ntoVSCiEELMsCInqgSSkh9gKpmxkBYrDFN44mFVFjDKRWcN7DOYcYI/LZ7zSUCLpdIM/MhTnVqHl9vwQMIlWvkaOwwKSxjb2zbd0knkZP6ByhX8nPQ37HzJHyTgTn4Y0FcamJHp1lseqQtm7hS+c+qZmddbDGIXGCxG5/Ev0Q/BuUwxQ5zkB45eqnXf7dKCX/L1gJvpYcQ/x1z0GHtfRRarTdHbNUMNaWr244gbWVvM7X6VDJeZLcv6fB4MScB427UOVObkgpy3U65nAVbEeD62xwY7Jjwz+FXsmintvyDmLiEQ59JYlkAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/88a3671ae2a14a75a78cab96fd2c59f8/fcda8/1-1.png&quot;
-        srcset=&quot;/static/88a3671ae2a14a75a78cab96fd2c59f8/12f09/1-1.png 148w,
-/static/88a3671ae2a14a75a78cab96fd2c59f8/e4a3f/1-1.png 295w,
-/static/88a3671ae2a14a75a78cab96fd2c59f8/fcda8/1-1.png 590w,
-/static/88a3671ae2a14a75a78cab96fd2c59f8/efc66/1-1.png 885w,
-/static/88a3671ae2a14a75a78cab96fd2c59f8/c83ae/1-1.png 1180w,
-/static/88a3671ae2a14a75a78cab96fd2c59f8/9e9da/1-1.png 2482w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;JWT 는 Json 객체를 사용하여 토큰 자체에 정보들을 저장하고 있는 Web Token 이라 할 수 있다.&lt;/p&gt;
-&lt;p&gt;특히, JWT를 이용하는 방식은 헤비하지 않고 아주 간편하고 쉽게 적응할 수 있다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;JWT 는 Header, Payload, Signature  3개의 부분으로 구성되어 있다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Header : Signature 를 해싱하기 위한 알고리즘 정보들이 담김&lt;/li&gt;
-&lt;li&gt;Payload :  서버와 클라이언트가 주고받는, 시스템에서 실제로 사용될 정보에 대한 내용들을 담고있다.&lt;/li&gt;
-&lt;li&gt;Signature : 토큰의 유효성 검증을 위한 문자열&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;장점&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;중앙의 인증서버, 데이터 스토어에 대한 의존성 없음, 수평확장에 유리&lt;/li&gt;
-&lt;li&gt;Base64 URL Safe Encoding  &gt; URL, Cookie, Header 모두 사용 가능&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;단점&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Payload 의 정보가 많아지면 네트워크 사용량 증가, 데이터 설계 고려 필요&lt;/li&gt;
-&lt;li&gt;토큰이 클라이언트에 저장, 서버에서 클라이언트의 토큰을 조작할 수 없음&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;프로젝트-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;프로젝트 생성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로젝트 생성&lt;/h2&gt;
-&lt;hr&gt;
-&lt;h3 id=&quot;1-스프링-이니셜라이저를-통한-프로젝트-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9D%B4%EB%8B%88%EC%85%9C%EB%9D%BC%EC%9D%B4%EC%A0%80%EB%A5%BC-%ED%86%B5%ED%95%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;1 스프링 이니셜라이저를 통한 프로젝트 생성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 스프링 이니셜라이저를 통한 프로젝트 생성&lt;/h3&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/f2e9a8f00b9e3814d4c597a3e3ba37e2/5f78c/1-2.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 78.37837837837837%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAACSklEQVQ4y3VUS67TQBD0SZD4LNATD9vxbz6e8d9JIATQgw0SOwQ7bgDiBNwBIbHhkEV3JxPFIW9RGtszU1Nd1eNo23joySPPc6TZCqssQ7paIaP3oiyRE4xr4LoeeaVkjtdcInyPqqzE2PYolUKSJCcy5z08odIWSVUj1R4rXcscrzlHIGREz12Bcb/FOE6ipqgqVEoLmTYGMR1S1zX6vqdvTlSXDFrH4AOCyiwvSKFT6IYGjTOwuoK3Co23MNai7TrZYImwI8Km7QitoHZOqmDyoJItiep2jc3dR7T7D7CbOyTNKyR2hCF1vJEJm6aRZz6EVfOYpKng3FMp+cm7b7j5+hc3X37j6edfePDpDx69/Q5rlPga0yZWw5jnGUprIboM5BSKNhbzesZ6HpFRykl8i7LIhCAosUcPeTx4lf+XbkBUaIV+GsUfPp0XsNmWyDyVyu/Bz3DAZZkLwlwbdFSKIaWcYACrYd94ZKIQhLyTj+fE56SRpXS55H4YRBGbzoSsNpTtiGSgkgdaM4yjrO2o0UNFC4WxozZYb6GozOQ4WdEzE7EaDsbPLzHs3sht4VapnV9YtCzZDWinDYqiOH3k3grlpRndmvkF/GaHtCgRx7Ekzw0f0l6kXPstNts9NW4nJTNYHZ/OvpUV+Uk22PrgcXrlHgupIEek6hbtMGGaJiHihJU6/ATi491mXAthcZ+TW8IzRMZwjw3kjZPWqNT9f5RLsvOejO0GsduRQurDYRwk3YnaR18x+n7CXCriX9/j1z/w8P1P/AMEoRP9vlrsUgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/f2e9a8f00b9e3814d4c597a3e3ba37e2/fcda8/1-2.png&quot;
-        srcset=&quot;/static/f2e9a8f00b9e3814d4c597a3e3ba37e2/12f09/1-2.png 148w,
-/static/f2e9a8f00b9e3814d4c597a3e3ba37e2/e4a3f/1-2.png 295w,
-/static/f2e9a8f00b9e3814d4c597a3e3ba37e2/fcda8/1-2.png 590w,
-/static/f2e9a8f00b9e3814d4c597a3e3ba37e2/efc66/1-2.png 885w,
-/static/f2e9a8f00b9e3814d4c597a3e3ba37e2/c83ae/1-2.png 1180w,
-/static/f2e9a8f00b9e3814d4c597a3e3ba37e2/5f78c/1-2.png 1606w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;프로젝트 메타데이터를 입력한다&lt;/li&gt;
-&lt;li&gt;자바 버전은 8&lt;/li&gt;
-&lt;li&gt;빌드 도구는 Gradle&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/754804375c9e5960dc03c6c1977898f3/ae28e/1-3.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 78.37837837837837%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABpklEQVQ4y31TSXKDMBDkL8kphxgBYt/EaoNjV/mYr+Qf+W6HGUeUIiCHqWbR9PT0jByvCuHLCGHdQlYtglIxemkOVwikWYayqiBDye/C8+D5/or2s9OoFrlq0H48UE83FOPMmLYD/CBAIOWKMgwPyQgpHNX1qKoSaZpwZFmKPM8YszxndRT0XJQlE5uEG4W1UtwWteOKZxVCl1FwnH7RbPmQcBjHVQFVtw/rds1kHXueOk3bIk4SVknJtj9EFkbRSiJliCRN15yNwss0oe069odM3yW0vpuD2hB2fc8fTq67ka8JqZBuT6MZpkXO+XJBVdcb71bCRUkUx0xKrVOY1tjk7KEt3URKJq9oG1TTsDVUYG/a61D0ob2l1X4RGflNwzgiY8L5esV4PrOK/zzMixLkNxGbw7N9dGgHdTu0Dn8UGkrp/+1+5+K2SmGc5aFM04xpfgaR0iRtpbT4uqgeyrrY4gTPfYfniaeHpLAfBk7QS2x7w1dwWS1N4hvTd2MFkQ1wZbLs4bLUVJUI4+WAVnd0V/U7FT4v7deqxuvtCy+f33grHvgBgN0LoJMEN7QAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/754804375c9e5960dc03c6c1977898f3/fcda8/1-3.png&quot;
-        srcset=&quot;/static/754804375c9e5960dc03c6c1977898f3/12f09/1-3.png 148w,
-/static/754804375c9e5960dc03c6c1977898f3/e4a3f/1-3.png 295w,
-/static/754804375c9e5960dc03c6c1977898f3/fcda8/1-3.png 590w,
-/static/754804375c9e5960dc03c6c1977898f3/efc66/1-3.png 885w,
-/static/754804375c9e5960dc03c6c1977898f3/c83ae/1-3.png 1180w,
-/static/754804375c9e5960dc03c6c1977898f3/ae28e/1-3.png 1598w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;스프링 부트 버전은 2.6.2 (강좌는 2.4.1임)&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;추가한 의존성&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Lombok (편의성)&lt;/li&gt;
-&lt;li&gt;Spring Web&lt;/li&gt;
-&lt;li&gt;Spring Security&lt;/li&gt;
-&lt;li&gt;h2 Database&lt;/li&gt;
-&lt;li&gt;Spring Data JPA&lt;/li&gt;
-&lt;li&gt;Validation&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/8c7a6f9158b7a95d78c0fae9b946f2e9/aca16/1-5.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 57.432432432432435%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABgklEQVQoz22SWXKrMBBFtZsYC9DYErKI7XigXM/7X899LQGOQ/JxqlUMRz2JyzThfL0gHQ4YUkIaBsTxiHy+w/kApS20+cn6zDuPEFP9zlMhQhxuE76uNzhrEEJgCNoG0HCCsQm7Rm8wP+LHTtW4lxbX4wUicGa3x4N/tjPOou0MBhaeTndk5XF1EZ+GKkdGtxYfLGn25kWRKkUQ45jxfD459ViFzjvIlrONR0z3f5go4eEjRk2g3sF1/H4RvAtXqciZM7xzJuNYhdY5dL2t5Q7pDDIRibOMjF+ErfwtLCXL1kEUwSqaseiV48ZHjgGNnMvb9nKb3Sy0EEWmjXn10NYe2tr0uQyzGcjfFGFBRF6TgQdTekg85YLSrt5WxO/spV4wtc/vrN+IwLs3HDKKuMg8EQ/G1/LLmZicc6Wcy3OlFLque9G2HaSUFUGcmdb6e23+gPgCIg/H7XBlE9a4nA3/3/d9hUumzVBmjF0jD4kXveNdbHj6O550U7FLnJFLlv8BoFJbYBZCA5YAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/8c7a6f9158b7a95d78c0fae9b946f2e9/fcda8/1-5.png&quot;
-        srcset=&quot;/static/8c7a6f9158b7a95d78c0fae9b946f2e9/12f09/1-5.png 148w,
-/static/8c7a6f9158b7a95d78c0fae9b946f2e9/e4a3f/1-5.png 295w,
-/static/8c7a6f9158b7a95d78c0fae9b946f2e9/fcda8/1-5.png 590w,
-/static/8c7a6f9158b7a95d78c0fae9b946f2e9/efc66/1-5.png 885w,
-/static/8c7a6f9158b7a95d78c0fae9b946f2e9/c83ae/1-5.png 1180w,
-/static/8c7a6f9158b7a95d78c0fae9b946f2e9/aca16/1-5.png 3230w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;프로젝트가 생성된 모습&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/281457bc0d8de06e9154113c0c182475/99f37/1-4.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 12.162162162162163%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAcklEQVQI1z2NzQ7DIAyD+0bT+DmsKqoaEkYocNn7P4sHSNvhk2NZdrasisSEGAlablCMi9oaam04QgCLoPWO175DUlqZlgJmWToJ5wnrPDbrPR78waUd7yS4KCJnHQ8YNO45NpljT2NGyf0x1sKN/uTnv34bRf89krLIAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/281457bc0d8de06e9154113c0c182475/fcda8/1-4.png&quot;
-        srcset=&quot;/static/281457bc0d8de06e9154113c0c182475/12f09/1-4.png 148w,
-/static/281457bc0d8de06e9154113c0c182475/e4a3f/1-4.png 295w,
-/static/281457bc0d8de06e9154113c0c182475/fcda8/1-4.png 590w,
-/static/281457bc0d8de06e9154113c0c182475/efc66/1-4.png 885w,
-/static/281457bc0d8de06e9154113c0c182475/99f37/1-4.png 1100w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Lombok을 사용하므로 Enable annotaion processing 을 체크하자.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;2-간단한-rest-api-테스트&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-%EA%B0%84%EB%8B%A8%ED%95%9C-rest-api-%ED%85%8C%EC%8A%A4%ED%8A%B8&quot; aria-label=&quot;2 간단한 rest api 테스트 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. 간단한 Rest API 테스트&lt;/h3&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/529136b76721e5a1433bdedbe829eca8/33d1d/1-6.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 58.78378378378378%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAAB/ElEQVQoz31T23KbMBTkY9pwFZIQQmCwjQ2OjYlN7KSd9v8/ZHskaCfJJH3YkeRBe/Yie2Ek0WZbjKqD1i3iugPfnZEUG7C6B2t62m+RlC2SagdW7hBFAkHAEdDd8A2CUMCzm7VcoxFrRHmNRK/dZbbqHGGs6vlMgxwhDWC0xix3BP4Cu7dcnj1czRE3MyDdHMG7J4jTzUGOP0jtCN5fIB4n8MMVcnhBuh/R6j256vGY76F59U+l55P8Z3PCvTyDbRfC4Q55foF8+unOvL8S4fNMeH5FSr8NJOKuT7gVJ0x0X/GSlHJ4NgdDE3RaIhIEtVpQIyL7UbYi2wS31g6RrCBTA5UU4IlGxgziWM0Z2oAPJLuXrUPHN9D0QUTTBCEMGHyfzyW8gVXjf5ZhkNW4Gyt9wFQcKc8BVXeBJvvthho3DRXwvs2vMLdM8g3ZtbIVK6BoHy727JrYlmOr1CqzSv5P6oWJwjey1IoNJk2qyH7ZHKDMGju9QpVrBPREwpSeCSFKlje42PwIz1ct6lphT29tKkf0uwnF9Teyyy/o8RX5cIPuR2z3HeqGvm0qpJIypiFxqimO9/BiUpipAj6XYGmBitEFyjUxW/dviVUDQS3nQiMnEikMGC9IqXKkH+FFsUDK5mys5O+2PWvJT2cEqTs/UH4PttG/TX9h+Q/FqYE+bQr2LwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/529136b76721e5a1433bdedbe829eca8/fcda8/1-6.png&quot;
-        srcset=&quot;/static/529136b76721e5a1433bdedbe829eca8/12f09/1-6.png 148w,
-/static/529136b76721e5a1433bdedbe829eca8/e4a3f/1-6.png 295w,
-/static/529136b76721e5a1433bdedbe829eca8/fcda8/1-6.png 590w,
-/static/529136b76721e5a1433bdedbe829eca8/efc66/1-6.png 885w,
-/static/529136b76721e5a1433bdedbe829eca8/33d1d/1-6.png 1150w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;간단한 문자열(hello)을 리턴해주는 api를 만들고 테스트해보겠습니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;RestController&lt;/code&gt; : 컨트롤러를 JSON을 반환하는 컨트롤러로 만들어 줍니다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;RequestMapping&lt;/code&gt; : 요청에 대해 어떤 Controller가 처리할지를 맵핑하기 위한 어노테이션.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;GetMapping&lt;/code&gt; : HTTP Method인 Get인 요청을 받을 수 있는 API를 만들어 준다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;ResponseEntity&amp;lt;&amp;gt;&lt;/code&gt; : 사용자의 HttpRequest에 대한 응답 데이터를 포함하는 클래스.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;ResponseEntity.ok()&lt;/code&gt;: 정상적인 요청이면 메소드의 파라미터 내용을 반환한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;위 코드를 작성하고 애플리케이션을 실행하고 Postman을 통해서 해당 url로 요청을 보내겠습니다.&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/782385618d9b437d671ef95062473db3/6c86f/1-7.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 44.5945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABEUlEQVQoz31SW26EMAzMjXq3XqQ9TE/Qj16hv/0sEiWQhLzNrB1gRVcslkZOnJlxMFFaa1hr4ZxD3/fouu4OYwzmecbMZ26D7CWLxliHGh3ePh1e3ke8fjioaRzhxPBAnKxp+xgCvPfNJMbYIOtSCogItVbOFb+m4usn47srUN5OmIY/5JyxLMsdEiLcxbTQmjcIXwzXYD5lUElQxOIQ4j+z3VBul1JaJYe61IZhYF1YG7OxkRHwiJSQpOOj4VV9P5ObHRtJqGeCnfT0HOd1hYs4a4BrAVTeBl/qQ2acfabwEw8/lYxcV35IBBcrrwnK6R6en0JIsQ255Rja+vhXJYgFMSf4HBpiM06woULPlZsRbu1swJB2qO0TAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/782385618d9b437d671ef95062473db3/fcda8/1-7.png&quot;
-        srcset=&quot;/static/782385618d9b437d671ef95062473db3/12f09/1-7.png 148w,
-/static/782385618d9b437d671ef95062473db3/e4a3f/1-7.png 295w,
-/static/782385618d9b437d671ef95062473db3/fcda8/1-7.png 590w,
-/static/782385618d9b437d671ef95062473db3/efc66/1-7.png 885w,
-/static/782385618d9b437d671ef95062473db3/c83ae/1-7.png 1180w,
-/static/782385618d9b437d671ef95062473db3/6c86f/1-7.png 1720w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;요청을 보내면 401 HTTP 상태 코드가 반환된 것을 볼 수 있습니다.&lt;/p&gt;
-&lt;p&gt;이를 해결하기 위한 Security 설정과, 기본적인 Data 설정을 하겠습니다.&lt;/p&gt;
-&lt;h3 id=&quot;reference&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#reference&quot; aria-label=&quot;reference permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Reference&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;ResponseEntity 스프링 공식 문서&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;&lt;a href=&quot;https://velog.io/@khsb2012/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B6%80%ED%8A%B8-2.5-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8-hibernate-data.sql-%EA%B4%80%EB%A0%A8-%EB%B3%80%EB%8F%99%EC%82%AC%ED%95%AD&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;스프링부트 2.5 hibernate data.sql&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
