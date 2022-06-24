@@ -7,6 +7,7 @@ keywords :
   - 스프링
   - 스프링부트
   - SpringBoot
+  - Autowired
 ---
 # @Configuration  클래스에서 의존 주입(명시적 주입)을 했는데 자동 주입 대상이면 어떻게 될까?
 

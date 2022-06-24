@@ -7,6 +7,8 @@ keywords :
   - 스프링
   - 스프링부트
   - SpringBoot
+  - Autowired
+  - DI
 ---
 
 # 주입 대상 객체를 모두 빈 객체로 설정해야 하나?

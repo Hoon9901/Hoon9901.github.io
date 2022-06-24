@@ -7,6 +7,8 @@ keywords :
   - 스프링
   - 스프링부트
   - SpringBoot
+  - Autowired
+  - DI
 ---
 # @Autowired 어노테이션을 이용한 의존 자동 주입
 ## 자동 주입 기능을 사용하지 않은 코드 (직접 의존 주입)
