@@ -15,7 +15,7 @@ module.exports = {
 
   /** Home > Bio information*/
   comment: '안녕하세요.',
-  name: 'Seong Hun Park',
+  name: 'SeongHoon Park',
   company: '',
   location: 'Korea',
   email: 'shonn.dev@gmail.com',

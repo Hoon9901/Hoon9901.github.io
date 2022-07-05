@@ -19,7 +19,14 @@ const Comment = ({ slug, title }: CommentProps) => {
 
   return (
     <div className="comments">
-      <DiscussionEmbed {...disqusConfig} />
+      <script
+        src="https://utteranc.es/client.js"
+        repo="/Hoon9901/Hoon9901.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async
+      ></script>
     </div>
   );
 };
