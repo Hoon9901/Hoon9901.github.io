@@ -1,9 +1,10 @@
 ---
 title: '실시간으로 파일 감지하고 스프링으로 파일 통신을 해보자'
-date: 2022-07-05
+date: 2022-07-06
 tags:
   - SpringBoot
-  - Project
+  - ToyProject
+  - FileWatch
 keywords :
   - Spring
   - SpringBoot
@@ -11,10 +12,10 @@ keywords :
   - Realtime
   - 파일통신
   - 파일감지
+  - WatchService
 ---
-# 0. 개요
-
-이미지 캡처(스크린샷)한 파일을 실시간으로 감지하여 중앙 서버로 보내는 것을 제작해보겠습니다!
+# 0. 시작하기 전
+이미지 파일을 실시간으로 감지하고, 스프링 서버로 전송하는 것을 구현하였습니다.
 
 기본적인 구조는 클라이언트-서버 구조를 가지고있습니다
 
@@ -24,11 +25,11 @@ keywords :
 
 # 1. 실시간 파일 감지 프로그램
 
-프로젝트를 위해 파이썬 얼굴 인식 프로그램이 작동한다 사람이 카메라에 비춰지고 일정시간이 지나면 얼굴이 캡처되고 이미지 파일로 저장됩니다.
+어떤 프로그램에 의해 어떤 경로에 이미지 파일이 지속적으로 생성된다고 가정하겠습니다.
 
-해당 컴퓨터(이하 클라이언트)에서 자바의 WatchService를 이용해 파일을 실시간으로 감지합니다
+해당 컴퓨터(이하 클라이언트)에서 자바의 `WatchService`를 이용해 파일을 실시간으로 감지합니다.
 
-이제 본격적으로 코드를 작성해보겠습니다.
+이 감지하는 프로그램의 코드를 보겠습니다.
 
 ## Main.java
 
@@ -53,11 +54,12 @@ public class Main {
 - 그리고 `create()` 와 `run()` 메소드를 호출하였습니다.
 - try-catch 으로 감싸 예외 처리를 해줬습니다.
 
-main 메소드 코드를 통해 이 프로그램의 동작 구조를 파악할 수 있습니다.
 
-create() 메소드를 통해 어떠한 생성, 초기화 작업을 할것이고. run() 메소드를 통해 어떠한 작업을 하는 것을 볼 수 있습니다.
+`main` 메소드 코드를 통해 자세한 프로그램 기능과 역활은 잘 모르겠지만 이 프로그램의 동작 구조를 파악할 수 있습니다.
 
-그러면 FileWatch가 실질적으로 하는 역활과 기능을 자세히 살펴보겠습니다.
+`create()` 메소드를 통해 어떠한 생성, 초기화 작업을 할것이고. `run()` 메소드를 통해 어떠한 작업을 하는 것을 볼 수 있습니다.
+
+이제부터 FileWatch클래스의 역활과 기능을 자세히 살펴보겠습니다.
 
 ## FileWatch.java
 
@@ -99,7 +101,7 @@ public class FileWatch {
 }
 ```
 
-FileWatch는 사용자가 지정한 경로를 실시간으로 파일 변경에 대해 감지하고 HTTP 통신을 통해 서버로 파일을 전송합니다.
+FileWatch는 사용자가 지정한 경로를 실시간으로, 파일 변경에 대해 감지하고 HTTP 통신을 통해 서버로 파일을 전송합니다.
 
 자바에서 제공하는 WatchService 클래스를 멤버로 가지는데 WatchService에 대해 간단하게 알아보겠습니다.
 
@@ -116,18 +118,15 @@ FileWatch는 사용자가 지정한 경로를 실시간으로 파일 변경에 �
 1. 생성 : WatchService를 초기화
 2. 감시자 지정 : 감지할 경로를 등록하고 어떤 변화를 감시할 것인지를 지정.
 3. 서비스 실행 : 
-    
     디렉토리에 WatchService를 등록한 순간부터 내부 변경이 발생하면 WatchEvent가 발생하고 WatchService는 해당 이벤트 정보를 가진 WatchKey를 생성해 Queue에 넣어집니다. 
     
     프로그램은 루프를 돌면서 WatchService의 take() 메서드를 호출해 WatchKey가 들어올 때 까지 대기하고 있다가 WatchKey가 큐에 들어오면 WatchKey를 얻어 처리.
     
 4. 이벤트 처리 : WatchEvent 리스트에서 WatchEvent를 하나씩 꺼내 이벤트 종류와 Path 객체를 얻고 처리.
-5. 이벤트 초기화 및 종료 : 한번 사용 된 WatchKey는 reset() 메소드로 초기화해야합니다.
-    
+5. 이벤트 초기화 : 한번 사용 된 WatchKey는 reset() 메소드로 초기화해야합니다.
     그 이유는 새로운 WatchEvent가 발생하면 큐에 다시 들어가기 때문입니다
-    
     초기화에 성공시 true, 감시하는 디렉토리가 삭제됬거나 키가 유효하지 않을 경우 false를 반환
-    
+6. 종료 : 
     WatchKey가 유요하지 않게되면 루프를 빠져나와 WatchService의 close() 메소드를 호출하고 종료
     
 
@@ -159,7 +158,7 @@ public void create() throws IOException {
 }
 ```
 
-create 메소드에서는 서버 경로를 입력받고 감시할 디렉터리 경로를 입력받습니다.
+`create` 메소드에서는 서버 경로를 입력받고 감시할 디렉터리 경로를 입력받습니다.
 
 ```java
        **path.register(watchService,
@@ -170,7 +169,7 @@ create 메소드에서는 서버 경로를 입력받고 감시할 디렉터리 �
         );**  
 ```
 
-Path 객체를 통해 WatchService를 등록한다. StandardWatchEventKinds를 지정하여 **생성**, **수정**, **삭제**, 유효 처리에 대한 이벤트를 감지하도록 등록하였습니다.
+`Path` 객체를 통해 `WatchService`를 등록합니다. `StandardWatchEventKinds`를 지정하여 **생성**, **수정**, **삭제**, 유효 처리에 대한 이벤트를 감지하도록 등록하였습니다.
 
 ## FileWatch.run()
 
@@ -212,9 +211,9 @@ public void run() throws Exception {
     }
 ```
 
-run() 메소드에서는 파일 감지 이벤트를 조건문으로 생성 시, 수정 시, 각각에 대한 적절한 처리를 해줬습니다.
+`run()` 메소드에서는 파일 감지 이벤트를 조건문으로 생성 시, 수정 시, 각각에 대한 적절한 처리를 해줬습니다.
 
-파일이 생성되면 fileSendToServer 메소드로 파일의 이름, 경로를 인자로 넘겨 서버로 전송합니다.
+파일이 생성되면 `fileSendToServer` 메소드로 파일의 이름, 경로를 인자로 넘겨 서버로 전송합니다.
 
 ## FileWatch.fileSendToServer(…)
 
@@ -252,16 +251,17 @@ void fileSendToServer(String fileName, String currentFilePath){
     }
 ```
 
-OkHTTPClient 라이브러리를 사용해 간단하게 HTTP 통신을 수행합니다.
+`OkHTTPClient` 라이브러리를 사용해 간단하게 HTTP 통신을 수행합니다.
 
-RequestBody 객체로 파일에 대한 형식과, 파라미터, 파일 이름에 대해 설정 합니다.
+`RequestBody` 객체로 파일에 대한 형식과, 파라미터, 파일 이름에 대해 설정 합니다.
 
-Request 객체를 통해 서버의 경로와 Body에 대한 설정을 하고
+`Request` 객체를 통해 서버의 경로와 Body에 대한 설정을 하고
 
-client.newCall() 메소드를 통해 실질적으로 서버로 HTTP 요청을 전송.
+`client.newCall()` 메소드를 통해 실질적으로 서버로 HTTP 요청을 전송.
 
 콜백함수를 통해 정상,실패에 대한 처리를 해줬습니다.
 
+FileWatch에 대한 코드 설명은 끝났습니다. 이제부터 파일 통신을 담당하는 스프링 서버를 보겠습니다.
 # 2. 스프링 파일 서버
 
 - build.gradle
@@ -340,11 +340,11 @@ public class FileController {
 }
 ```
 
-서버의 /upload URL로 POST 요청을 처리하는 addFiles 메소드가 있습니다. 파일을 저장할때 중복으로 저장할 수 있으므로 UUID를 통해 파일명을 새롭게 수정해줬습니다.
+서버의 `/upload` URL로 `POST` 요청을 처리하는 `addFiles` 메소드가 있습니다. 파일을 저장할때 중복으로 저장할 수 있으므로 UUID를 통해 파일명을 새롭게 수정해줬습니다.
 
 정상적으로 파일이 업로드되었으면 200 Code를 반환하고 그러지 않으면 400 Code를 반환합니다.
 
-saveFile 메소드는 요청으로 받은 파일을 서버 지정한 경로로 파일을 저장하는데 해당 저장 경로는 application.properties에서 지정합니다.
+`saveFile` 메소드는 요청으로 받은 파일을 서버 지정한 경로로 파일을 저장하는데 해당 저장 경로는 `application.properties`에서 지정합니다.
 
 ## application.properties
 
@@ -369,9 +369,3 @@ uploadPath=./images/
 클라이언트로 부터 받은 파일을 정상적으로 저장하는 모습
 
 이로써 간단하게 실시간으로 파일을 감지하고 서버로 파일을 전송하는 프로그램을 제작해봤습니다.
-
-추가적인 설명이나 질문사항들은 댓글을 달아주세요!
-
-해당 글에서 작성된 코드는 자세하게 보고싶다면 해당 링크를 방문해주세요.
-
-[https://github.com/Media-XI/FileWatch](https://github.com/Media-XI/FileWatch)
