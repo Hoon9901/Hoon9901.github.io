@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[13],{cor7:function(t,e,n){"use strict";n.r(e);var s=n("FdF9");e.default=function(){var t=s.useRef(null);return useEffect((function(){var e=document.createElement("script");e.src="https://utteranc.es/client.js",e.setAttribute("issue-term","pathname"),e.setAttribute("repo","Hoon9901/Hoon9901.github.io"),e.setAttribute("theme","github-light"),e.crossOrigin="anonymous",e.async=!0,t.current.appendChild(e)}),[]),s.createElement("div",{className:"comments",ref:t})}}}]);
+//# sourceMappingURL=13-9efba77a2750bf4c3ab8.js.map
