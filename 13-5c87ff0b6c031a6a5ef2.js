@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[13],{cor7:function(e,t,n){"use strict";n.r(t);var s=n("FdF9"),o=n("4QKa"),a=n.n(o);t.default=function(e){var t=e.slug,n=e.title;a.a.disqusShortname,a.a.siteUrl;return s.createElement("div",{className:"comments"},s.createElement("script",{src:"https://utteranc.es/client.js",repo:"/Hoon9901/Hoon9901.github.io","issue-term":"pathname",theme:"github-light",crossorigin:"anonymous",async:!0}))}}}]);
-//# sourceMappingURL=13-5c87ff0b6c031a6a5ef2.js.map
