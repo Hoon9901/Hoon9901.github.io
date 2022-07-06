@@ -15,8 +15,8 @@ interface CommentProps {
 const Comment = () => {
   const [colorMode, setColorMode] = useColorMode();
   const isDark = React.useMemo(() => colorMode === 'dark', [colorMode]);
-  console.log("댓글 " + isDark);
-  
+  //console.log("댓글 " + isDark);
+
   return <Utterances repo="Hoon9901/Hoon9901.github.io" theme={isDark ? 'github-dark' : 'github-light'} />;
 };
 
