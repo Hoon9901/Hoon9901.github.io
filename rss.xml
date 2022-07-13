@@ -1,4 +1,101 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 06 Jul 2022 04:41:28 GMT</lastBuildDate><item><title><![CDATA[실시간으로 파일 감지하고 스프링으로 파일 통신을 해보자]]></title><description><![CDATA[0. 시작하기 전 이미지 파일을 실시간으로 감지하고, 스프링 서버로 전송하는 것을 구현하였습니다. 기본적인 구조는 클라이언트-서버 구조를 가지고있습니다 클라이언트는 파일을 생성하고 파일을 감지하여 서버로 전송합니다 서버는 클라이언트로 부터 받은 파일…]]></description><link>https://hoon9901.github.io/filedetect-springfileserver/</link><guid isPermaLink="false">https://hoon9901.github.io/filedetect-springfileserver/</guid><pubDate>Wed, 06 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;0-시작하기-전&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#0-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-%EC%A0%84&quot; aria-label=&quot;0 시작하기 전 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;0. 시작하기 전&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 13 Jul 2022 08:20:12 GMT</lastBuildDate><item><title><![CDATA[[React] 외부 라이브러리 없이 Text To Speech(TTS)를 사용해보자]]></title><description><![CDATA[외부 라이브러리 없이, 웹 표준을 만족하는 API인 Web Speech API 만으로 TTS를 사용해보자. Web Speech API는 크게 SpeechSynthesis(Text-to-Speech)와 SpeechRecognition (Asynchro…]]></description><link>https://hoon9901.github.io/react-tts/</link><guid isPermaLink="false">https://hoon9901.github.io/react-tts/</guid><pubDate>Wed, 13 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;외부 라이브러리 없이, 웹 표준을 만족하는 API인 Web Speech API 만으로 TTS를 사용해보자.&lt;/p&gt;
+&lt;p&gt;Web Speech API는 크게 SpeechSynthesis(Text-to-Speech)와 SpeechRecognition (Asynchronous Speech Recognition) 두 가지로 나뉜다.&lt;/p&gt;
+&lt;p&gt;SpeechSynthesis는 텍스트를 음성으로 변환하는 API이고, SpeechSRecognition은 음성을 텍스트로 변환하는 APi이다. 우리가 사용해야할 API는 SpeechSynthesis이다. 해당 API는 대부분의 모던 브라우저에서는 지원된다. (해당 API가 지원하는 브라우저 목록이 궁금하다면? &lt;a href=&quot;https://caniuse.com/?search=speech&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://caniuse.com/?search=speech&lt;/a&gt;)&lt;/p&gt;
+&lt;h2 id=&quot;1-web-speech-api-세팅&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-web-speech-api-%EC%84%B8%ED%8C%85&quot; aria-label=&quot;1 web speech api 세팅 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Web Speech API 세팅&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;&lt;pre class=&quot;language-jsx&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; pitch &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; rate &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;populateVoiceList&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;synth&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; SpeechSynthesis&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; voices &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; synth&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getVoices&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;a&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; b&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; aname &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; a&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toUpperCase&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; bname &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; b&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toUpperCase&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;aname &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; bname&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;aname &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; bname&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; voices&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;error&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Failure retrieving voices&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;textToRead&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; string&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; synth&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; SpeechSynthesis&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;speechSynthesis&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;onvoiceschanged &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      speechSynthesis&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function-variable function&quot;&gt;onvoiceschanged&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; populateVoiceList
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;synth&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;speaking&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;speechSynthesis.speaking&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;textToRead &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; utterThis &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SpeechSynthesisUtterance&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;textToRead&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      utterThis&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function-variable function&quot;&gt;onend&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+      utterThis&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function-variable function&quot;&gt;onerror&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;SpeechSynthesisUtterance.onerror&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;token comment&quot;&gt;// utterThis.voice = voices[0]&lt;/span&gt;
+      utterThis&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;pitch &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; pitch
+      utterThis&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;rate &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; rate
+      synth&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;utterThis&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;speechSynthesis.onvoiceschanged&lt;/code&gt; 조건문은 우리가 사용할 수 있는 음성 목록을 가져온다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;해당 부분에 synth.getVoices()를 통해 임의의 사용자 지정 음성 목록을 만들면 유용하다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이 단계를 건너뛰면 &lt;code class=&quot;language-text&quot;&gt;SpeechSynthesis&lt;/code&gt;에 음성을 제공하지 않아 오류가 발생할 수 있다. 비동기로 설정하지 않으면 음성 합성기가 읽기를 시도할 때 음성이 잘리거나 준비되지 않을 수 있는 문제가 발생한다.&lt;/p&gt;
+&lt;p&gt;그 후 함수의 인자로 넘어온 textToRead 문자열 검사를 한 후, synth.speak(utterThis) 함수를 사용하므로 음성 재생을 한다.&lt;/p&gt;
+&lt;h2 id=&quot;2-button으로-tts-재생&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-button%EC%9C%BC%EB%A1%9C-tts-%EC%9E%AC%EC%83%9D&quot; aria-label=&quot;2 button으로 tts 재생 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. Button으로 TTS 재생&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;&lt;pre class=&quot;language-jsx&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Button&lt;/span&gt;&lt;/span&gt;
+   &lt;span class=&quot;token attr-name&quot;&gt;variant&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;outlined&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
+   &lt;span class=&quot;token attr-name&quot;&gt;startIcon&lt;/span&gt;&lt;span class=&quot;token script language-javascript&quot;&gt;&lt;span class=&quot;token script-punctuation punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;CampaignIcon&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+   &lt;span class=&quot;token attr-name&quot;&gt;onClick&lt;/span&gt;&lt;span class=&quot;token script language-javascript&quot;&gt;&lt;span class=&quot;token script-punctuation punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+       speechSynthesis&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;cancel&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+       &lt;span class=&quot;token function&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;여름에 해당하는 이미지를 찾으세요&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;speechSynthesis&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+설명 듣기
+&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Button&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;mui component의 Button 컴포넌트를 구현하여 사용했다.&lt;/p&gt;
+&lt;p&gt;버튼이 클릭되면 speechSynthesis API를 종료하고, 제작한 speak 함수를 호출한다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/50d220b61d8013607edf74c2c9d3c8a8/75a80/1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 80.4054054054054%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsSAAALEgHS3X78AAAEHElEQVQ4y4WTfUzUdRzHf221xT/RKKY2LN35xIOJgWiogIog4A7tWCCgQlAKWMqTVqNYOSsjEVxmCuTxkByIDBA4FAgJxQB5ugN5ujuBuwMUaUomwgGvflr+09x8b+999vl+93nv/d738xUmJqf56+EU9x5M8feECdP0DLOzs8zMzDyTj/H4/jGfBeGhCcYn4c+HMDnDc/FU6Kno/yloNRquX7tKe1sLTY0NtLW2oNNquNnZ8eSspfkGapUKtVpNX1/vk6HpaRPTM9P/1v9oMk09SSAMjdyhS3ML48goukEjg2IdunuP26P30epG6NcPM2gwiGIahodGnptAuKtppeL0Ecp/TaUy8xiNvySjyk+hviIVfW86RemH0ba38GjiPs3t1RTVXiC77CzK+mLOK+WcrzhHXnE2R1MTaWyrR6jKOkHoghdJcFuIzM4MPwuBw+6vknJwAXknnPnEy4yzKT/Qr20jUx5LQ1o8jd/t5UZBEhFf72RLkAuuHisxnyeQoUhBqMzLIMrVlq98HJGtn887Vq+Q4ruU3MRNnIsNQB5rR2OenLEHg2iPf4wxWIYuKozebw7TczmLQwcDsF9nw1xbCxSlaQgXc84QuPh1QlfNx832NYJt51P4/hZOBi7niNdSkqMk1OXLxTXQ0RPgQU+gLwPxkVzZE4Yx6yQ1B4LI8VlHyNpFKPJ/Qrhekkmc2OxxXcZux4Vkbl3F92vsCHKwIC7EngAPC3IyTsHNZtTioHZPMMa4SFpjoug/dZw/EvfS7OWCwd+be6UXxMi5P7PXzpKUkE1EeNkRYGVO9Mo5BDpZEbHNmv1bbcguyIHuVrqlbmiCfBmMCkX3eSy6hDh0Px7iN29n6jzWcKcwF+GSIg3POQKx0hWi7Xmc8lzNsY32JHvYke/vTPoOBxRXiuG2BpXvBnq3b8HwUSC9n8XS9Wk0PZlfoPkyHN1OKWPKIoRS0aG79ct84L2ID+2tOO3rSNJGa85INyCXeRD/7lsoKgsxTQ3QGeOP2sWZvn2iYHQYPeH+DEeHot0lQ7NtM2MlYuSCi9lIJGastrXkvaVzCV1sgdzTniypC0dWSZDaW1LRUMWN7mtczYlB672B6nBP0d0uyp0dqNnuSZufD2rRwJ2ifIQycUGtXSVInJax38eGsp1uJK235qjXm+RsW0uIyxKKay/SomogMiGAE8HriX/7DdSnDzAg86R+szMdvu4YZO48qixBUCgzsVj+gkhLDnqtIMvVhkO25qyd9xIxkjn4LTSnMD8b4/1+IhJ24LRxCatFAz7iA7Ykh2OIlGLcJ6P3290MqKoQ9MMDlFcXoaxRoqq9zK2ackaaa+moq6KrWsnvyhJGjHrGxa/X2nEN1c0m6hrruHypnE5NE5MP9EyO6xka68YwqucfaDeO8NwNw5gAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Untitled&quot;
+        title=&quot;Untitled&quot;
+        src=&quot;/static/50d220b61d8013607edf74c2c9d3c8a8/fcda8/1.png&quot;
+        srcset=&quot;/static/50d220b61d8013607edf74c2c9d3c8a8/12f09/1.png 148w,
+/static/50d220b61d8013607edf74c2c9d3c8a8/e4a3f/1.png 295w,
+/static/50d220b61d8013607edf74c2c9d3c8a8/fcda8/1.png 590w,
+/static/50d220b61d8013607edf74c2c9d3c8a8/efc66/1.png 885w,
+/static/50d220b61d8013607edf74c2c9d3c8a8/75a80/1.png 1134w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;위 와 같은 모습으로 간단하게 TTS 기능을 구현할 수 있다.&lt;/p&gt;
+&lt;h1 id=&quot;레퍼런스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4&quot; aria-label=&quot;레퍼런스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;레퍼런스&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.seulgi.kim/2016/08/web-speechsynthesis-tts-api.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://blog.seulgi.kim/2016/08/web-speechsynthesis-tts-api.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.singlestoneconsulting.com/blog/how-to-build-a-text-to-speech-app-with-the-web-speech-api/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://www.singlestoneconsulting.com/blog/how-to-build-a-text-to-speech-app-with-the-web-speech-api/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[실시간으로 파일 감지하고 스프링으로 파일 통신을 해보자]]></title><description><![CDATA[0. 시작하기 전 이미지 파일을 실시간으로 감지하고, 스프링 서버로 전송하는 것을 구현하였습니다. 기본적인 구조는 클라이언트-서버 구조를 가지고있습니다 클라이언트는 파일을 생성하고 파일을 감지하여 서버로 전송합니다 서버는 클라이언트로 부터 받은 파일…]]></description><link>https://hoon9901.github.io/filedetect-springfileserver/</link><guid isPermaLink="false">https://hoon9901.github.io/filedetect-springfileserver/</guid><pubDate>Wed, 06 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;0-시작하기-전&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#0-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-%EC%A0%84&quot; aria-label=&quot;0 시작하기 전 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;0. 시작하기 전&lt;/h1&gt;
 &lt;p&gt;이미지 파일을 실시간으로 감지하고, 스프링 서버로 전송하는 것을 구현하였습니다.&lt;/p&gt;
 &lt;p&gt;기본적인 구조는 클라이언트-서버 구조를 가지고있습니다&lt;/p&gt;
 &lt;p&gt;클라이언트는 파일을 생성하고 파일을 감지하여 서버로 전송합니다&lt;/p&gt;
@@ -1333,267 +1430,4 @@ test.yml 속성을 받아온것을 볼 수 있습니다.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://lejewk.github.io/vault-get-started/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://lejewk.github.io/vault-get-started/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.vaultproject.io/docs/commands&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://www.vaultproject.io/docs/commands&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://wonit.tistory.com/502&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://wonit.tistory.com/502&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://velog.io/@ha0kim/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9D%B8-%EC%95%A1%EC%85%98-14.%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8D%BC%EC%8B%9C%EC%8A%A4%ED%84%B4%EC%8A%A4&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://velog.io/@ha0kim/스프링-인-액션-14.리액티브-데이터-퍼시스턴스&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[SpringBoot] 디스코드 WebHook으로 알림 보내기]]></title><description><![CDATA[이 글에서는 스프링부트에서 디스코드 WebHook을 사용하여, 어떠한 이벤트 요청이 오면, 알림을 알려주는 것을 해보겠습니다. WebHook 이란?  WebHook은 웹페이지 또는 웹앱에서 발생하는 특정 행동(이벤트)들을 커스텀 Callback 형식…]]></description><link>https://hoon9901.github.io/springboot-disord-webhook/</link><guid isPermaLink="false">https://hoon9901.github.io/springboot-disord-webhook/</guid><pubDate>Sat, 19 Feb 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 576px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/50907e1a7aae29a055e0b3e78398d8ba/533c1/1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 73.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAACgElEQVQ4y21U2XLaQBDkYxwbi0tCICQkQIC4BAhhEAYBxuAjsStVKSdFjrd8V36uM7PiTPzQzOzubG/PIWL5QgnZXFFAUQ2oeROqZkKhNfvZnI58wQLHHaCXoOnldxFrtvt4fH7Fl7ct3r79wMPTK2bze2y//yT/K1af/qDefoFVqaBcbRNasMoOCkaFUN7ZCBqtY2W7gf5gjNFkjuB2juHNBJ2uj+XdGsF0DXfwG5YdwCrZRNogODDM6k7tuXKhMC1riF+nEf9wiXhCxnVKRSKVxZVEvpSGlEoglVGQkvNkcwJp8tOKdkCGLe3lNAuxjJyDYtRgLH7hurfCxXyLy9GLsFfeBpf+R1yMPyPeCelyQVyOCLQz/0io0GuqCbm7RrxQI1QhFRuIWx1Img3JcJA06kjQHqs5qtREJsm0GindE/JCzRvw+x5ct4+hP8ZsOkfDaWGzecIkmGF0EyAMl/D4bL7CeBJiMl0gXNxjOLql/eBUoQZZ1WFS57hLZonSt6rQTRuValNYHhPe4yaUKo7orlWuw2m60IvUXTrPUDmOhNmCCCwyEQXIWZ3mz9ihSIGm8NkyWACnKyU55WOjopTJ4ZeXqwdMwzvc3T/CrrXQ80Y0RguRpk+j1Gz30O0PRUy94QpSFpL5t8vsqPmiqIs/nIja8IX95cEwwO1sKQh73o2I4QcYLITV/UfIB6v1kyCdhSu0XU/Uz+35aHU8tGjND/QHI0HMyhRSeBiZsznc1dCuNUWh943gWnKDGFxfp9kVpeCYw3DL2gl2hEzGAQmaJ56pBH0pyd2sJcVeZLkB4oz8fd1OwSoFIf/wvwrbqIvWoZtHWCcwo3+kd8Df8l8CLwTnkjhgaAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;토이프로젝트에서 WebHook 알림 발생&quot;
-        title=&quot;토이프로젝트에서 WebHook 알림 발생&quot;
-        src=&quot;/static/50907e1a7aae29a055e0b3e78398d8ba/533c1/1.png&quot;
-        srcset=&quot;/static/50907e1a7aae29a055e0b3e78398d8ba/12f09/1.png 148w,
-/static/50907e1a7aae29a055e0b3e78398d8ba/e4a3f/1.png 295w,
-/static/50907e1a7aae29a055e0b3e78398d8ba/533c1/1.png 576w&quot;
-        sizes=&quot;(max-width: 576px) 100vw, 576px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;이 글에서는 스프링부트에서 디스코드 WebHook을 사용하여, 어떠한 이벤트 요청이 오면, 알림을 알려주는 것을 해보겠습니다.&lt;/p&gt;
-&lt;h1 id=&quot;webhook-이란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#webhook-%EC%9D%B4%EB%9E%80&quot; aria-label=&quot;webhook 이란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;WebHook 이란?&lt;/h1&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/76e565fcaf7d62dcf6f39fd3bfd471cc/e515d/2.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 87.83783783783784%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAAsSAAALEgHS3X78AAAEM0lEQVQ4y1VUWW8bVRT27+IRISEegAoJxAMPeUFCFWpBLaCWJSpbChUli1pUURBRMImbPW7sNE2atXFjx3YcO87Y421mPPtijx0nBWnux5mJwvJw9N07c+93z/KdE5Kkpic0BE9RFE/TdK/dbnsd1/VcsvP1ObZaLa8pK55Ad8Sm7Pl3RVH6x3i+4oUEQYQkSqAPUFQVhq7jSJCwVq7iWV3EOuE2XyOs4aBaB5/Pw02tw8lsQ6fzlmVB0zQYhoFymUeIXmctMvKAHXc6rEtI3jHdstle/ohJms5022GKaQXfDMNkHctk3ZbNGpLM+LrI3OMeI++ZKIrMJ0Sn04Fp26g2FTIZkmFir8Dhw/5BpPMc/jw9QZfOtOmMJdZhSCJ6uozwWAQ3b91FR24EHIqi+h666BJpbG8fw0tP8PtGAv2zcYwTPpiP49bDFUiyAvf0OaobyzgY6gf3621wg59hMRzG4swc0iNfoVGkVBz3EKpUa1AkCUvZPH5Z3cLcTgrfRh8jfVDA4sIyvp9/hINCEe2T58hFp8BdeRPlS6+i8N1V9A+P4XOyJ/eGIRX24XS6CBmmBYcSGtnYwQeRKK7PxHBpchETmwmEl9bwNRFypTJavVNk5iNI9r2IvXdfRv7GRezE41iPxXE0OgK9xsOmaEMuxe46NiaJ4JUf7uG1H3/GGz+N4a3743j97iiuTMegKgrs4xOIm8vYfPsFbPW9hOz7F8APfYrS4HWUBi5DrVdht9qUQ9eFQ8ku1AUsUh7X9g+xmsnhUTKNWCKF1VQWqi8Px4FOxWhuLkF8PIviSgz5+ByylAY5nQjkZhEPeegGGuIbArhaA4ekuSpfQZ00xRc5VClcmSrvX9AMC5ZpwmiKKJFGs8Uysof037AhU+EcejREmoNNzBxXwtT8MmYermI6ugLbacGiEEzbgUKEYoWHphtQNR1ut4sd8v6TL4fw0Y0hREkdtmXCl+AZIaldUTVMTC5gZnIO4QdRtPwDmkzas2ALVZi5XVqbcHQVf7kONp8m8c5713Ch72rgwEnvmLrGPiP026cpq4hMRREOT+O3P2bRMXUIhRyqxSJEwnp2D7XiIUq5LHqqhKe7GVz8eADf3L6PRIokQ4U9yyERmtQZlUoN4zNLmI6tY3RiAWqQMxNNCrFEHcTTg4KiBSH7hVzfSuDytQHcITUk0zno1M9+6kJ+y/geUo8iTBIZuT+BcUKdcliSZOS4MrYLR9jKF5EgLFHhTLqzmznAFzfvYCyygCLHB2QBoR00vMH4Ms9yuTx7tptiyWSa0ThjjtNipMFgXRdEphHSZGH+QLEdh2WyOVYoFIPBQNIKMNSkCvrjR6cK6hSmb77uVCqSQRLxvRcpXI5GmulLhuxsXJ3h+ejy7/vrEG080o9HoQdD1Td//d99YDRk//3v/u+sj/6ArdXq3t9R0OcVov7quwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/76e565fcaf7d62dcf6f39fd3bfd471cc/fcda8/2.png&quot;
-        srcset=&quot;/static/76e565fcaf7d62dcf6f39fd3bfd471cc/12f09/2.png 148w,
-/static/76e565fcaf7d62dcf6f39fd3bfd471cc/e4a3f/2.png 295w,
-/static/76e565fcaf7d62dcf6f39fd3bfd471cc/fcda8/2.png 590w,
-/static/76e565fcaf7d62dcf6f39fd3bfd471cc/efc66/2.png 885w,
-/static/76e565fcaf7d62dcf6f39fd3bfd471cc/c83ae/2.png 1180w,
-/static/76e565fcaf7d62dcf6f39fd3bfd471cc/e515d/2.png 1430w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;WebHook은 웹페이지 또는 웹앱에서 발생하는 특정 행동(이벤트)들을 커스텀 Callback 형식으로 반환해주는 방법입니다.&lt;/p&gt;
-&lt;p&gt;일반적인 API(Polling)는 클라이언트가 서버를 호출하는 방식인데, WebHook의 경우 서버에서 특정 이벤트가 발생했을 때 클라이언트를 호출하는 방식이며 역방향 API라고도 부르기합니다.&lt;/p&gt;
-&lt;p&gt;따라서 서버에서 이벤트가 발생했을 때 클라이언트의 어느 URL로 데이터를 보내는 것을 (Callback URL) 구현하는 것을 생각하신다면 WebHook을 사용하시면 좋을 것 같습니다.&lt;/p&gt;
-&lt;h1 id=&quot;디스코드-채널-webhook-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%94%94%EC%8A%A4%EC%BD%94%EB%93%9C-%EC%B1%84%EB%84%90-webhook-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;디스코드 채널 webhook 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;디스코드 채널 WebHook 설정&lt;/h1&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/cd1360c90a0bf58b872c7cb585c414cb/67a79/3.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 57.432432432432435%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAABnUlEQVQoz52S2UrDQBSG8y7ihd3SLM2ktc3S1DRqo7gUlVpxqXolKOKdiAqKSkX6BF565wOIVy4voL7P75xJN4sgduDnMHMy3/znnEi2V0dQ2YdVrIGZebCsFcksDCWpMt/C9t47yuE1tAyDQQkOpPhfCWDJn4LrBZgO5+AHFdiu34UOI6k8GeLg8AiWU0LeKgoZvPS0anAxERWNQdXNP0VGpLPzC9Da2NrB7NwiFqorCKZCZNg4zJyF7LjNW5FFKq1DVjK/ih4lYIblITlFH5uNXZGIJxWRIAC5NMSQCmJPlzoAchxV0BOdCSABbu9aeHp6Rm11vfsawRMp9Ycz3cgJ5/3n/Q+Jkq9umuisj88v8YHr+Xw4vKcFh4PTSHA4RbpEQ6N+W3ZJuErKuui1orVLPj456wJfXt8Qi8tQRAmRkrKKuKxxRa46Lin23EVlGwSUFR2nl03cPzzCKwUi4RTLKNgecnkXKnfB2tJ4LjUwjH5RzyVyMxpTMBJTMRZL8XImUFtroLpcx8z8EnQOcnUGh34LLQJ2AIOTJuA3jUCFut67AUgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/cd1360c90a0bf58b872c7cb585c414cb/fcda8/3.png&quot;
-        srcset=&quot;/static/cd1360c90a0bf58b872c7cb585c414cb/12f09/3.png 148w,
-/static/cd1360c90a0bf58b872c7cb585c414cb/e4a3f/3.png 295w,
-/static/cd1360c90a0bf58b872c7cb585c414cb/fcda8/3.png 590w,
-/static/cd1360c90a0bf58b872c7cb585c414cb/efc66/3.png 885w,
-/static/cd1360c90a0bf58b872c7cb585c414cb/c83ae/3.png 1180w,
-/static/cd1360c90a0bf58b872c7cb585c414cb/67a79/3.png 1408w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;특정 채널에 웹훅을 만들기 위해서는, 채널 편집에 들어가서, 연동을 들어가시고, 웹후크를 생성해줍니다.&lt;/p&gt;
-&lt;p&gt;아바타 사진과, 이름 등과 같은 설정을 하시고 &lt;strong&gt;웹후크 URL 복사&lt;/strong&gt;를 눌러줍니다.&lt;/p&gt;
-&lt;p&gt;해당 웹후크 URL 로 서버에서 어떤 데이터를 담아 요청을 보내면 되겠습니다.&lt;/p&gt;
-&lt;h1 id=&quot;webhook-어떻게-사용하는가&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#webhook-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94%EA%B0%80&quot; aria-label=&quot;webhook 어떻게 사용하는가 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;WebHook 어떻게 사용하는가?&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://discord.com/developers/docs/resources/channel#create-message&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;디스코드 공식문서 Create Message&lt;/a&gt; 를 보시면 Json 형식의 데이터로 POST 요청을 웹후크 URL을 보내면 됩니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token property&quot;&gt;&quot;content&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Hello, World!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;token property&quot;&gt;&quot;tts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;token property&quot;&gt;&quot;embeds&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Hello, Embed!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;This is an embedded message.&quot;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;공식 문서의 예제 코드에서는 위 Json형식의 데이터를 보내게 되는데요 한번 API를 요청을 보내보면&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 524px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/ad976dd6fb35a428401de379747fefe0/664c8/4.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 59.45945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAAB0ElEQVQoz52T227TQBCG8zSo0NiOD2vXjt3Yjp1D0yptSpPUCalVISSEKiFUhFpEKaWIt+BteK6fnVm7IblCXHzZ2Z3M7D8744bjttGOUqTZEFlvhDjtYz/O0Ul6vE+6fcRZiTCewnF9CC+URBB7UWWH8lziKRqW42NerPDh+hPuH37g9vMd3l29R3n5Bt8ff8r9V5Rvf2NS/IIfBkhzeWl3wHTk5X47hmnvgfIQDVKY9Q6Q9w+lygG6+YFkyPbR+BThfgpLJLBFB7YbsCJbBAoZS6sl/Cc44cnpDMWy5HU4GuN8cYGz2QIvp4UKcDzJWsUGYpMGyX3RNLGz28JzxuR9bTd1h2lZHgzTlXhbuDA5caBKpoQUnMg3yfuqKUGY8D7qZLLkLp9phoAug/XWNkK9YZ2Qfp7taFiuLnH/7RHXH2+4IdQkasiXuwf2kWpSo/+FUV2wkdC0PexqFh/SnzTDYZvKJFUqSHDJRK1KI0j1tkJVsoHe4BCz81eyKccYHU0wPjnjJs2LCx6rVfkax5MZn0/nSxSLktdaob2tkBykgJyMdCpbdZPWlrX2uXKwCa1SWI8PJ2zq1lNp/wo9DUHPpEquBltUn4z4T9axEfMHqGucMZr1rX0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/ad976dd6fb35a428401de379747fefe0/664c8/4.png&quot;
-        srcset=&quot;/static/ad976dd6fb35a428401de379747fefe0/12f09/4.png 148w,
-/static/ad976dd6fb35a428401de379747fefe0/e4a3f/4.png 295w,
-/static/ad976dd6fb35a428401de379747fefe0/664c8/4.png 524w&quot;
-        sizes=&quot;(max-width: 524px) 100vw, 524px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;이런식으로 오는것을 볼 수 있습니다. 자세한 사용은 공식문서를 참고하셔서 어떤 데이터를 어떻게 보낼지 찾아보시면 되겠습니다.&lt;/p&gt;
-&lt;h1 id=&quot;스프링부트에서-webhook-메시지-보내기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8%EC%97%90%EC%84%9C-webhook-%EB%A9%94%EC%8B%9C%EC%A7%80-%EB%B3%B4%EB%82%B4%EA%B8%B0&quot; aria-label=&quot;스프링부트에서 webhook 메시지 보내기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;스프링부트에서 WebHook 메시지 보내기&lt;/h1&gt;
-&lt;p&gt;서버에서 어떠한 요청(이벤트)이 발생하게 되면은, 디스코드로 메세지를 보내는 것을 구현하겠습니다.&lt;/p&gt;
-&lt;h2 id=&quot;프로젝트-패키지-구성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B5%AC%EC%84%B1&quot; aria-label=&quot;프로젝트 패키지 구성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로젝트 패키지 구성&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;controller&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;EventController&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;discord&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;config&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;BotConfiguration&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;service&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;WebHookService&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;application-discordyml&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#application-discordyml&quot; aria-label=&quot;application discordyml permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;application-discord.yml&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;discord&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
-  webhookURL&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;웹후크URL&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;웹후크 URL을 지정합니다&lt;/p&gt;
-&lt;h2 id=&quot;botconfiguration-클래스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#botconfiguration-%ED%81%B4%EB%9E%98%EC%8A%A4&quot; aria-label=&quot;botconfiguration 클래스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;BotConfiguration 클래스&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BotConfiguration&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;WebHookService&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;webHookService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;WebHookService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Configuration을 통해서 WebHookService Bean을 생성하겠습니다.&lt;/p&gt;
-&lt;h2 id=&quot;webhookservice-클래스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#webhookservice-%ED%81%B4%EB%9E%98%EC%8A%A4&quot; aria-label=&quot;webhookservice 클래스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;WebHookService 클래스&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;WebHookService&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;${discord.webhookURL}&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt;  &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; url&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;callEvent&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token class-name&quot;&gt;JSONObject&lt;/span&gt; data &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;JSONObject&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-        data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;content&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;[알림] 이벤트가 발생하였습니다&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-        &lt;span class=&quot;token function&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;JSONObject&lt;/span&gt; object&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token class-name&quot;&gt;HttpHeaders&lt;/span&gt; headers &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;HttpHeaders&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        headers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setContentType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;MediaType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;APPLICATION_JSON&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-        &lt;span class=&quot;token class-name&quot;&gt;RestTemplate&lt;/span&gt; restTemplate &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;RestTemplate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token class-name&quot;&gt;HttpEntity&lt;/span&gt;&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt; entity &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;HttpEntity&lt;/span&gt;&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; headers&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        restTemplate&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;postForObject&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;url&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; entity&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;서비스 클래스에서 &lt;code class=&quot;language-text&quot;&gt;callEvent&lt;/code&gt; 메소드가 실행되면 &lt;code class=&quot;language-text&quot;&gt;JSON&lt;/code&gt; 객체를 생성하고, &lt;code class=&quot;language-text&quot;&gt;content&lt;/code&gt; Key에 &lt;code class=&quot;language-text&quot;&gt;value&lt;/code&gt;로 알림을 보낼 메세지 내용을 작성했습니다.&lt;/p&gt;
-&lt;p&gt;그리고 &lt;code class=&quot;language-text&quot;&gt;send&lt;/code&gt; 메소드에 파라미터로 &lt;code class=&quot;language-text&quot;&gt;JSON&lt;/code&gt; 객체를 담고 해당 메소드를 실행합니다.&lt;/p&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;send&lt;/code&gt; 메소드에서는 &lt;code class=&quot;language-text&quot;&gt;RestTemplate&lt;/code&gt; 스프링 객체를 통해서,Json 객체를 HTTP Body에 담고 &lt;code class=&quot;language-text&quot;&gt;POST&lt;/code&gt; 요청을 웹후크 URL로 보내게됩니다.&lt;/p&gt;
-&lt;h2 id=&quot;eventcontroller-클래스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#eventcontroller-%ED%81%B4%EB%9E%98%EC%8A%A4&quot; aria-label=&quot;eventcontroller 클래스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;EventController 클래스&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Controller&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@RequiredArgsConstructor&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@RequestMapping&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/api/event&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;EventController&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;WebHookService&lt;/span&gt; webHookService&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@PostMapping&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;postEvent&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-				&lt;span class=&quot;token comment&quot;&gt;// 이벤트 처리 ...&lt;/span&gt;
-        webHookService&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;callEvent&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;이벤트 발생!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;컨트롤러에서는 &lt;code class=&quot;language-text&quot;&gt;/api/event&lt;/code&gt; Post 요청이 들어오면 orderEvent 그 요청을 처리하게 되는데요. &lt;/p&gt;
-&lt;p&gt;내부에선 이벤트 비즈니스 로직을 수행하고, 웹후크를 통해서 알림을 보냅니다.&lt;/p&gt;
-&lt;h2 id=&quot;서버-구동&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%84%9C%EB%B2%84-%EA%B5%AC%EB%8F%99&quot; aria-label=&quot;서버 구동 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;서버 구동&lt;/h2&gt;
-&lt;p&gt;이젠 스프링부트 서버를 구동하여, API를 요청해서 알림 메세지를 받아보겠습니다.&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 450px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/fa9959708019b9f30ccce4991fdb88ba/fc2a6/5.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABNUlEQVQY0x1Q2VLCQBDMJ2lIIIQNgRyYEMCAGFOoKEcZ5IjhUqFKny2P8knLb/LFT2pn92Fqema2Z7pXUgoMOVWHWjCQL5ahapQpeK3kGTTdJMxo5ohQ8iV6XxJZYFHrAnOOxAmP+yfcZWu8vX/i5fUDq80DVut7ZMstvr5/sNs/YzD7xTj9g6yosNwAumGhYnsoV2swKi50ZuEwp0FSNYYovkA36mE4nmA4StC/HuP07BwDwpNpSv0Etr+E5WWk2KCFdbCyLYILYqYjDoiFsloUxJQUzlMiOT4ur0aYLTLqbRB2IrRPYswXU9xOE6y3OzG7SWZYkgsuhguIe30cyAVI3H8z7KLeCHHcjlCxjmDQxZrXpF6bDnhkp4pGq4ug2YFTC2C7PvwgFC64AJNsm1WXvqOIfz/KwVprJptEAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/fa9959708019b9f30ccce4991fdb88ba/fc2a6/5.png&quot;
-        srcset=&quot;/static/fa9959708019b9f30ccce4991fdb88ba/12f09/5.png 148w,
-/static/fa9959708019b9f30ccce4991fdb88ba/e4a3f/5.png 295w,
-/static/fa9959708019b9f30ccce4991fdb88ba/fc2a6/5.png 450w&quot;
-        sizes=&quot;(max-width: 450px) 100vw, 450px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;❯ curl &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;X&lt;/span&gt; POST &lt;span class=&quot;token string&quot;&gt;&quot;http://localhost:8080/api/event&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;해당 URL 로 POST 요청을 보내게되면은, 디스코드에 알림이 발생하는 것을 볼 수 있습니다!&lt;/p&gt;
-&lt;p&gt;이런식으로 디스코드 WebHook을 사용하시면되고, 메세지를 커스텀하여, 웹후크 메세지를 보내시면 되겠습니다.&lt;/p&gt;
-&lt;h1 id=&quot;레퍼런스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4&quot; aria-label=&quot;레퍼런스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;레퍼런스&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://discord.com/developers/docs/resources/channel#create-message&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://discord.com/developers/docs/resources/channel#create-message&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://leffept.tistory.com/329&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://leffept.tistory.com/329&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;&lt;a href=&quot;https://velog.io/@ha0kim/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9D%B8-%EC%95%A1%EC%85%98-14.%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8D%BC%EC%8B%9C%EC%8A%A4%ED%84%B4%EC%8A%A4&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://velog.io/@ha0kim/스프링-인-액션-14.리액티브-데이터-퍼시스턴스&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
