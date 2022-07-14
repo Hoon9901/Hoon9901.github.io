@@ -1,6 +1,107 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 13 Jul 2022 08:20:12 GMT</lastBuildDate><item><title><![CDATA[[React] 외부 라이브러리 없이 Text To Speech(TTS)를 사용해보자]]></title><description><![CDATA[외부 라이브러리 없이, 웹 표준을 만족하는 API인 Web Speech API 만으로 TTS를 사용해보자. Web Speech API는 크게 SpeechSynthesis(Text-to-Speech)와 SpeechRecognition (Asynchro…]]></description><link>https://hoon9901.github.io/react-tts/</link><guid isPermaLink="false">https://hoon9901.github.io/react-tts/</guid><pubDate>Wed, 13 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;외부 라이브러리 없이, 웹 표준을 만족하는 API인 Web Speech API 만으로 TTS를 사용해보자.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 14 Jul 2022 09:20:18 GMT</lastBuildDate><item><title><![CDATA[[Spring] 빈 객체의 초기화와 소멸 : initalizingBean과 DisposableBean 인터페이스 ]]></title><description><![CDATA[스프링 컨테이너는 빈 객체를 초기화하고 소멸하기 위해 빈 객체의 지정한 메서드를 호출한다. 스프링은 다음의 두 인터페이스에 이 메서드를 정의한다. org.springframework.beans.factory.initalizingBean org.spr…]]></description><link>https://hoon9901.github.io/spring-bean-init-and-disposable/</link><guid isPermaLink="false">https://hoon9901.github.io/spring-bean-init-and-disposable/</guid><pubDate>Thu, 14 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;스프링 컨테이너는 빈 객체를 초기화하고 소멸하기 위해 빈 객체의 지정한 메서드를 호출한다. 스프링은 다음의 두 인터페이스에 이 메서드를 정의한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;org.springframework.beans.factory.&lt;strong&gt;initalizingBean&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;org.springframework.beans.factory.&lt;strong&gt;DisposableBean&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;두 인터페이스는 다음과 같다&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; initalizingBean &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;afterPropertiesSet&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DisposableBean&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;빈 객체를 생성한 뒤에 &lt;strong&gt;초기화 과정이&lt;/strong&gt; 필요 : &lt;code class=&quot;language-text&quot;&gt;InitalizingBean&lt;/code&gt; 인터페이스를 상속하고 afterPropertiesSet() 메소드를 구현한다.&lt;/li&gt;
+&lt;li&gt;빈 객체의 &lt;strong&gt;소멸 과정이&lt;/strong&gt; 필요 :  &lt;code class=&quot;language-text&quot;&gt;DisposableBean&lt;/code&gt; 인터페이스를 상속하고 &lt;code class=&quot;language-text&quot;&gt;destroy()&lt;/code&gt; 메소드를 구현한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;초기화와-소멸과정이-필요한-예&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%B4%88%EA%B8%B0%ED%99%94%EC%99%80-%EC%86%8C%EB%A9%B8%EA%B3%BC%EC%A0%95%EC%9D%B4-%ED%95%84%EC%9A%94%ED%95%9C-%EC%98%88&quot; aria-label=&quot;초기화와 소멸과정이 필요한 예 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;초기화와 소멸과정이 필요한 예&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;데이터베이스 커넥션 풀&lt;/p&gt;
+&lt;p&gt;커넥션 풀을 위한 빈 객체는 초기화 과정에 데이터베이스 연결을 생성한다. 컨테이너를 사용하는 동안 연결을 유지하고 빈 객체를 소멸할 때 사용중인 데이터베이스 연결을 끊어야 한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;채팅 클라이언트&lt;/p&gt;
+&lt;p&gt;채팅 클라이언트는 시작할 때 서버와 연결을 생성하고 종료할 때 연결을 끊는다. 이때 서버와의 연결을 생성하고 끊는 작업을 초기화/소멸 시점에 수행하면 된다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;간단한-코드-예제를-통해-알아보기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%BD%94%EB%93%9C-%EC%98%88%EC%A0%9C%EB%A5%BC-%ED%86%B5%ED%95%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0&quot; aria-label=&quot;간단한 코드 예제를 통해 알아보기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;간단한 코드 예제를 통해 알아보기&lt;/h3&gt;
+&lt;p&gt;간단하게 빈 객체의 초기화와 소멸 시점을 코드를 작성하고 실행해서 알아보자&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;InitializingBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DisposableBean&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; host&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;setHost&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; host&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;host &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; host&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;afterPropertiesSet&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token class-name&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;out&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Client.afterPropertiesSet() 실행&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token class-name&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;out&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Client.sned() to &quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; host&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token class-name&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;out&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Client.destroy() 실행&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;실행되는 순서를 알아보기 위해 콘솔에 관련 메세지를 출력하도록 했다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Client&lt;/code&gt; 클래스를 위한 설정 클래스는 다음과 같다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppCtxForClient&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt; client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setHost&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; client&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이제 &lt;code class=&quot;language-text&quot;&gt;AppCtxForClient&lt;/code&gt;를 이용해서 스프링 컨테이너를 생성하고 &lt;code class=&quot;language-text&quot;&gt;Client&lt;/code&gt; 빈 객체를 구해 사용하는 코드를 작성한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Main&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; args&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;IOException&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token class-name&quot;&gt;AbstractApplicationContext&lt;/span&gt; ctx &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AnnotationConfigApplicationContext&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;token class-name&quot;&gt;AppCtxForClient&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt; client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ctx&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+        ctx&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Main&lt;/code&gt; 클래스를 실행해보면 다음과 같은 메세지가 출력된다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;afterPropertiesSet&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; 실행
+&lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sned&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;token namespace&quot;&gt;host&lt;/span&gt;
+&lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; 실행
+&lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;월 &lt;span class=&quot;token number&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2022&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;06&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;00&lt;/span&gt; 오후 org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;springframework&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;context&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;support&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;AbstractApplicationContext&lt;/span&gt; doClose
+정보&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Closing&lt;/span&gt; org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;springframework&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;context&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;annotation&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;AnnotationConfigApplicationContext&lt;/span&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@4b952a2d&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; startup date &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Thu&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Jul&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;05&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;59&lt;/span&gt; KST &lt;span class=&quot;token number&quot;&gt;2022&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; root of context hierarchy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;스프링 컨테이너 생성&lt;/li&gt;
+&lt;li&gt;빈 객체 생성&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;빈 객체 초기화&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;afterPropertiesSet&lt;/code&gt; 메소드 실행&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;스프링 컨테이너 종료&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;빈 객체 소멸&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;destory&lt;/code&gt; 메소드 실행&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;만약 &lt;code class=&quot;language-text&quot;&gt;ctx.close()&lt;/code&gt; 메소드가 실행되지 않다면 컨테이너의 종료 과정을 수행하지 않기 때문에 빈 객체의 소멸 과정도 실행되지 않는다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[React] 외부 라이브러리 없이 Text To Speech(TTS)를 사용해보자]]></title><description><![CDATA[외부 라이브러리 없이, 웹 표준을 만족하는 API인 Web Speech API 만으로 TTS를 사용해보자. Web Speech API는 크게 SpeechSynthesis(Text-to-Speech)와 SpeechRecognition (Asynchro…]]></description><link>https://hoon9901.github.io/react-tts/</link><guid isPermaLink="false">https://hoon9901.github.io/react-tts/</guid><pubDate>Wed, 13 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;외부 라이브러리 없이, 웹 표준을 만족하는 API인 Web Speech API 만으로 TTS를 사용해보자.&lt;/p&gt;
 &lt;p&gt;Web Speech API는 크게 SpeechSynthesis(Text-to-Speech)와 SpeechRecognition (Asynchronous Speech Recognition) 두 가지로 나뉜다.&lt;/p&gt;
-&lt;p&gt;SpeechSynthesis는 텍스트를 음성으로 변환하는 API이고, SpeechSRecognition은 음성을 텍스트로 변환하는 APi이다. 우리가 사용해야할 API는 SpeechSynthesis이다. 해당 API는 대부분의 모던 브라우저에서는 지원된다. (해당 API가 지원하는 브라우저 목록이 궁금하다면? &lt;a href=&quot;https://caniuse.com/?search=speech&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://caniuse.com/?search=speech&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;SpeechSynthesis는 텍스트를 음성으로 변환하는 API이고, SpeechRecognition은 음성을 텍스트로 변환하는 API이다. 우리가 사용해야할 API는 SpeechSynthesis이다. 해당 API는 대부분의 모던 브라우저에서는 지원된다. (해당 API가 지원하는 브라우저 목록이 궁금하다면? &lt;a href=&quot;https://caniuse.com/?search=speech&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://caniuse.com/?search=speech&lt;/a&gt;)&lt;/p&gt;
 &lt;h2 id=&quot;1-web-speech-api-세팅&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-web-speech-api-%EC%84%B8%ED%8C%85&quot; aria-label=&quot;1 web speech api 세팅 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Web Speech API 세팅&lt;/h2&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;&lt;pre class=&quot;language-jsx&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; pitch &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; rate &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
@@ -1187,247 +1288,4 @@ nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionExcept
 &lt;p&gt;getBean() 메소드로 구할 필요가 없다면 빈 객체로 꼭 등록해야 하는 것을 아니다&lt;/p&gt;
 &lt;p&gt;최근에는 의존 자동 주입 기능을 프로젝트 전반에 걸쳐 사용하는 추세이기 때문에&lt;/p&gt;
 &lt;p&gt;의존 주입 대상은 스프링 빈으로 등록하는 것이 보통이다.# 주입 대상 객체를 모두 빈 객체로 설정해야 하나?
-주입할 객체가 꼭 스프링 빈이어야 할 필요는 없다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Cloud Config Server/Client]]></title><description><![CDATA[Spring Cloud - Config Server/Client  spring cloud config server 구성 아키텍쳐 Spring Cloud Config Server 의 저장소는 git, vault, aws s3, redis, jdbc 등…]]></description><link>https://hoon9901.github.io/spring-cloud-config/</link><guid isPermaLink="false">https://hoon9901.github.io/spring-cloud-config/</guid><pubDate>Mon, 07 Mar 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;spring-cloud---config-serverclient&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud---config-serverclient&quot; aria-label=&quot;spring cloud   config serverclient permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud - Config Server/Client&lt;/h1&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/665b35f946fefa0dcc9899ada69dbcd9/fcda8/1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 48.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsSAAALEgHS3X78AAAB60lEQVQoz32S608aURDF95/vB2PTpvqliR+MjWljg1JLeZhaVNQFQUpFjTzCQ0xZlgV2b1lZ7iL+eoVgSIM9yeQmc89M5swc7axk8jZSYjfdYDwe84THx8cXY9G/9Ed4UuL7PtqHowrLoQKrsTJGRzCPacH4OZi9/6Df6+L3BbZjo1UMh+C5wVnJwnX7nFyl2D4JcZA7njadK5y1kr7EtC3Mrsn9wxg7q9MIb/E58BFtMJRc1LuK4E7IyUKGoP6NxJXOYODhti6xaoeUyvv075IMRYtbq8n7yDqrX9fIFn8hFU96A8UfoO1mbnkTrbB+WKPr/CFT+kkovUcin1QTu4ibAFH9FXs3X6jm1xC3acRgSNWoU2s16HvuZPeOEBO+tpOqsxQqshavKAkOp9cpto6CHOZPEcLBKQTRD5b5EX9HKbWipsziKlWmaGM4pjrGcKLMcRzFF2j3npJcs54lp8s5Irl9Epc6npJi353TuIxRu4hhFr8jhUGjY7B5GmDjeIvrRoF2q43V6SDVpbW6KQhlm2QrlmpwP5nsU3yb/dwRL0GOJIZt0uy1kA8+4XCEaDSGrutoGwdlXofLrCjb/LbsBbZZ7MV52LaN53n0eso2qYLBUiDHTrI6LeD/Jp7lxnO5kTL2k9zRaMRfB5jidVNGodAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;spring cloud config server 구성 아키텍쳐&quot;
-        title=&quot;spring cloud config server 구성 아키텍쳐&quot;
-        src=&quot;/static/665b35f946fefa0dcc9899ada69dbcd9/fcda8/1.png&quot;
-        srcset=&quot;/static/665b35f946fefa0dcc9899ada69dbcd9/12f09/1.png 148w,
-/static/665b35f946fefa0dcc9899ada69dbcd9/e4a3f/1.png 295w,
-/static/665b35f946fefa0dcc9899ada69dbcd9/fcda8/1.png 590w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;spring cloud config server 구성 아키텍쳐&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Spring Cloud Config Server 의 저장소는&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;git, vault, aws s3, redis, jdbc 등 과 같은 저장소를 사용할 수 있습니다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;스프링-클라우드-config&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8A%A4%ED%94%84%EB%A7%81-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-config&quot; aria-label=&quot;스프링 클라우드 config permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;스프링 클라우드 Config&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;스프링 클라우드 구성 서버는 애플리케이션의 모든 마이크로서비스가 구성에 의존할 수 있는 서버를 사용해서중앙 집중식 구성을 제공할 수 있습니다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;중앙-집중식-구성의-장점--스프링-클라우드-구성-서버의-장점-&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%A4%91%EC%95%99-%EC%A7%91%EC%A4%91%EC%8B%9D-%EA%B5%AC%EC%84%B1%EC%9D%98-%EC%9E%A5%EC%A0%90--%EC%8A%A4%ED%94%84%EB%A7%81-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EA%B5%AC%EC%84%B1-%EC%84%9C%EB%B2%84%EC%9D%98-%EC%9E%A5%EC%A0%90-&quot; aria-label=&quot;중앙 집중식 구성의 장점  스프링 클라우드 구성 서버의 장점  permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;중앙 집중식 구성의 장점 (= 스프링 클라우드 구성 서버의 장점 )&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;구성이 더 이상 애플리케이션 코드에 패키징되어 배포되지 않는다. 따라서 애플리케이션을 다시 빌드하거나 배포하지 않고 구성을 변경하거나 원래 값으로 환원할 수 있다.&lt;/li&gt;
-&lt;li&gt;공통적인 구성을 공유하는 마이크로서비스가 자신의 속성 설정으로 유지/관리하지않고도 동일한 속성들을 공유할 수 있다. 그리고 속성 변경이 필요하면 한 곳에서 한번만 변경해도 모든 마이크로서비스에 적용할 수 있다.&lt;/li&gt;
-&lt;li&gt;보안에 민감한 구성 속성은 애플리케이션 코드와는 별도로 암호화하고 유지/관리할 수 있다. 그리고 복호화된 속성 값을 언제든지 애플리케이션에서 사용할 수 있으므로 복호화를 하는 코드가 애플리케이션에 없어도 된다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;구성서버---자동-속성-갱신&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%AC%EC%84%B1%EC%84%9C%EB%B2%84---%EC%9E%90%EB%8F%99-%EC%86%8D%EC%84%B1-%EA%B0%B1%EC%8B%A0&quot; aria-label=&quot;구성서버   자동 속성 갱신 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;구성서버 - 자동 속성 갱신&lt;/h3&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/34938c65d75a5bb41532e42e2be2988a/d8817/2.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 54.05405405405405%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAABfUlEQVQoz41Sa2+CQBDk//+sWvSDFkMDFtQEDC9FRQEFn0xvzhxF0zTdZHN7+5jdnTutaRpQKcpW91f5T0zrOrqyTlM4Xw622y0Oh8NT/H6/43Q64Xw+S+2K1u1aliXW67UESVcrJHGMVAD7ni/9U3eKyWSC5XKJOIrhOA4MY4wgCGXt9Xp9BowFgGl+wrIsrAQgp1BN5rM5xqKYIPRRmDOxbcxELEkSHI/Hn5UpBKjrWq6RZZmYIpJNsmyHy+WC2+0mT7Um74oC2jw1GuzEwqIofiWcOaWIlUWJuqpQVXULxgZ5nuMoeC7y4jEhkdmVZ5cCckKbqwRBILkjt/t9LnPV44RhKPhOEImNNE7leV67Bs9IJBiGAf1dl49Sial8f4HhcCh5JMhms4Ft2ei99WR9+8okc9AfYLfbtYCu66Kv9yUAueRKo9GH9JmmKXlm05GI68K3EM0Uvxqa53/IAEG5JgvVI3BK/kfl56nuVOY8AF9+e9dWPHWVDf/SbwedTCiBj+X9AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;spring actuator 를 통한 속성 자동 리프레시&quot;
-        title=&quot;spring actuator 를 통한 속성 자동 리프레시&quot;
-        src=&quot;/static/34938c65d75a5bb41532e42e2be2988a/fcda8/2.png&quot;
-        srcset=&quot;/static/34938c65d75a5bb41532e42e2be2988a/12f09/2.png 148w,
-/static/34938c65d75a5bb41532e42e2be2988a/e4a3f/2.png 295w,
-/static/34938c65d75a5bb41532e42e2be2988a/fcda8/2.png 590w,
-/static/34938c65d75a5bb41532e42e2be2988a/efc66/2.png 885w,
-/static/34938c65d75a5bb41532e42e2be2988a/c83ae/2.png 1180w,
-/static/34938c65d75a5bb41532e42e2be2988a/d8817/2.png 1238w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;spring actuator 를 통한 속성 자동 리프레시&lt;/p&gt;
-&lt;p&gt;구성 서버를 중앙 속성 서버로 두고, 스프링 Actuator 와, cloud bus, RabbitMQ 를 통해&lt;/p&gt;
-&lt;p&gt;해당 이미지 처럼 개발자가 속성을 새롭게 수정하였으면, WebHook (/actuator/bus-refresh) 경로로 요청을 보내 변경된 속성을 갱신하고, 운영중인 서버로 부터 설정을 업데이트 하라고 요청을 할 수 있습니다.&lt;/p&gt;
-&lt;h2 id=&quot;구성-서버&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%AC%EC%84%B1-%EC%84%9C%EB%B2%84&quot; aria-label=&quot;구성 서버 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;구성 서버&lt;/h2&gt;
-&lt;p&gt;config server 를 구성서버라고 부르겠습니다.&lt;/p&gt;
-&lt;p&gt;스프링 구성 서버를 제작하고, 설정을 받는 것을 해보겠습니다&lt;/p&gt;
-&lt;h3 id=&quot;구성-서버-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%AC%EC%84%B1-%EC%84%9C%EB%B2%84-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;구성 서버 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;구성 서버 설정&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;build.gradle&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;groovy&quot;&gt;&lt;pre class=&quot;language-groovy&quot;&gt;&lt;code class=&quot;language-groovy&quot;&gt;implementation &lt;span class=&quot;token string&quot;&gt;&apos;org.springframework.boot:spring-boot-starter-web&apos;&lt;/span&gt;
-implementation &lt;span class=&quot;token string&quot;&gt;&apos;org.springframework.cloud:spring-cloud-config-server:3.1.0&apos;&lt;/span&gt;
-
-implementation &lt;span class=&quot;token string&quot;&gt;&apos;org.springframework.vault:spring-vault-core:2.3.2&apos;&lt;/span&gt;
-
-implementation &lt;span class=&quot;token string&quot;&gt;&apos;org.springframework.boot:spring-boot-starter-actuator:2.6.3&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;해당 의존성을 추가합나디.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;Main 클래스&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@SpringBootApplication&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@EnableConfigServer&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;VaultdemoApplication&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; args&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token class-name&quot;&gt;SpringApplication&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;VaultdemoApplication&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; args&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;EnableConfigServer&lt;/strong&gt; 어노테이션을 달아서, 구성서버 자동 설정합니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;application.yml&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8888&lt;/span&gt;
-
-&lt;span class=&quot;token key atrule&quot;&gt;spring&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;profiles&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;active&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; native
-      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; vault
-
-  &lt;span class=&quot;token key atrule&quot;&gt;cloud&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;token key atrule&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;token key atrule&quot;&gt;native&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;token key atrule&quot;&gt;search-locations&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; file&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;./config
-        &lt;span class=&quot;token key atrule&quot;&gt;vault&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;token key atrule&quot;&gt;kv-version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
-          &lt;span class=&quot;token key atrule&quot;&gt;authentication&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; token
-          &lt;span class=&quot;token key atrule&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;vault token&quot;&lt;/span&gt;
-          &lt;span class=&quot;token key atrule&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; localhost
-          &lt;span class=&quot;token key atrule&quot;&gt;scheme&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; http
-          &lt;span class=&quot;token key atrule&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8200&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;위 설정들은 구성 서버 자체 구성에 필요한 속성들입니다.&lt;/p&gt;
-&lt;p&gt;구성 서버가 클라이언트(개발 서버[config가 필요한 곳])에 제공하는 config 는 git, vault, native 등(서버 파일 시스템)의 repository (저장소)에서 가져옵니다.&lt;/p&gt;
-&lt;p&gt;현재 서버의 속성을 보시면은 구성을 가져올 저장소가 두 곳 인것을 볼 수 있습니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;native : 프로젝트 경로의 config 디렉터리 내부 파일(설정 파일들이 위치)&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;vault : vault 의 secret 경로&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;클라이언트에서 vault의 token 을 발급 하지 않고 속성만 받을 수 있게 구성 서버에서 token을 지정하였습니다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;구성-서버-native-속성-파일&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%AC%EC%84%B1-%EC%84%9C%EB%B2%84-native-%EC%86%8D%EC%84%B1-%ED%8C%8C%EC%9D%BC&quot; aria-label=&quot;구성 서버 native 속성 파일 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;구성 서버 native 속성 파일&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;/config/test.yml&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;message:
-  hello: &lt;span class=&quot;token string&quot;&gt;&quot;hi&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;native 저장소에 있는 설정 파일입니다.&lt;/p&gt;
-&lt;h3 id=&quot;구성-서버-vault-secret&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%AC%EC%84%B1-%EC%84%9C%EB%B2%84-vault-secret&quot; aria-label=&quot;구성 서버 vault secret permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;구성 서버 vault secret&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;❯ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -X GET http://localhost:8200/v1/test-app/dev -H &lt;span class=&quot;token string&quot;&gt;&quot;X-Vault-Token: token값&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; jq
-
-&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token string&quot;&gt;&quot;request_id&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;0f62463e-fec4-7c60-7103-d6baf2fc04c7&quot;&lt;/span&gt;,
-  &lt;span class=&quot;token string&quot;&gt;&quot;lease_id&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;,
-  &lt;span class=&quot;token string&quot;&gt;&quot;renewable&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; false,
-  &lt;span class=&quot;token string&quot;&gt;&quot;lease_duration&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3153600000&lt;/span&gt;,
-  &lt;span class=&quot;token string&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    **&lt;span class=&quot;token string&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;world&quot;&lt;/span&gt;,
-    &lt;span class=&quot;token string&quot;&gt;&quot;this&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;is&quot;&lt;/span&gt;**
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;,
-  &lt;span class=&quot;token string&quot;&gt;&quot;wrap_info&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; null,
-  &lt;span class=&quot;token string&quot;&gt;&quot;warnings&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; null,
-  &lt;span class=&quot;token string&quot;&gt;&quot;auth&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; null
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;test-app/dev [key , value 저장소]&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;hello : world&lt;/li&gt;
-&lt;li&gt;this : is&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;구성-서버-테스트-하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B5%AC%EC%84%B1-%EC%84%9C%EB%B2%84-%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%95%98%EA%B8%B0&quot; aria-label=&quot;구성 서버 테스트 하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;구성 서버 테스트 하기&lt;/h3&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 464px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/e63e75d0060915dc15354c324c0ae766/69096/3.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 36.486486486486484%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsSAAALEgHS3X78AAABB0lEQVQoz31RWYuDYAz0//+xCl2pLd1an8SriveJt7OdLErdhw0MxsyXZJgoeEfbtrheb1BVFZeLDl3XUZYlKazrKmA0TYM8zwVZlqEoCiRJsvP8KkxIhGGINE0RBAGiKJamvwP5jrxt2/A8T3Lf9zHP83EgY1kWdF33biqlcRgGVFW1D/sMLqvrGtM0Heoy0HFckR9FkWx0XVfUcrNlWXAcB8ErkBpBngp/1b2EZ30cRxmqcAtBhQTlE8xZp5dxHIsdVMX/je/7YRezqVXwT/BYBIfxILTkMzZbeBjyXKhspm9eUTofxHGC+/0bmqbh+TRhGE+Ypnm4bN/3eDwMnE4qzucvseIHP/8XxIfuJBYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/e63e75d0060915dc15354c324c0ae766/69096/3.png&quot;
-        srcset=&quot;/static/e63e75d0060915dc15354c324c0ae766/12f09/3.png 148w,
-/static/e63e75d0060915dc15354c324c0ae766/e4a3f/3.png 295w,
-/static/e63e75d0060915dc15354c324c0ae766/69096/3.png 464w&quot;
-        sizes=&quot;(max-width: 464px) 100vw, 464px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;localhost:8888 : 구성 서버의 호스트 이름과 포트&lt;/li&gt;
-&lt;li&gt;application : 애플리케이션 이름(spring.application.name)&lt;/li&gt;
-&lt;li&gt;default : 활성화된 스프링 프로파일(E.g. production) (14.2.2)&lt;/li&gt;
-&lt;li&gt;master : Git 라벨/분기(생략 가능, master가 기본값)&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;test 속성 받기&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;❯ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -X GET http://localhost:8888/test/default &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; jq
-&lt;span class=&quot;token string&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;test&quot;&lt;/span&gt;,
-&lt;span class=&quot;token string&quot;&gt;&quot;profiles&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
-  &lt;span class=&quot;token string&quot;&gt;&quot;default&quot;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;,
-&lt;span class=&quot;token string&quot;&gt;&quot;label&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; null,
-&lt;span class=&quot;token string&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; null,
-&lt;span class=&quot;token string&quot;&gt;&quot;state&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; null,
-&lt;span class=&quot;token string&quot;&gt;&quot;propertySources&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    **&lt;span class=&quot;token string&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;file:config/test.yml&quot;&lt;/span&gt;,**
-    &lt;span class=&quot;token string&quot;&gt;&quot;source&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      **&lt;span class=&quot;token string&quot;&gt;&quot;message.hello&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;hi&quot;&lt;/span&gt;**
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;http://localhost:8888&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;localhost:8888&lt;/a&gt;/test/default 로 요청을 보냈습니다.
-test.yml 속성을 받아온것을 볼 수 있습니다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;레퍼런스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4&quot; aria-label=&quot;레퍼런스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;레퍼런스&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://cloud.spring.io/spring-cloud-config/reference/html/#_environment_repository&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://cloud.spring.io/spring-cloud-config/reference/html/#_environment_repository&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://lejewk.github.io/vault-get-started/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://lejewk.github.io/vault-get-started/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.vaultproject.io/docs/commands&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://www.vaultproject.io/docs/commands&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://wonit.tistory.com/502&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://wonit.tistory.com/502&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://velog.io/@ha0kim/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9D%B8-%EC%95%A1%EC%85%98-14.%EB%A6%AC%EC%95%A1%ED%8B%B0%EB%B8%8C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8D%BC%EC%8B%9C%EC%8A%A4%ED%84%B4%EC%8A%A4&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://velog.io/@ha0kim/스프링-인-액션-14.리액티브-데이터-퍼시스턴스&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+주입할 객체가 꼭 스프링 빈이어야 할 필요는 없다.&lt;/p&gt;</content:encoded></item></channel></rss>
