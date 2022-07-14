@@ -14,7 +14,7 @@ keywords :
 
 Web Speech API는 크게 SpeechSynthesis(Text-to-Speech)와 SpeechRecognition (Asynchronous Speech Recognition) 두 가지로 나뉜다.
 
-SpeechSynthesis는 텍스트를 음성으로 변환하는 API이고, SpeechSRecognition은 음성을 텍스트로 변환하는 APi이다. 우리가 사용해야할 API는 SpeechSynthesis이다. 해당 API는 대부분의 모던 브라우저에서는 지원된다. (해당 API가 지원하는 브라우저 목록이 궁금하다면? [https://caniuse.com/?search=speech](https://caniuse.com/?search=speech))
+SpeechSynthesis는 텍스트를 음성으로 변환하는 API이고, SpeechRecognition은 음성을 텍스트로 변환하는 API이다. 우리가 사용해야할 API는 SpeechSynthesis이다. 해당 API는 대부분의 모던 브라우저에서는 지원된다. (해당 API가 지원하는 브라우저 목록이 궁금하다면? [https://caniuse.com/?search=speech](https://caniuse.com/?search=speech))
 
 ## 1. Web Speech API 세팅
 
