@@ -31,7 +31,7 @@ module.exports = {
   enableSocialShare: true,        // Social share icon activation (Type of Value: Boolean. Not String)
 
   /** Optional */
-  googleAnalytics: '',     // Google Analytics TrackingID. ex.'UA-123456789-0'
+  googleAnalytics: 'G-54Y96HW76G',     // Google Analytics TrackingID. ex.'UA-123456789-0'
   googleSearchConsole: 'TVut4Eev_nRy_mm-zysXD0qHgpgA8gdV-PkUrpT5Hbg', // content value in HTML tag of google search console ownership verification. ex.'w-K42k14_I4ApiQKuVPbCRVV-GxlrqWxYoqO94KMbKo'
   googleAdsenseSlot: '',   // Google Adsense Slot. ex.'5214956675'
   googleAdsenseClient: '', // Google Adsense Client. ex.'ca-pub-5001380215831339'
