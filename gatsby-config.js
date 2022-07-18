@@ -18,7 +18,7 @@ const gatsbyConfig = {
     `gatsby-plugin-sharp`,
 
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-gtag`,
       options: {
         trackingId: googleAnalytics,
       },
