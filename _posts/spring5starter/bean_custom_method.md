@@ -3,6 +3,7 @@ title: '[Spring] InitializingBean, DisposableBean 구현없이 초기화/소멸 
 date: 2022-07-22
 tags:
   - Spring
+  - 스프링5입문
 keywords :
   - 스프링
   - 스프링부트
