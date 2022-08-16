@@ -3,6 +3,7 @@ title: '[Spring] @Autowird 어노테이션을 이용한 의존 자동 주입과 
 date: 2022-06-23
 tags:
   - Spring
+  - 스프링5입문시리즈
 keywords :
   - 스프링
   - 스프링부트

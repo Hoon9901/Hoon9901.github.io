@@ -2,7 +2,8 @@
 title: '[Spring] 주입 대상 객체를 모두 빈으로 해야하나?'
 date: 2022-03-21
 tags:
-  - Spring
+  - Spring  
+  - 스프링5입문시리즈
 keywords :
   - 스프링
   - 스프링부트

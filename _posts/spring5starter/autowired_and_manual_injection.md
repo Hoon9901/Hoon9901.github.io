@@ -3,7 +3,7 @@ title: '[Spring] @Autowird 자동 의존 주입과 명시적 의존 주입 간�
 date: 2022-06-23
 tags:
   - Spring
-  - 스프링5입문
+  - 스프링5입문시리즈
 keywords :
   - 스프링
   - 스프링부트

@@ -3,6 +3,7 @@ title: '[Spring] @Component, @ComponentScan 으로 스캔 대상 지정'
 date: 2022-06-24
 tags:
   - Spring
+  - 스프링5입문시리즈
 keywords :
   - 스프링
   - 스프링부트

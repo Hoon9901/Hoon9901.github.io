@@ -2,7 +2,8 @@
 title: '[Spring] 스프링 컨테이너와 빈의 라이프사이클'
 date: 2022-06-28
 tags:
-  - Spring
+  - Spring  
+  - 스프링5입문시리즈
 keywords :
   - 스프링
   - 스프링부트

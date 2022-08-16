@@ -2,7 +2,8 @@
 title: '[Spring] 빈 객체의 초기화와 소멸 : initalizingBean과 DisposableBean 인터페이스 '
 date: 2022-07-14
 tags:
-  - Spring
+  - Spring   
+  - 스프링5입문시리즈
 keywords :
   - 스프링
   - 스프링부트
