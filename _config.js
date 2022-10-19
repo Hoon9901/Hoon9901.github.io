@@ -34,7 +34,7 @@ module.exports = {
   googleAnalytics: 'G-54Y96HW76G',     // Google Analytics TrackingID. ex.'UA-123456789-0'
   googleSearchConsole: 'TVut4Eev_nRy_mm-zysXD0qHgpgA8gdV-PkUrpT5Hbg', // content value in HTML tag of google search console ownership verification. ex.'w-K42k14_I4ApiQKuVPbCRVV-GxlrqWxYoqO94KMbKo'
   googleAdsenseSlot: '',   // Google Adsense Slot. ex.'5214956675'
-  googleAdsenseClient: '', // Google Adsense Client. ex.'ca-pub-5001380215831339'
+  googleAdsenseClient: 'ca-pub-3771848064886581', // Google Adsense Client. ex.'ca-pub-5001380215831339'
     // Please correct the adsense client number(ex.5001380215831339) in the './static/ads.txt' file.
   naverSearch : '5b2690330086c75c7b3bfa21d1ae6f6d434729e2',
 };
