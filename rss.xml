@@ -1,4 +1,361 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 02 Nov 2022 00:49:10 GMT</lastBuildDate><item><title><![CDATA[[SpringBoot] 회원가입 시 이메일 인증을 구현해보자 (Gmail)]]></title><description><![CDATA[1. 의존성 설정 build.gradle 에 추가 2.SMTP 설정 구글 STMP 설정을 적용합니다. 3. Controller 작성  메소드 코드를 작성합니다.  을 통해 email을 받아오고  메소드를 호출하여  사용자의 이메일로 인증 번호를 발송…]]></description><link>https://hoon9901.github.io/springboot-mail-auth-smtp-gmail/</link><guid isPermaLink="false">https://hoon9901.github.io/springboot-mail-auth-smtp-gmail/</guid><pubDate>Sat, 08 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-의존성-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;1 의존성 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 의존성 설정&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 09 Feb 2023 02:33:09 GMT</lastBuildDate><item><title><![CDATA[Prometheus란 무엇인가]]></title><description><![CDATA[Prometheus는 메트릭 수집, 알림, 서비스 디스커버리 기능을 제공하는 오픈소스 모니터링 시스템입니다. Prometheus는 단기 작업을 위해 직접 스크랩 하거나
+short-lived jobs를 push gateway를 통해 스크랩합니다.
+스크…]]></description><link>https://hoon9901.github.io/what-is-prometheus/</link><guid isPermaLink="false">https://hoon9901.github.io/what-is-prometheus/</guid><pubDate>Thu, 09 Feb 2023 10:09:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/deada13263aaf9b4e16dc560fd0ccebb/6edca/1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.13513513513513%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsSAAALEgHS3X78AAADC0lEQVQoz41SS2gTURSdWJu21NKFKAgWEYtgDRS7KYILRYsLUSxYhOLKigs/FVyI4m+pGxfShRUVXVhBqlIlIoL5NjRJk6Y2aaadTGYyM8lMMtMkk5kkk/kkfb6kphTceOBw7+W9c9877z4knU4HGIbJcByL06xwUCxqXwEEy/EqxaR0gqR1uaio1XUAssXqUWQDOyFb68kqFetb5Fcmorn4a4KnhxFRFJ9lMpnFfD5vL5ZKh1lBmTWgWJYl0IRaqTTiGp8/rabIK3Tk96s0tvyySqCHUCo+QGRpnMmx6VQ+fa9xXHgp/CTk91nqOc6KZ8Mo/hlLCmOcrF9kC+ooxvCjBFe4RC6hPUY2gwK1BIBWBhKFjyeY1BEpJ3pyQnZJKSu3ED2bcWpZflbPCQsqg5801tgLAkW4VBK9o8cj13QSvVnjEtdBqXC7Eg0c4N5PtBsfn7eJH553+H5820PR9IgsyzFIEfIxomWSEYWJR6p8KlCjsVM1tRJq+NPLANQ0mBib1issNVJ34XK7r3q8/v56TmDYtlAotMvv9+8mCKITacIXXBgNuh1HK1LBUYNiRdW0sqoZiqYb+YKkVg0DKCx1rr7XYbcPOWz2XrgNSaGR7chWuByOlheP77bMzwduhOY8J8pi3qlpOijKchUOal0qFNYludi4poBFh6HEDGna2iNZLJqsMzOmMIoi/wDo6sJfh7Wm1XUxWwXLXlBKksN/m5k1lh7XOfonjA+a2on7dxAkGo0egzwew/GBp5cvmulV9AefYkQqtpqyfvnEBb1zXCa2kmQ8NjkW9A01xQobe1cTGPgM+Pd6ff5teGNB07SNv6aqgCQTfU6n00YlEsDjmS0NDg5WHj18WGE5rsRwafDLZjuz6cTg31TzBBwePwPLTsTUaunoaOtG4IROTE1NjblcrhH4bjusVut+t9vd7/P5LIKwZlnFMIvT4bC47bb+T9PTXfv29jQaSjnypSbMA0Uip2HZ1bLd3NveZu5uHrgLsgX5D0xOTm6rR6/XNx5cDP+Ew3ywdf0PO0dJY+mb73YAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Prometheus아키텍처&quot;
+        title=&quot;Prometheus아키텍처&quot;
+        src=&quot;/static/deada13263aaf9b4e16dc560fd0ccebb/fcda8/1.png&quot;
+        srcset=&quot;/static/deada13263aaf9b4e16dc560fd0ccebb/12f09/1.png 148w,
+/static/deada13263aaf9b4e16dc560fd0ccebb/e4a3f/1.png 295w,
+/static/deada13263aaf9b4e16dc560fd0ccebb/fcda8/1.png 590w,
+/static/deada13263aaf9b4e16dc560fd0ccebb/efc66/1.png 885w,
+/static/deada13263aaf9b4e16dc560fd0ccebb/c83ae/1.png 1180w,
+/static/deada13263aaf9b4e16dc560fd0ccebb/6edca/1.png 1351w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Prometheus는 메트릭 수집, 알림, 서비스 디스커버리 기능을 제공하는 오픈소스 모니터링 시스템입니다.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Prometheus는 단기 작업을 위해 직접 스크랩 하거나
+short-lived jobs를 push gateway를 통해 스크랩합니다.
+스크랩한 모든 sample(TSD, 시계열 데이터)을 local 저장소에 저장하고 이 데이터에 대한 규칙(rules)을 실행하여 기존 데이터에서 새 시계열을 집계 및 기록하거나 alert를 생성합니다.
+Grafana 또는 기타 APIConsumers를 사용해 수집된 데이터를 시각화할 수 있습니다.&lt;/p&gt;
+&lt;h2 id=&quot;prometheus-특징&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#prometheus-%ED%8A%B9%EC%A7%95&quot; aria-label=&quot;prometheus 특징 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Prometheus 특징&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;TSD를 스크랩하고 저장하는 메인 Prometheus 서버&lt;/li&gt;
+&lt;li&gt;Application 코드를 계측하기 위한 &lt;a href=&quot;https://prometheus.io/docs/instrumenting/clientlibs/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Client Libraries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;short-lived jobs를 위한 push gateway&lt;/li&gt;
+&lt;li&gt;특수 목적의 exportes (HAProxy, StatsD, Graphite)&lt;/li&gt;
+&lt;li&gt;alert를 핸들링하는 (처리하는) alertManager&lt;/li&gt;
+&lt;li&gt;다양한 지원 도구&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;prometheus-데이터-수집-방식&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#prometheus-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%88%98%EC%A7%91-%EB%B0%A9%EC%8B%9D&quot; aria-label=&quot;prometheus 데이터 수집 방식 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Prometheus 데이터 수집 방식&lt;/h2&gt;
+&lt;p&gt;Prometheus의 데이터 수집방식은 Pull 방식입니다. (Push 방식도 지원함)
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d06fff49c204ba4cf080295a662562a7/e8950/2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 23.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABJ0lEQVQY022Qy0oCARiFp1r0Cj1GuzY9U7sWEunSFmUQEdi2iKBVi25IUemUpSjdKHR0Ls046uDdcdRm/BIhwerA4fyL85/FJ/CfBh54vWF2h/7CG/wp4Hnu+B53vT7CRtRgJ25SbvWoWEVq9SrdTpeDkzShfRExJY/e3ss2mzGDcKKEVKigyiqKpiPnVI4untg+vOchLSPMrt4xF0wQk2oU9BqZrImSS7IYTjIVSOKLaKPBvVSJ6ZU486EoL69xzGJ7aJvMZ4OF3TdmAo/4r3QEf0Rl7UZHq9h0bIdm06Zlt9kSdZZP85x9VEeDKaOF71wheK2hlKpYVoOy1aLe7rN+q7N0nOVSfEb4odJ1OuTzOVRVwXW9SWKDSYiO4yBJWUzT+IXW5RvL1Wby2VZfGgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Push/Pull방식&quot;
+        title=&quot;Push/Pull방식&quot;
+        src=&quot;/static/d06fff49c204ba4cf080295a662562a7/fcda8/2.png&quot;
+        srcset=&quot;/static/d06fff49c204ba4cf080295a662562a7/12f09/2.png 148w,
+/static/d06fff49c204ba4cf080295a662562a7/e4a3f/2.png 295w,
+/static/d06fff49c204ba4cf080295a662562a7/fcda8/2.png 590w,
+/static/d06fff49c204ba4cf080295a662562a7/efc66/2.png 885w,
+/static/d06fff49c204ba4cf080295a662562a7/c83ae/2.png 1180w,
+/static/d06fff49c204ba4cf080295a662562a7/e8950/2.png 2000w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Push 방식 - 데이터를 가진 곳에서 필요한 곳(모니터링 서비스)으로 보내준다.&lt;/li&gt;
+&lt;li&gt;Pull 방식 - 데이터가 필요한 곳(모니터링 서비스)에서 가진 곳에 접속해 데이터를 긁어간다(Scrape)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이러한 방식들의 장단점은 4가지 측면에서 자세히 살펴 볼 수 있습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;수집 대상이 Auto-scaling 등으로 가변적일 경우&lt;/li&gt;
+&lt;li&gt;수집 대상의 데이터 유연성 측면&lt;/li&gt;
+&lt;li&gt;보안 측면&lt;/li&gt;
+&lt;li&gt;HA* 측면&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;*프로그램 등의 시스템이 상당히 오랜 기간동안 지속적으로 정상 운영이 가능한 성질&lt;/p&gt;
+&lt;h3 id=&quot;1-수집대상이-가변적일-경우&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EC%88%98%EC%A7%91%EB%8C%80%EC%83%81%EC%9D%B4-%EA%B0%80%EB%B3%80%EC%A0%81%EC%9D%BC-%EA%B2%BD%EC%9A%B0&quot; aria-label=&quot;1 수집대상이 가변적일 경우 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 수집대상이 가변적일 경우&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1da97a71775632b6f0a7af41d1157f47/efb68/3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 35.13513513513513%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABu0lEQVQoz3WRO4sTYRSGx97GVgRbO2v/gPgfBMHOzkpstBFRdLcUXBQVYVlQ8FIsBEQk2SxKsovZbK5KNhNycSbjXL755ppJMo8zo60vPHCKl3N5jzK2Ix5+GbNRnmCHS/6ntubzoqax2xOkKSTJimSVFcKB+awgXa9R9lXJmfsHnH10SH0gkCImXq5ZmCbWT7Ug12Z1xqm7da6+rmLORuhmgnQXfO4a3HzX52WplU2JUea2z/begDdfVUSQEMUplm7w6VuFC4/rXH5+XDTc72rc3mmwU+4ibJeJ5pEECx6UZ5y+V+fOxwosPZT22OHG9hG33veYmT6TqcCzHSrNQy4963Lt1QHEkg9NgytPG2yWvmNMR5yMbOa6pKsHlDo609YuoTlG2ctOPr/Z4OKTFr2pRxTEWT5/s1zlLPN6zVZN59xGg+tv2/iOg+VESG/xL+EVqeezlNmGhvCp/phTOzH5pc8ZDgeoqkocRURhSJiRy8niaI0thr8DdE2j3+8hpCTMfDIIiZOk8CnSFUTSIcxwbBs7wxUCy7Iw88cYButVvmtK5Ll4rkOn06HV6XHUzK46bhY+13WLhn8APV31wubEljgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;가변적&quot;
+        title=&quot;가변적&quot;
+        src=&quot;/static/1da97a71775632b6f0a7af41d1157f47/fcda8/3.png&quot;
+        srcset=&quot;/static/1da97a71775632b6f0a7af41d1157f47/12f09/3.png 148w,
+/static/1da97a71775632b6f0a7af41d1157f47/e4a3f/3.png 295w,
+/static/1da97a71775632b6f0a7af41d1157f47/fcda8/3.png 590w,
+/static/1da97a71775632b6f0a7af41d1157f47/efc66/3.png 885w,
+/static/1da97a71775632b6f0a7af41d1157f47/c83ae/3.png 1180w,
+/static/1da97a71775632b6f0a7af41d1157f47/efb68/3.png 2032w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+Push 방식이 유리합니다.&lt;/p&gt;
+&lt;h3 id=&quot;2-수집-대상의-데이터-유연성-측면&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-%EC%88%98%EC%A7%91-%EB%8C%80%EC%83%81%EC%9D%98-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%9C%A0%EC%97%B0%EC%84%B1-%EC%B8%A1%EB%A9%B4&quot; aria-label=&quot;2 수집 대상의 데이터 유연성 측면 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. 수집 대상의 데이터 유연성 측면&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8a64750e2f017deb3e18355d40d824d7/08485/4.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 29.72972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABjUlEQVQY0x2QS4vTcBTF801cuXIhIoMLv4Z7xZV+CNcuZBREEEF3g+jC1bgZEAqjdobJ9JU+09hHmqRNM21nmtck6T/5+W8OHO7lcO+5D0XkBX4iSoo8p8gFe+Txjmg8JRpNZB6X2m0mCFJBmOZsb64JQ58oDIhndlknzAmKagfcf9/g0cc21eECczLjyp3T7l3w8FDlwWGd1jwqDZ98Nbj7rs330yrj4YROf46u27z41uHe6yqfj1VpaPkcfGjy+JNG3fTZboU09FCbFZ4e/eXl0QnGYoEo4NXPOs+/HPOnViEKUtY3OUEoePbjH3fe1Hh77qHsJyeyOMklk1uuPLfkHiLZkIcWeeYjPwM7GUObLPFZrTw815FiQSh7vbggSHYo3nJJ41KlPXU513R+VX5zeqlRPTvjQq3RHxgkaVY2ziyHvm4wMh2a3QGNzoDucMSo38M0dMQuQwl9Oc11mTpLWt0hWqtNTx+j1Wq48tTNZk2apuXGQRBgmlPmGx/nOi5pr7ZYliU3XrM/4j/KA64cxXtFXwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;유연성&quot;
+        title=&quot;유연성&quot;
+        src=&quot;/static/8a64750e2f017deb3e18355d40d824d7/fcda8/4.png&quot;
+        srcset=&quot;/static/8a64750e2f017deb3e18355d40d824d7/12f09/4.png 148w,
+/static/8a64750e2f017deb3e18355d40d824d7/e4a3f/4.png 295w,
+/static/8a64750e2f017deb3e18355d40d824d7/fcda8/4.png 590w,
+/static/8a64750e2f017deb3e18355d40d824d7/efc66/4.png 885w,
+/static/8a64750e2f017deb3e18355d40d824d7/c83ae/4.png 1180w,
+/static/8a64750e2f017deb3e18355d40d824d7/08485/4.png 2014w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+Pull 방식이 유리합니다.&lt;/p&gt;
+&lt;h3 id=&quot;3-보안-측면&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-%EB%B3%B4%EC%95%88-%EC%B8%A1%EB%A9%B4&quot; aria-label=&quot;3 보안 측면 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. 보안 측면&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0a7b6060dfb09ec4b285729b2d6cfa0e/ed8a2/5.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 29.054054054054056%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABZklEQVQY032RzysEcRjG509wcXfk7OTi4iLJ0cWFf2BvlKtSEm6Uw7KlcBElhMjGwSSS3aH8XLNjZ2Z/zNi1O/Mdu7Mfs4Mi5a1Pb+/bc3jf55G8qk+DOj+qMfifvV6vfy3cAMF/1VBJvTGF7gUFOVUMN45w8DIPiJsz3IQcyu6zZSa2ThjfOOTiVsUpC+yiR+ntnaph4j2lqKa14AgfqXX6nLaANVkna3rktBRLu3sMRA8YWjrhVdRIagUiKwcMxo5YP5bR0zrPLw6FvMPk/iMdM6eMbj2GV0pNYzJ9iwqqUSFv1xC2QTR+TstUgva5JJV3n40rg665Y3pm48hXCTKaiWYIrIJgeCdF8+QlkWg8cKSCNLL9xOplLnzNFS6eEDiBp3pJkCl+erZ5bdE5r9C/fIeZN3i1LHSzhGWXUS2XMz3QKkl4s5G+DXVcF03TQvgdEX4QTK3mh4Rz4JWqPpPLZf+E8gEgpq8tOt1SQQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;보안&quot;
+        title=&quot;보안&quot;
+        src=&quot;/static/0a7b6060dfb09ec4b285729b2d6cfa0e/fcda8/5.png&quot;
+        srcset=&quot;/static/0a7b6060dfb09ec4b285729b2d6cfa0e/12f09/5.png 148w,
+/static/0a7b6060dfb09ec4b285729b2d6cfa0e/e4a3f/5.png 295w,
+/static/0a7b6060dfb09ec4b285729b2d6cfa0e/fcda8/5.png 590w,
+/static/0a7b6060dfb09ec4b285729b2d6cfa0e/efc66/5.png 885w,
+/static/0a7b6060dfb09ec4b285729b2d6cfa0e/c83ae/5.png 1180w,
+/static/0a7b6060dfb09ec4b285729b2d6cfa0e/ed8a2/5.png 1972w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+Push 방식이 유리합니다. &lt;/p&gt;
+&lt;p&gt;그 이유는 Pull 방식은 수집 대상에서 중앙 모니터링이 접근할 수 있는 IP, Port 등을 수신 대기해야합니다.&lt;/p&gt;
+&lt;h3 id=&quot;4-ha-측면&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-ha-%EC%B8%A1%EB%A9%B4&quot; aria-label=&quot;4 ha 측면 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. HA 측면&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d3516168bc6d34495f9d436dfd627df7/a4f52/6.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 29.72972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABeUlEQVQY01WQv04bQRjE7w3yCFH6SPSRKJI8QKq0KSh4CKo0NCgFSYGU0BBRpCJVoIqQAQESBtnCgpNsjKUcZ9/ZmLVhz/dnb/fH3pKGr1l9882OZsYzxiDzkodMUfJ81J2g6F6jlXJ7xdXaYKqltGxVVCBkKQxjKHK8aap4+/2c11+b7NT/2cOQNB4xno75tNli/sshtStBpbK41eHDz0sOfMsTY9J+jElmrO72+Li6z4+T2ArOFO/WW8x9a/L7dEBymzCKBP1Bh/drZ7z8fMC2P3bO3qyd82rlhD/1BuiC2X+DC78ueLG0x/LGX7zKfZLb2JlGV1cb3Jin8KEs6U1y+1G7uH6U0AglFnJKaZphtKYrCo77KbfNOl6e57aCGYXt4V4m+J1r2t0e0kYpLVbarvLSOMGnIpXjhmGI7/vEcWTNps5INZ4QguDmhiAIiIQkus8Y2Hc0eXBYcJcwlMpFrkZMprTbbfZqNU6bLY4uejT8K6SUzvUjvYO2YsWCausAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;HA&quot;
+        title=&quot;HA&quot;
+        src=&quot;/static/d3516168bc6d34495f9d436dfd627df7/fcda8/6.png&quot;
+        srcset=&quot;/static/d3516168bc6d34495f9d436dfd627df7/12f09/6.png 148w,
+/static/d3516168bc6d34495f9d436dfd627df7/e4a3f/6.png 295w,
+/static/d3516168bc6d34495f9d436dfd627df7/fcda8/6.png 590w,
+/static/d3516168bc6d34495f9d436dfd627df7/efc66/6.png 885w,
+/static/d3516168bc6d34495f9d436dfd627df7/c83ae/6.png 1180w,
+/static/d3516168bc6d34495f9d436dfd627df7/a4f52/6.png 2024w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+Pull 방식이 유리합니다.&lt;/p&gt;
+&lt;p&gt;Push 방식은 수집 대상이 중앙에 데이터 전송을 재시도를 지속적으로 해야하므로 영향이 생깁니다.
+Pull 방식은 중앙 모니터링이 장애가 발생하더라도 수집 대상에는 영향이 없습니다.&lt;/p&gt;
+&lt;h2 id=&quot;prometheus-metrics&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#prometheus-metrics&quot; aria-label=&quot;prometheus metrics permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Prometheus Metrics&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Metrics 구성
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/2928ab6a07b40e1a50c34206ae864cdc/d53ff/7.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 63.51351351351351%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB80lEQVQ4y42T63KdMAyEef/H6zRJ0ylXgw0YwjkkgLluVw6nM6R/wsyObVn6JMsmOI4DoI6H9h3f+Q4Rfb/GB37xxXnt3zBVCq4uMOoEzmrMncVkUoxlBvdW4ViXC/zxBX6xLDjGEV1ZotEaNolR/35B8fTjn6rXZ5iXJ+onyl/PaFWGWimMXcf4Fcc0+YoDgSFJgKbBTAeXZZioudCYVI6PKITj6PKCyr1N5ktRYGDcmivsKsXBIoQRCHkxBgPpI+HTtmGVouXo1L1rMczzxTatKz6c8+uB8bapMd1uQNt+AucwRFNVMMzYEj73vXeY39/RVTVKqVhs9zttvW+LYszA49asuuDJ+jQFyAgOZnPc3Ni/jTCRHNnRaaazY69WAqQdYh8ZKHsimW+Gezw+6AsmCOROGk4yOqSUJlBGRSfNJAkhCQNzritrUZYGZZGg1Claa3Bj5Upg5217oK1r3kuCJI6ZKPdjSkhBSEp7FEVQBFc8ktY5dB7BEGr5rDoWI74e6N+hAJlZjAL1QI4ZAQKUecwEilWXrNgQaPKYwBiWb/XGXv8HrM8K47PC+KxQ5iH7KxVKArFlaQytQhTZH9R86FKhYZsuwIbvRyoQyaYEC+wxfxz/Uzyyybwse3jnzQv0AtzPf/K72ndq2/14+b+59xeFFNtqTynjRwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;metrics&quot;
+        title=&quot;metrics&quot;
+        src=&quot;/static/2928ab6a07b40e1a50c34206ae864cdc/fcda8/7.png&quot;
+        srcset=&quot;/static/2928ab6a07b40e1a50c34206ae864cdc/12f09/7.png 148w,
+/static/2928ab6a07b40e1a50c34206ae864cdc/e4a3f/7.png 295w,
+/static/2928ab6a07b40e1a50c34206ae864cdc/fcda8/7.png 590w,
+/static/2928ab6a07b40e1a50c34206ae864cdc/efc66/7.png 885w,
+/static/2928ab6a07b40e1a50c34206ae864cdc/d53ff/7.png 1068w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+Prometheus 메트릭 구성은 아래와 같습니다.
+&lt;code class=&quot;language-text&quot;&gt;메트릭이름{필드1=값,필드2=값} @시간 샘플데이터(float 64)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Metrics 표현 형식
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f8b6a1a1a4e2ac0dce8882501b45e2d9/09ede/8.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 32.43243243243243%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA9ElEQVQY002QS26DQBBEuf9BfAxL3lpWFP44BrOCmAHzBwGbctckg1iUqnpgXk+39XM6wb5e8W3b+Lrd4Pg+ovMZv+Lq/YYqCiilUJYlCskUs6n7vscwDOi6Trvlui48uUy3BUpP4hjF64V5nvVP4zjuTk3TtGcD3LYN67rC8gUWBAHoVJqmujs7tm27y9R1XWtvmmYXa0KZLcLCMPwDeh7uUYQkSZDnuVaWZXo0ZjqBFC+zybFBVVWwPIFEAvFkVF/8/ngglpH58fhCc5Ev4ZhmZzwzNbPeYcCx+crLBU/HgRJY9b94gspDZiOzQ/qyLNopgj/kQbz0YgaWXQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;metrics&quot;
+        title=&quot;metrics&quot;
+        src=&quot;/static/f8b6a1a1a4e2ac0dce8882501b45e2d9/fcda8/8.png&quot;
+        srcset=&quot;/static/f8b6a1a1a4e2ac0dce8882501b45e2d9/12f09/8.png 148w,
+/static/f8b6a1a1a4e2ac0dce8882501b45e2d9/e4a3f/8.png 295w,
+/static/f8b6a1a1a4e2ac0dce8882501b45e2d9/fcda8/8.png 590w,
+/static/f8b6a1a1a4e2ac0dce8882501b45e2d9/efc66/8.png 885w,
+/static/f8b6a1a1a4e2ac0dce8882501b45e2d9/c83ae/8.png 1180w,
+/static/f8b6a1a1a4e2ac0dce8882501b45e2d9/09ede/8.png 1710w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+Prometheus Metrics은 사람이 쉽게 이해할만한 표현 형식입니다.&lt;/li&gt;
+&lt;li&gt;# HELP 는 메트릭 이름, 간단한 설명(주석)&lt;/li&gt;
+&lt;li&gt;# TYPE 은 메트릭 타입 (Prometheus Metric Type : Counter, Gauge, Histogram, Summary)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;prometheus-아키텍처&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#prometheus-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98&quot; aria-label=&quot;prometheus 아키텍처 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Prometheus 아키텍처&lt;/h2&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/90c21ae2c2c41a1adf326fc5fc39a627/536c7/9.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 64.86486486486486%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAACgUlEQVQ4y21TyW7bMBD1X7aHnttDP65/0JyKLkAQF0ESu27iTbIWWiLFRZS4vY4Uw+ghBAYaQuR7b+YNF1xY1EygrBqcGwVlPEJMMHYE7xRaIed89BE+JHjvIYSAMQbTijFi8NP/ESklLLgw6ARHVRbQWqMhgimyLMNut0Oe5yiKAlJp2NHD2R6b1ROK7DgDCtNhI/bYdhmGccSiHyL6waKsGRypaOWIE1M4leyqrmKkvu3oQkDgZ7hzCccKeKMxOIe2bcA5n9UvtLTwSqCr6RApHHo6UJ7AGUPyDp4UxXFAmL5uROw1gpaIRsEqCU2lN00DcQXkEr6p4InR8QZGKITRYmQlxuIAV+XwbY00gQ39a5lSwg7DnE8gjlR6Io8hEKAeSAk1tTfQHTESgaW8J2ZLiqcwSkFSnyO1ZlpVVUOSYW+then9nEzSn7c7dE2H5szAyUnRdWiplClvpKaeCQI+kTGcbpCQRIqjIUEKKWj6dmSKfQVMKSJNx2T/JnNcfkcUGRg7QUmBRO76tkIwEik6AqD7nmOh9IiBSumpzEAu7+sCm/wP9tUey9USt4+32BcvWN18wbn+e5m9hLEh4O0DvKj/Y1VYtK0iy9t57tzg8fvwjG/LH1hvN/j4+RPefXiPp+cVlscXPBb3sxIfPDlPLcmeaG+QZwfc3z9gMIxMMQ51XWG9XkMrA0YmFKZBqVvcZHf4erwDMxxHWUP1jFSE15ckS6jiF3p9prE5I8tpKvpm6mEgIEUsOY2Cg7XxWgHpmOO6psYHixAc9bLE4XikoT5PDlz+kykDlZnzEQ+lhVDTPMX5TUaK+RxFvOxT9DMoLo6m7ieSfiSSnvZydvofntbjCd/FzYYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;아키텍처&quot;
+        title=&quot;아키텍처&quot;
+        src=&quot;/static/90c21ae2c2c41a1adf326fc5fc39a627/fcda8/9.png&quot;
+        srcset=&quot;/static/90c21ae2c2c41a1adf326fc5fc39a627/12f09/9.png 148w,
+/static/90c21ae2c2c41a1adf326fc5fc39a627/e4a3f/9.png 295w,
+/static/90c21ae2c2c41a1adf326fc5fc39a627/fcda8/9.png 590w,
+/static/90c21ae2c2c41a1adf326fc5fc39a627/efc66/9.png 885w,
+/static/90c21ae2c2c41a1adf326fc5fc39a627/c83ae/9.png 1180w,
+/static/90c21ae2c2c41a1adf326fc5fc39a627/536c7/9.png 1480w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+모니터링의 기능으로 아키텍처를 파악하면 3가지로 구분될 수 있습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;수집 - 수집 대상으로 부터 Exporter를 설치, Prometheus Server가 Pull 방식으로 데이터 수집
+Service Discover를 통해 Target 서버에 대한 정보를 편리하게 가져옴&lt;/li&gt;
+&lt;li&gt;저장 - Prometheus는 Sample(시계열 데이터) 수집시, In-Memory에 저장하고 있다가 주기적으로 Disk에 Flush함&lt;/li&gt;
+&lt;li&gt;서빙 - PromQL를 통해 질의하거나 외부 API 나 Prometheus Web UI, Grafana를 통해 데이터를 내보내거나 시각화&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;prometheus-적합성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#prometheus-%EC%A0%81%ED%95%A9%EC%84%B1&quot; aria-label=&quot;prometheus 적합성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Prometheus 적합성&lt;/h2&gt;
+&lt;h3 id=&quot;prometheus는-언제-적합한가&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#prometheus%EB%8A%94-%EC%96%B8%EC%A0%9C-%EC%A0%81%ED%95%A9%ED%95%9C%EA%B0%80&quot; aria-label=&quot;prometheus는 언제 적합한가 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Prometheus는 언제 적합한가?&lt;/h3&gt;
+&lt;p&gt;이러한 경우에 Prometheus가 적합할 수 있습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;단순 숫자로 된 시계열 기록&lt;/li&gt;
+&lt;li&gt;모니터링과 고도의 동적인 서비스 지향 아키텍처 모니터링&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Prometheus는 MSA(Micro Service Architecture)에서 다차원 데이터 수집 및 쿼리 지원은 강점
+Prometheus는 모니터링 시스템으로서 안정성을 위해 설계되었고 각 프로메테우스 서버는 독립형이며 네트워크 스토리지 또는 원격 서비스에 의존하지 않습니다.&lt;/p&gt;
+&lt;h3 id=&quot;prometheus는-언제-적합하지-않는가&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#prometheus%EB%8A%94-%EC%96%B8%EC%A0%9C-%EC%A0%81%ED%95%A9%ED%95%98%EC%A7%80-%EC%95%8A%EB%8A%94%EA%B0%80&quot; aria-label=&quot;prometheus는 언제 적합하지 않는가 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Prometheus는 언제 적합하지 않는가?&lt;/h3&gt;
+&lt;p&gt;요청당 청구 (per-request billing)과 같이 100% 정확도가 필요한 경우 수집된 데이터가 충분히 자세하고 완전하지 않을 수 있어서 좋은 선택이 아닐 수 있습니다.&lt;/p&gt;
+&lt;p&gt;청구(billing)을 위해 데이터를 수집하고 분석하는데 다른 시스템을 사용하고 나머지 모니터링을 Prometheus를 사용하는게 가장 좋음&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[SpringBoot] 회원가입 시 이메일 인증을 구현해보자 (Gmail)]]></title><description><![CDATA[1. 의존성 설정 build.gradle 에 추가 2.SMTP 설정 구글 STMP 설정을 적용합니다. 3. Controller 작성  메소드 코드를 작성합니다.  을 통해 email을 받아오고  메소드를 호출하여  사용자의 이메일로 인증 번호를 발송…]]></description><link>https://hoon9901.github.io/springboot-mail-auth-smtp-gmail/</link><guid isPermaLink="false">https://hoon9901.github.io/springboot-mail-auth-smtp-gmail/</guid><pubDate>Sat, 08 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;1-의존성-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;1 의존성 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 의존성 설정&lt;/h1&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;groovy&quot;&gt;&lt;pre class=&quot;language-groovy&quot;&gt;&lt;code class=&quot;language-groovy&quot;&gt;implementation &lt;span class=&quot;token string&quot;&gt;&apos;org.springframework.boot:spring-boot-starter-mail&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;build.gradle 에 추가&lt;/p&gt;
 &lt;h1 id=&quot;2smtp-설정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2smtp-%EC%84%A4%EC%A0%95&quot; aria-label=&quot;2smtp 설정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.SMTP 설정&lt;/h1&gt;
@@ -1173,146 +1530,4 @@ ctx&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=
 			&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; memberDao&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;이 경우 스캔 등록한 “&lt;code class=&quot;language-text&quot;&gt;memberDao&lt;/code&gt;” 빈과 수동 등록한 “&lt;code class=&quot;language-text&quot;&gt;memberDao2&lt;/code&gt;” 빈이 모두 존재한다. &lt;code class=&quot;language-text&quot;&gt;MemberDao&lt;/code&gt; 타입의 빈이 두 개가 생성되므로 자동 주입(&lt;code class=&quot;language-text&quot;&gt;@Autowired&lt;/code&gt;)하는 코드는 &lt;code class=&quot;language-text&quot;&gt;@Qualifier&lt;/code&gt; 어노테이션을 사용해서 알맞은 빈을 선택해야한다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Spring] @Component, @ComponentScan 으로 스캔 대상 지정]]></title><description><![CDATA[@Component 어노테이션 스프링이 검색해서 빈으로 등록할 수 있도록 할려면 클래스에  어노테이션을 붙여야 한다.
- 어노테이션은 해당 클래스를 스캔 대상으로 표시한다.  어노테이션에 값을 주었는지에 따라 빈으로 등록할 때 사용할 이름이 결정된다.…]]></description><link>https://hoon9901.github.io/component_scan/</link><guid isPermaLink="false">https://hoon9901.github.io/component_scan/</guid><pubDate>Fri, 24 Jun 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;component-어노테이션&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#component-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98&quot; aria-label=&quot;component 어노테이션 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;@Component 어노테이션&lt;/h1&gt;
-&lt;p&gt;스프링이 검색해서 빈으로 등록할 수 있도록 할려면 클래스에 &lt;code class=&quot;language-text&quot;&gt;@Component&lt;/code&gt; 어노테이션을 붙여야 한다.
-&lt;code class=&quot;language-text&quot;&gt;@Componet&lt;/code&gt; 어노테이션은 해당 클래스를 스캔 대상으로 표시한다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Component&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;long&lt;/span&gt; nextId &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt; map &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;HashMap&lt;/span&gt;&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; 생략
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@Component&lt;/code&gt; 어노테이션에 값을 주었는지에 따라 빈으로 등록할 때 사용할 이름이 결정된다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;value&lt;/code&gt; 값을 주지 않았다면 : 클래스 이름의 첫 글자를 소문자로 바꾼 이름을 사용한다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;ex) &lt;code class=&quot;language-text&quot;&gt;MemberDao&lt;/code&gt; 클래스라면,  “&lt;code class=&quot;language-text&quot;&gt;memberDao&lt;/code&gt;”를 빈 이름으로 사용하고&lt;/p&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;MemberRegisterService&lt;/code&gt; 클래스라면 “&lt;code class=&quot;language-text&quot;&gt;memberRegisterService&lt;/code&gt;”를 빈 이름으로 사용한다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;componentscan-어노테이션&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#componentscan-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98&quot; aria-label=&quot;componentscan 어노테이션 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;@ComponentScan 어노테이션&lt;/h1&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@Component&lt;/code&gt; 어노테이션을 붙인 클래스를 스캔해서 스프링 빈으로 등록하려면 설정 클래스(&lt;code class=&quot;language-text&quot;&gt;@Configuration&lt;/code&gt;)에 &lt;code class=&quot;language-text&quot;&gt;@ComponentScan&lt;/code&gt; 어노테이션을 적용해야 한다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;basePackages &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;com.example.sp5chap04.spring&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppCtx&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Qualifier&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;printer&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberPrinter1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Qualifier&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;summaryPrinter&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberPrinter2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberSummaryPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;VersionPrinter&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;versionPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token class-name&quot;&gt;VersionPrinter&lt;/span&gt; versionPrinter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;VersionPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        versionPrinter&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setMajorVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        versionPrinter&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setMinorVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; versionPrinter&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@Component&lt;/code&gt; 어노테이션을 붙인 클래스를 검색해서 &lt;code class=&quot;language-text&quot;&gt;Bean&lt;/code&gt;으로 등록해주기 때문에 설정 코드가 줄어들었다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;basePackages&lt;/code&gt; 속성 : 해당 속성값을 &lt;code class=&quot;language-text&quot;&gt;{”com.example.sp5chap04.spring”}&lt;/code&gt; 로 해주었다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;이 속성은 스캔 대상 패키지 목록을 지정한다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;“com.example.sp5chap04.spring”&lt;/code&gt; 패키지와 그 하위 패키지에 속한 클래스를 스캔 대상으로 지정한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;스캔-대상에서-제외하거나-포함하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8A%A4%EC%BA%94-%EB%8C%80%EC%83%81%EC%97%90%EC%84%9C-%EC%A0%9C%EC%99%B8%ED%95%98%EA%B1%B0%EB%82%98-%ED%8F%AC%ED%95%A8%ED%95%98%EA%B8%B0&quot; aria-label=&quot;스캔 대상에서 제외하거나 포함하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;스캔 대상에서 제외하거나 포함하기&lt;/h2&gt;
-&lt;h3 id=&quot;excludefilters-속성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#excludefilters-%EC%86%8D%EC%84%B1&quot; aria-label=&quot;excludefilters 속성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;excludeFilters 속성&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;excludeFilters&lt;/code&gt; 속성을 사용하면 스캔할 때 특정 대상을 자동 등록 대상에서 제외할 수 있다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;basePackages &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;com.example.sp5chap04.spring&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; excludeFilters &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token annotation punctuation&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;type &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;FilterType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;REGEX&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; pattern &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;spring\\.*Dao&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppCtxWithExclude&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Qualifier&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;printer&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberPrinter1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Qualifier&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;summaryPrinter&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberSummaryPrinter&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberPrinter2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberSummaryPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;VersionPrinter&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;versionPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token class-name&quot;&gt;VersionPrinter&lt;/span&gt; versionPrinter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;VersionPrinter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        versionPrinter&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setMajorVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        versionPrinter&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setMinorVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; versionPrinter&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@Filter&lt;/code&gt; 어노테이션의 &lt;code class=&quot;language-text&quot;&gt;type&lt;/code&gt; 속성 값으로  &lt;code class=&quot;language-text&quot;&gt;FilterType.REGEX&lt;/code&gt;를 주었다. 이는 정규표현식을 사용해서 제외 대상을 지정한다는 것을 의미한다.&lt;/p&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;pattern&lt;/code&gt; 속성은 &lt;code class=&quot;language-text&quot;&gt;FilterType&lt;/code&gt;에 적용할 값을 설정한다. &lt;code class=&quot;language-text&quot;&gt;“spring.”&lt;/code&gt;으로 시작하고 &lt;code class=&quot;language-text&quot;&gt;Dao&lt;/code&gt;로 끝나는 정규표현식을 지정했으므로 &lt;code class=&quot;language-text&quot;&gt;spring.MemberDao&lt;/code&gt; 클래스를 컴포넌트 스캔 대상에서 제외한다.&lt;/p&gt;
-&lt;h3 id=&quot;filtertypeaspectj&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#filtertypeaspectj&quot; aria-label=&quot;filtertypeaspectj permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;FilterType.ASPECTJ&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;basePackages &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;com.example.sp5chap04.spring&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; excludeFilters &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token annotation punctuation&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;type &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;FilterType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ASPECTJ&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; pattern &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;spring.*Dao&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;FilterType.ASPECTJ&lt;/code&gt;를 필터타입으로 설정할 수 있다. 이 타입을 사용하면 정규표현식 대신 &lt;code class=&quot;language-text&quot;&gt;AspectJ&lt;/code&gt; 패턴을 사용해서 대상을 지정한다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;AspectJ&lt;/code&gt; 패턴이 동작하려면 의존 대상에 &lt;code class=&quot;language-text&quot;&gt;aspectjweaver&lt;/code&gt; 모듈을 추가해야한다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;	&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;dependency&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
-			&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;groupId&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;aspectj&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;groupId&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
-			&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;aspectjweaver&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;artifactId&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
-			&lt;span class=&quot;token generics&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;version&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1.8&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;.13&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;version&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
-		&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;dependency&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;filtertypeannotation&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#filtertypeannotation&quot; aria-label=&quot;filtertypeannotation permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;FilterType.ANNOTATION&lt;/h3&gt;
-&lt;p&gt;특정 어노테이션을 붙인 타입을 컴포넌트 대상에서 제외할 수도 있다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Retention&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;RUNTIME&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@Target&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;TYPE&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token annotation punctuation&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;NoProduct&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@Retention&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;RUNTIME&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@Target&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;TYPE&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token annotation punctuation&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ManualBean&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;이 두 어노테이션을 붙인 클래스를 컴포넌트 스캔 대상에서 제외하려면 다음과 같이 &lt;code class=&quot;language-text&quot;&gt;excludeFilters&lt;/code&gt; 속성을 설정한다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;basePackages &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;com.example.sp5chap04.spring&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; excludeFilters &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token annotation punctuation&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;type &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;FilterType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ANNOTATION&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; classes &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;NoProduct&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ManualBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppCtxWithExclude&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;type&lt;/code&gt; 속성 값으로 &lt;code class=&quot;language-text&quot;&gt;FilterType.ANNOTATION&lt;/code&gt;을 사용하면 &lt;code class=&quot;language-text&quot;&gt;classes&lt;/code&gt; 속성에 필터로 사용할 어노테이션 타입을 값으로 준다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@ManualBean&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@Component&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@ManualBean&lt;/code&gt; 어노테이션을 제외 대상에 추가했으므로 &lt;code class=&quot;language-text&quot;&gt;MemberDao&lt;/code&gt; 클래스를 컴포넌트 스캔 대상에서 제외한다.&lt;/p&gt;
-&lt;h2 id=&quot;filtertypeassignable_type&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#filtertypeassignable_type&quot; aria-label=&quot;filtertypeassignable_type permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;FilterType.ASSIGNABLE_TYPE&lt;/h2&gt;
-&lt;p&gt;특정 타입이나 그 하위 타입을 컴포넌트 스캔 대상에서 제외하려면 &lt;code class=&quot;language-text&quot;&gt;ASSIGNABLE_TYPE&lt;/code&gt;을 &lt;code class=&quot;language-text&quot;&gt;FilterType&lt;/code&gt;으로 사용한다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;basePackages &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;com.example.sp5chap04.spring&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; excludeFilters &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token annotation punctuation&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;type &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;FilterType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ASSIGNABLE_TYPE&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; classes &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppCtxWithExclude&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;classes&lt;/code&gt; 속성에는 제외할 타입 목록을 지정한다. 제외할 타입이 한 개 이상이면 배열 표기를 사용할 수 있다.&lt;/p&gt;
-&lt;h2 id=&quot;설정할-필터가-두개-이상&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%84%A4%EC%A0%95%ED%95%A0-%ED%95%84%ED%84%B0%EA%B0%80-%EB%91%90%EA%B0%9C-%EC%9D%B4%EC%83%81&quot; aria-label=&quot;설정할 필터가 두개 이상 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;설정할 필터가 두개 이상&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@ComponentScan&lt;/code&gt;의 &lt;code class=&quot;language-text&quot;&gt;excludeFilters&lt;/code&gt; 속성에 배열을 사용해서 &lt;code class=&quot;language-text&quot;&gt;@Filter&lt;/code&gt; 목록을 전달하면 된다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@CompoenentScan&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;basePackages &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;com.example.sp5chap04.spring&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; excludeFilters &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;token annotation punctuation&quot;&gt;@Filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;type &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;FilterType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ANNOTATION&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; classes &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ManualBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; 
-	&lt;span class=&quot;token annotation punctuation&quot;&gt;@Filter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;type &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;FilterType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;REGEX&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; pattern &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;spring2\\.*&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;이 경우 스캔 등록한 “&lt;code class=&quot;language-text&quot;&gt;memberDao&lt;/code&gt;” 빈과 수동 등록한 “&lt;code class=&quot;language-text&quot;&gt;memberDao2&lt;/code&gt;” 빈이 모두 존재한다. &lt;code class=&quot;language-text&quot;&gt;MemberDao&lt;/code&gt; 타입의 빈이 두 개가 생성되므로 자동 주입(&lt;code class=&quot;language-text&quot;&gt;@Autowired&lt;/code&gt;)하는 코드는 &lt;code class=&quot;language-text&quot;&gt;@Qualifier&lt;/code&gt; 어노테이션을 사용해서 알맞은 빈을 선택해야한다.&lt;/p&gt;</content:encoded></item></channel></rss>
