@@ -1,4 +1,111 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 09 Feb 2023 02:33:09 GMT</lastBuildDate><item><title><![CDATA[Prometheus란 무엇인가]]></title><description><![CDATA[Prometheus는 메트릭 수집, 알림, 서비스 디스커버리 기능을 제공하는 오픈소스 모니터링 시스템입니다. Prometheus는 단기 작업을 위해 직접 스크랩 하거나
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 10 Feb 2023 09:59:08 GMT</lastBuildDate><item><title><![CDATA[NestJS란 무엇인가]]></title><description><![CDATA[NestJS란  Node.JS에 기반을 둔 웹 API 프레임워크
+Express 또는 Fastify 프레임워크를 래핑하여 동작함 Node.js는 쉽게 사용하고 뛰어난 확장성이 있지만, 과도한 유연함으로 인해 SW의 품질이 일정하지 않고 알맞는 라이브러…]]></description><link>https://hoon9901.github.io/what-is-nestjs/</link><guid isPermaLink="false">https://hoon9901.github.io/what-is-nestjs/</guid><pubDate>Fri, 10 Feb 2023 18:23:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;nestjs란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#nestjs%EB%9E%80&quot; aria-label=&quot;nestjs란 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;NestJS란&lt;/h1&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1b4454700307bf243f459357d3ff8df9/9f82e/nest-og.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 52.02702702702703%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAACXBIWXMAAAsSAAALEgHS3X78AAABX0lEQVQoz31RS0oDQRBthCTE2N3Vn/lmYjJxMmaCREwCSkCDCwVByEIFt4GAx/AMbryHW9feIoI3EI9g9XRmiCg+iqaq+72q6ioCAEIIeyI45//fKKkMpNJKE8YY5GAbMDw0zhuMolm95RifgxTS0Q4pH9Cxb8YBXuF0izV2ufa4pMBFwUGZ67qBH4RBSGADZSINYukPnpqnL83rB++oDtSKjdIxSrRu3CXl3yyUEDVgd3686l1+Jjer+PY1ms+drAZUCYkE/CqmQFXUjAjGMocdCeTJPKUipRdB7yO5+kruH8PjimCOVDlP2nrYAin4P4tzfu5Fz53Dt2T6nl5MndY2MKyM3bZbba21abvzq+31VjCxEJlyF+HeiQ6qHJUGnuuhpp/2s/1seDBcT7scNaXUrgqDOmNVRit0B4pB4oJDP0yTdDKazM5mf6/K7hljvBXFTU4CLB534kE2GI/G3yUsOZzXLPs3AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;nest og&quot;
+        title=&quot;nest og&quot;
+        src=&quot;/static/1b4454700307bf243f459357d3ff8df9/fcda8/nest-og.png&quot;
+        srcset=&quot;/static/1b4454700307bf243f459357d3ff8df9/12f09/nest-og.png 148w,
+/static/1b4454700307bf243f459357d3ff8df9/e4a3f/nest-og.png 295w,
+/static/1b4454700307bf243f459357d3ff8df9/fcda8/nest-og.png 590w,
+/static/1b4454700307bf243f459357d3ff8df9/9f82e/nest-og.png 820w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Node.JS에 기반을 둔 웹 API 프레임워크
+Express 또는 Fastify 프레임워크를 래핑하여 동작함&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Node.js는 쉽게 사용하고 뛰어난 확장성이 있지만, 과도한 유연함으로 인해 SW의 품질이 일정하지 않고 알맞는 라이브러리를 찾기 위해 개발자가 많은 시간을 할애해야함. 이에 반해 NestJS는 데이터베이스, ORM, 설정(Configuration), 유효성 검사 등 수많은 기능을 기본으로 제공.
+그리고 기본적으로 설치하면 Express를 Platform으로 사용함. &lt;/p&gt;
+&lt;h2 id=&quot;특징&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8A%B9%EC%A7%95&quot; aria-label=&quot;특징 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;특징&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;기본 기능과 추가적으로 필요한 라이브러리를 설치해 쉽게 확장할 수 있는 Node.js의 장점을 가짐&lt;/li&gt;
+&lt;li&gt;Angular로 부터 영향을 많이 받아. 모듈/컴포넌트 기반으로 작성하여 재사용성을 높임&lt;/li&gt;
+&lt;li&gt;IoC, DI, AOP 와 같은 객체지향 개념을 도입함&lt;/li&gt;
+&lt;li&gt;기본적으로 Typescript를 채택&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;자세한건 &lt;a href=&quot;https://docs.nestjs.com&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;NestJS 공식 가이드 문서&lt;/a&gt; 참고&lt;/p&gt;
+&lt;h1 id=&quot;expressjs-vs-nestjs&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#expressjs-vs-nestjs&quot; aria-label=&quot;expressjs vs nestjs permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Express.js vs NestJS&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;구분&lt;/th&gt;
+&lt;th&gt;Express.js&lt;/th&gt;
+&lt;th&gt;NestJS&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;유연함, 확장성&lt;/td&gt;
+&lt;td&gt;가볍게 서버를 띄울 수 있음. 하지만 높은 자유도로 인해 개발에 맞는 라이브러리를 찾아야함, 깃허브에 보일러플레이트를 이용한 코드베이스가 많음&lt;/td&gt;
+&lt;td&gt;미들웨어, IoC, CQRS 등 이미 많은 기능이 프레임워크 자체에 포함됨. 사용자는 문서를 보고 쉽게 따라할 수 있음, 원하는 기능이 없다면 다른 라이브러리를 적용하면됨&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;TypeScript 지원&lt;/td&gt;
+&lt;td&gt;추가 설정을 통해 사용&lt;/td&gt;
+&lt;td&gt;기본적으로 Typescript, 추가 설정으로 JS로도 작성 가능&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;커뮤니티&lt;/td&gt;
+&lt;td&gt;가장 큼&lt;/td&gt;
+&lt;td&gt;꾸준히 증가&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&quot;nest-js-벤치마크&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#nest-js-%EB%B2%A4%EC%B9%98%EB%A7%88%ED%81%AC&quot; aria-label=&quot;nest js 벤치마크 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Nest JS 벤치마크&lt;/h1&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/3264ac73c10df5531f1a8e7adbfea611/5c744/benchmark.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 33.78378378378378%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsSAAALEgHS3X78AAABQElEQVQozzWRx3LDMAxEdc7EtmyrV1IS1S25ZJL//7INFokPmAGJxeIR9D79CO84XVOYbobtV1yiAnntNE/LFlFm0Aw3VO2EbtykXqJsRtT/etMtOF4SeEFSgXGVOAUZummHm+/wJS/tiOn2QlK0Wh8lt25BVjmtc7gTfSXGSdHgQMNhfaFfHho0HtankPU4nGMYaaYJyc9hLsPuav5xDPVMWutWeV2sdNR5bqbZU6ieCDOrTYxYGttxx3z/QSpESdlpXosBdax30uukN8obPXOINwohd8Od8RnT9oXCDjqRu1nE5BpXWidtJnslPZvZ52Q4yRjHixCSJjcD/LCQPdVKZ4SCO6MhTUgUpLUSk/Ys2kC01Nn+ph9EPYG8af+W35rUjOjNsKnpO5+lzufyTMNCPupPa9WMd0FqdKgf5PgFItW/uK2P46oAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;benchmark&quot;
+        title=&quot;benchmark&quot;
+        src=&quot;/static/3264ac73c10df5531f1a8e7adbfea611/fcda8/benchmark.png&quot;
+        srcset=&quot;/static/3264ac73c10df5531f1a8e7adbfea611/12f09/benchmark.png 148w,
+/static/3264ac73c10df5531f1a8e7adbfea611/e4a3f/benchmark.png 295w,
+/static/3264ac73c10df5531f1a8e7adbfea611/fcda8/benchmark.png 590w,
+/static/3264ac73c10df5531f1a8e7adbfea611/efc66/benchmark.png 885w,
+/static/3264ac73c10df5531f1a8e7adbfea611/c83ae/benchmark.png 1180w,
+/static/3264ac73c10df5531f1a8e7adbfea611/5c744/benchmark.png 1206w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+NestJS에 Express와 Fastify를 적용했을 경우(Platform으로)와 Express, Fastify 자체 성능 측정표&lt;/p&gt;
+&lt;p&gt;측정 결과는 Express가 Fastify보다 느리고, NestJS Platform으로 적용하면 약간 더 성능이 떨어지는 것을 알 수 있음. 이는 NestJS가 기본 제공하는 프레임워크의 크기가 크기 때문. 하지만 순수 Express나 Fastify로 서버를 개발하다보면 추가적으로 요구되는 라이브러리들이 추가되므로 결국 NestJS에서 제공하는 기능들을 모두 구현한다고 했을땐 성능 차이가 크게 나지는 않음.&lt;/p&gt;
+&lt;p&gt;Express 프레임워크는 2022년도에 4.18.2 버전을 업데이트하였지만 최근에 와서야 활발하게 업데이트가 되고 있지만 그전에는 진짜 몇달동안 공백기가 있었음. 5.0을 준비하는 이유 때문일 수 있고, 매우 안정적인 프레임워크라 문제없이 운용되고 있다고 볼 수 있지만 최신 트렌드를 따라가지 못한다는 우려가 있는것은 사실.&lt;/p&gt;
+&lt;p&gt;반면에 NestJS는 꾸준히 발전 중. 최근 릴리즈가 v9.3.6 (2023-02-08, 현재 글이 생성된 날짜기준) 이고 &lt;a href=&quot;https://github.com/nestjs&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;깃허브&lt;/a&gt;를 통해 커뮤니티도 활발히 하고 있음.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Prometheus란 무엇인가]]></title><description><![CDATA[Prometheus는 메트릭 수집, 알림, 서비스 디스커버리 기능을 제공하는 오픈소스 모니터링 시스템입니다. Prometheus는 단기 작업을 위해 직접 스크랩 하거나
 short-lived jobs를 push gateway를 통해 스크랩합니다.
 스크…]]></description><link>https://hoon9901.github.io/what-is-prometheus/</link><guid isPermaLink="false">https://hoon9901.github.io/what-is-prometheus/</guid><pubDate>Thu, 09 Feb 2023 10:09:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -1484,50 +1591,4 @@ ctx&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;스프링 컨테이너를 초기화할 때 스프링 컨테이너는 가장 먼저 빈 객체를 생성하고 의존을 설정한다.
-모든 의존 설정이 완료되면 빈 객체의 초기화를 수행한다. 빈 객체를 초기화하기 위해 스프링은 빈 객체의 지정된 메서드를 호출한다. 스프링 컨테이너를 종료하면 스프링 컨테이너는 빈 객체의 소멸을 처리한다. 이때에도 지정한 메서드를 호출한다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Spring] 컴포넌트 스캔에 따른 충돌처리]]></title><description><![CDATA[컴포넌트 스캔 기능을 사용해서 자동 빈 등록할 때에는 충돌에 주의해야한다. 크게 두가지의 충돌이 발생할 수 있다. 1. 빈 이름 충돌 두개의 패키지에 같은 이름의 클래스가 존재할 때(모두  가 붙어있음)  발생함 클래스를 빈으로 등록할 떄 사용한 빈…]]></description><link>https://hoon9901.github.io/component-scan-conflict/</link><guid isPermaLink="false">https://hoon9901.github.io/component-scan-conflict/</guid><pubDate>Mon, 27 Jun 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;컴포넌트 스캔 기능을 사용해서 자동 빈 등록할 때에는 충돌에 주의해야한다.&lt;/p&gt;
-&lt;p&gt;크게 두가지의 충돌이 발생할 수 있다.&lt;/p&gt;
-&lt;h1 id=&quot;1-빈-이름-충돌&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%EB%B9%88-%EC%9D%B4%EB%A6%84-%EC%B6%A9%EB%8F%8C&quot; aria-label=&quot;1 빈 이름 충돌 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. 빈 이름 충돌&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;두개의 패키지에 같은 이름의 클래스가 존재할 때(모두 &lt;code class=&quot;language-text&quot;&gt;@Component&lt;/code&gt; 가 붙어있음)&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;ConflictingBeanDefinitionException&lt;/code&gt; 발생함&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;클래스를 빈으로 등록할 떄 사용한 빈 이름이 타입이 일치하지 않는(다른 타입) 클래스의 빈 이름과 충돌이 난다는 것&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;컴포넌트 스캔 과정에서 쉽게 발생할 수 있다. 컴포넌트 스캔과정에서 서로 다른 타입인데 같은 빈 이름을 사용하는 경우가 있다면 &lt;strong&gt;둘 중 하나에 명시적으로 빈 이름을 지정해서 이름 충돌을 피해야한다&lt;/strong&gt;.&lt;/p&gt;
-&lt;h1 id=&quot;2-수동-등록한-빈과-충돌&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-%EC%88%98%EB%8F%99-%EB%93%B1%EB%A1%9D%ED%95%9C-%EB%B9%88%EA%B3%BC-%EC%B6%A9%EB%8F%8C&quot; aria-label=&quot;2 수동 등록한 빈과 충돌 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. 수동 등록한 빈과 충돌&lt;/h1&gt;
-&lt;h2 id=&quot;수동-등록한-빈의-경우&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%88%98%EB%8F%99-%EB%93%B1%EB%A1%9D%ED%95%9C-%EB%B9%88%EC%9D%98-%EA%B2%BD%EC%9A%B0&quot; aria-label=&quot;수동 등록한 빈의 경우 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;수동 등록한 빈의 경우&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Component&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;해당 클래스는 컴포넌트 스캔 대상&lt;/li&gt;
-&lt;li&gt;자동 등록된 빈의 이름은 “&lt;code class=&quot;language-text&quot;&gt;memberDao&lt;/code&gt;”&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;다음과 같이 설정 클래스에 직접 &lt;code class=&quot;language-text&quot;&gt;MemberDao&lt;/code&gt; 클래스를 “&lt;code class=&quot;language-text&quot;&gt;memberDao&lt;/code&gt;”라는 이름의 빈으로 등록하면 어떻게 될까?&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;basePackages &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;spring&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppCtx&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
-		&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; memberDao &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-			&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; memberDao&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;스캔할 때 사용하는 빈 이름과 수동 등록한 빈 이름이 같은 경우,&lt;/p&gt;
-&lt;p&gt;수동 등록한 빈이 우선된다. 즉 &lt;code class=&quot;language-text&quot;&gt;MemberDao&lt;/code&gt; 타입의 빈은 &lt;code class=&quot;language-text&quot;&gt;AppCtx&lt;/code&gt;에서 정의한 한개만 존재.&lt;/p&gt;
-&lt;h2 id=&quot;다른-이름의-빈을-수동-등록할-경우&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%8B%A4%EB%A5%B8-%EC%9D%B4%EB%A6%84%EC%9D%98-%EB%B9%88%EC%9D%84-%EC%88%98%EB%8F%99-%EB%93%B1%EB%A1%9D%ED%95%A0-%EA%B2%BD%EC%9A%B0&quot; aria-label=&quot;다른 이름의 빈을 수동 등록할 경우 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;다른 이름의 빈을 수동 등록할 경우&lt;/h2&gt;
-&lt;p&gt;다음과 같이 다른 이름을 사용한다면?&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;basePackages &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;spring&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppCtx&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
-		&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;memberDao2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-			&lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt; memberDao &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MemberDao&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-			&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; memberDao&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;이 경우 스캔 등록한 “&lt;code class=&quot;language-text&quot;&gt;memberDao&lt;/code&gt;” 빈과 수동 등록한 “&lt;code class=&quot;language-text&quot;&gt;memberDao2&lt;/code&gt;” 빈이 모두 존재한다. &lt;code class=&quot;language-text&quot;&gt;MemberDao&lt;/code&gt; 타입의 빈이 두 개가 생성되므로 자동 주입(&lt;code class=&quot;language-text&quot;&gt;@Autowired&lt;/code&gt;)하는 코드는 &lt;code class=&quot;language-text&quot;&gt;@Qualifier&lt;/code&gt; 어노테이션을 사용해서 알맞은 빈을 선택해야한다.&lt;/p&gt;</content:encoded></item></channel></rss>
+모든 의존 설정이 완료되면 빈 객체의 초기화를 수행한다. 빈 객체를 초기화하기 위해 스프링은 빈 객체의 지정된 메서드를 호출한다. 스프링 컨테이너를 종료하면 스프링 컨테이너는 빈 객체의 소멸을 처리한다. 이때에도 지정한 메서드를 호출한다.&lt;/p&gt;</content:encoded></item></channel></rss>
