@@ -1,5 +1,5 @@
 ---
-title: 'Prometheus란 무엇인가'
+title: '[Monitoring] Prometheus 개요 및 특징 그리고 데이터 수집 방식'
 date: 2023-02-09 10:09:00
 tags:
   - Prometheus
