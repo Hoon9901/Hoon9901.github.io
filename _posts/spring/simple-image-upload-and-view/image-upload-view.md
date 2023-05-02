@@ -16,10 +16,12 @@ keywords :
 
 필자가 진행하는 토이 프로젝트 냥피스에서는 이미지를 업로드 하는 기능과 이미지 조회 기능을 제공한다.
 해당 기능을 구현하기 위해서 도움이 될만한 내용이 있으므로 이 기능을 구현하기 위한 분들은 읽어보면 좋을 것 이다.
-
 # Get Started
 ## 1. 이미지 업로드 구현하기
-냥피스 프로젝트에서는 이미지 업로드하는 API 에서 추가적으로 DTO 요청과 같이 처리한다. 따라서 이미지 파일만 업로드하는 API가 아니라 DTO와 이미지 파일 같이 처리한다. 다음 내용들은 이미지 업로드를 위해서 적용한 설정과 코드이다.
+만약에 글을 생성할때 이미지 파일과 같이 단일 API로 처리할 수 있다. 이러한 요구사항은 
+이미지 업로드 시에 MultiPartFile 뿐만 아니라 DTO도 함께 처리할 수 있도록 코드를 작성하면된다
+다음 내용들은 이러한 요구사항을 토대로 작성했다.
+
 ### 1.1 MultiPart Config 설정
 우선 MultiPartFile에 대해 최대 사이즈 설정을 해준다. 
 이미지 파일을 업로드하기 때문에 기본값보다 높은 용량으로 제한해준다.
@@ -79,9 +81,9 @@ keywords :
 		...
     }
 ```
-MultipartFile에 대해 확장자 유효성 검증을 처리하고 파일 저장을 하는 로직이 있다. 메서드 파라미터를 보면은 이미지 파일 뿐만 아니라 DTO 객체도 받아오는데. MultiPartFile과 JSON 요청을 같이 처리할려면  `@ReqeustPart` 로 DTO를 받아야한다. 그렇지 않으면 스프링에서 예외가 발생한다. MultiPartFile로 DTO를 받고 해당 DTO는 요청시에 Content-Type을 application/json으로 지정하면 정상적으로 스프링에서 처리된다. 추가적으로 유효성 검증을 할때 파일의 위변조까지 체크할려면 추가적으로 [Apache Tika 라이브러리](https://tika.apache.org)를 이용하면 된다.
+MultipartFile에 대해 확장자 유효성 검증을 처리하고 파일 저장을 하는 로직이 있다. 메서드 파라미터를 보면은 이미지 파일 뿐만 아니라 DTO 객체도 받아오는데. MultiPartFile과 JSON 요청을 같이 처리할려면  `@ReqeustPart` (@RequestBody가 아니다!)로 DTO를 받아야한다. 그렇지 않으면 스프링에서 예외가 발생한다. MultiPartFile로 DTO를 받고 해당 DTO는 요청시에 Content-Type을 application/json으로 지정하면 정상적으로 스프링에서 처리된다. 추가적으로 유효성 검증을 할때 파일의 위변조까지 체크할려면 추가적으로 [Apache Tika 라이브러리](https://tika.apache.org)를 이용하면 된다.
 
-이미지를 저장하는 경로는 프로젝트 경로의 images/YYYY-MM-DD 형식의 폴더로 저장되고 저장되는 파일의 이름은 중복성을 고려하여 UUID를 통해서 저장된다. 따라서 파일이 업로드 되면 다음과 같이 저장되는 모습이다.
+이미지가 저장되는 경로는 프로젝트 경로의 `images/2023-05-01/` 형식의 폴더로 저장되고 저장되는 파일명은 중복성을 고려하여 UUID를 이용해서 저장된다. 따라서 파일이 업로드 되면 다음과 같이 저장되는 모습이다.
 ```shell
 ./
 ├── README.md
@@ -112,6 +114,40 @@ MultipartFile에 대해 확장자 유효성 검증을 처리하고 파일 저장
         └── java
 ```
 스프링을 jar 파일로 실행해서 기능을 수행한다면 jar 파일이 위치한 경로에서 저장된다.
+
+### 1.3 이미지 업로드 API
+![](1.png)
+위와 같이 이미지 업로드 API를 호출한 모습이다. 이미지 뿐만아니라 추가적인 JSON 형식의 요청도 처리하는 API 이다.
+이러한 API (Form-data에 json 형식의 dto와 image를 사용하는 것)를 사용하는 Frontend 에서는 다음 코드를 참고하여 사용하면 된다.
+
+```js
+// axios를 이용한 api 호출 코드
+const axios = require('axios');
+const FormData = require('form-data');
+const fs = require('fs');
+let data = new FormData();
+data.append('dto', '{\n  "description": "string",\n  "name": "string",\n  "prize": 1000\n}', {contentType: 'application/json'});
+data.append('image', fs.createReadStream('BAE171ED-8C6A-4D86-B855-79E26B3D2FD5.jpeg'));
+
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: 'http://localhost:8080/api/wanted',
+  headers: { 
+    ...data.getHeaders()
+  },
+  data : data
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+```
+
 
 ## 2. 이미지 조회 구현하기
 저장된 이미지를 조회하기 위해서 저장된 이미지 파일들을 정적 리소스로 관리하여 불러올 수 있도록 스프링 서버를 설정한다.
