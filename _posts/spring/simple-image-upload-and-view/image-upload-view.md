@@ -15,7 +15,7 @@ keywords :
 ---
 
 필자가 진행하는 토이 프로젝트 냥피스에서는 이미지를 업로드 하는 기능과 이미지 조회 기능을 제공한다.
-해당 기능을 구현하기 위해서 도움이 될만한 내용이 있으므로 이 기능을 구현하기 위한 분들은 읽어보면 좋을 것 이다.
+해당 기능을 구현하기 위해서 도움이 될만한 내용이 있으므로 이 기능을 구현하기 위한 분들은 읽어보면 좋을 것이다.
 # Get Started
 ## 1. 이미지 업로드 구현하기
 만약에 글을 생성할때 이미지 파일과 같이 단일 API로 처리할 수 있다. 이러한 요구사항은 
@@ -182,7 +182,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 `WebMvcConfigurer`를 구현한 `@Configuration` 클래스를 작성한다.
 설정한 uploadPath 속성값을 불러오고 `addResourceHandlers` 메소드를 오버라이드하여 `/images/**` 경로의 요청들은 지정한 uploadPath로 리소스 파일을 찾을 수 있도록 코드를 작성했다.
 
-즉 [localhost:8080/images/2023-05-02/5a3f680c-6d6a-4de4-a283-6d6f12c221c1.jpeg]() 링크를 누르면 업로드된 이미지가 조회될 것 이다. 
+즉 [localhost:8080/images/2023-05-02/5a3f680c-6d6a-4de4-a283-6d6f12c221c1.jpeg]() 링크를 누르면 업로드된 이미지가 조회될 것이다. 
 
 만약에 Spring Security를 사용하면 httpSecurity에서 `/images/**` 경로를 permitAll 처리를 해줘야한다.
 
