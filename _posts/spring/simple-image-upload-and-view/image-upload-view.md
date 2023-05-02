@@ -41,7 +41,7 @@ keywords :
 
 ### 1.2 Upload Controller
 ```java
-    @PostMapping
+    @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     public ResponseEntity upload(
             @RequestPart("dto") ... dto,
             @RequestPart("image") MultipartFile image)  {
