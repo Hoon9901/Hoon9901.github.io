@@ -1,5 +1,5 @@
 ---
-title: "Cert-Manager 설치 및 ACME DNS01 챌린지를 통한 Let's encrypt 인증서 발급 및 사용"
+title: "[K8S] Cert-Manager 설치 및 ACME DNS01 챌린지를 통한 Let's encrypt 인증서 발급 및 사용"
 date: 2023-03-14 17:09:00
 tags:
   - Kubernetes
