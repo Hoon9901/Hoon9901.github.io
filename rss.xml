@@ -1,4 +1,307 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 24 May 2023 03:36:08 GMT</lastBuildDate><item><title><![CDATA[[K8S] ArgoCD Notification을 이용해 Discord Webhook으로 알림을 보내보자]]></title><description><![CDATA[개요 ArgoCD에서는 알림 기능을 제공하는데 해당 기능을 사용하면 ArgoCD에서 사용되는 Application(예: Argo를 통해 배포한 k8s object)을 지속적으로 모니터링하고 상태의 변경 사항을 알릴 수 있다. ArgoCD에서는 Tri…]]></description><link>https://hoon9901.github.io/argocd-notification/</link><guid isPermaLink="false">https://hoon9901.github.io/argocd-notification/</guid><pubDate>Wed, 24 May 2023 12:09:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 18 Jul 2023 10:10:19 GMT</lastBuildDate><item><title><![CDATA[23년도 상반기 회고 - 한중일 캡스톤대회, ETRI 인턴 그리고 Artscope]]></title><description><![CDATA[23년도의 반이 흘렀다. 올해부터 4학년이 되었고 정신없이 지낸거 같고 깃허브의 잔디를 보면 많이한거 같지만 내가 생각했을땐 유의미한 뭐가 없었던 것 같기도 하다. 그 동안 해왔던 거를 이력서나 포토폴리오로 작성해보기도 하고 몇번 서류 합격을 받았지…]]></description><link>https://hoon9901.github.io/23-first-half/</link><guid isPermaLink="false">https://hoon9901.github.io/23-first-half/</guid><pubDate>Tue, 18 Jul 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/af89f619eddf61decf9f98c162582d74/64639/Pasted%20image%2020230708180132.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 28.37837837837838%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABK0lEQVQY021QSW7DMAz0K4oETeJ4kWU7tkRaS+psPfTSXlqg///LlJaBnHoYDElxSGoyinfYcBPcMUwzjL8JrtCDx1ENKPSIohlX/gfqNEGPPmGJs0XYjQGdCYl7E9GPEU0/QXWMphPuGapl1C2tucRKS64JuncJS3/dEbKezygsoSbZxAGKPdpzRM0TjlGanAgooJoc6kmukDc9R6j3iCIwqmtAPkufdWlhNoQLtjeD1zeDPDIOgbC/EHY3xsuHWYeSw+ZusHsQNp+E/Nsj//XYfjG2P4zNw6L0MvDEyJqTS6JSLlLGJXEl1+69wcHZ5Es9MI4TobSMwgh7qYW1/xAJxWX1sewtsuXf7RBWSLEVLxdfK21RNTZx2Zpn/OTWJu/KkaBm8XBwqfYH4Pa2TpcFyMMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Alt text&quot;
+        title=&quot;Alt text&quot;
+        src=&quot;/static/af89f619eddf61decf9f98c162582d74/fcda8/Pasted%20image%2020230708180132.png&quot;
+        srcset=&quot;/static/af89f619eddf61decf9f98c162582d74/12f09/Pasted%20image%2020230708180132.png 148w,
+/static/af89f619eddf61decf9f98c162582d74/e4a3f/Pasted%20image%2020230708180132.png 295w,
+/static/af89f619eddf61decf9f98c162582d74/fcda8/Pasted%20image%2020230708180132.png 590w,
+/static/af89f619eddf61decf9f98c162582d74/efc66/Pasted%20image%2020230708180132.png 885w,
+/static/af89f619eddf61decf9f98c162582d74/c83ae/Pasted%20image%2020230708180132.png 1180w,
+/static/af89f619eddf61decf9f98c162582d74/64639/Pasted%20image%2020230708180132.png 1568w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;23년도의 반이 흘렀다. 올해부터 4학년이 되었고 정신없이 지낸거 같고 깃허브의 잔디를 보면 많이한거 같지만 내가 생각했을땐 유의미한 뭐가 없었던 것 같기도 하다. 그 동안 해왔던 거를 이력서나 포토폴리오로 작성해보기도 하고 몇번 서류 합격을 받았지만 매번 코테에서 좋은 결과를 받지 못해서 그런가 번아웃이 오고 그래서 그동안의 내가 뭘 했는지 되돌아 볼려고 회고를 작성하면서 지금까지를 정리해보려고 한다. 23년도 상반기 회고 이지만 22년도 12월 부터 시작한다.&lt;/p&gt;
+&lt;h2 id=&quot;cedc-2022-한중일-캡스톤-디자인&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#cedc-2022-%ED%95%9C%EC%A4%91%EC%9D%BC-%EC%BA%A1%EC%8A%A4%ED%86%A4-%EB%94%94%EC%9E%90%EC%9D%B8&quot; aria-label=&quot;cedc 2022 한중일 캡스톤 디자인 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;CEDC 2022 한중일 캡스톤 디자인&lt;/h2&gt;
+&lt;p&gt;23년도 2학기엔 캡스톤 디자인이라는 프로그램을 통해 &lt;code class=&quot;language-text&quot;&gt;클라우드 서버를 이용한 스마트팜 관리 플랫폼&lt;/code&gt;이라는 주제를 통해 팀 프로젝트를 진행했는데 나는 팀장으로 수행했고 백엔드 개발도 했었다. 교내 경진대회에서 좋은 평가를 받아 수상까지 하게 되었고 지도 교수님이 한번 12월에 열리는 한중일 글로벌 캡스톤 디자인 대회에서도 참가해서 발표를 해보라고 하셔서 발표날 까지 많은 준비를 했었다. &lt;/p&gt;
+&lt;p&gt;22년도 CEDC 대회는 코로나로 인해 비대면 ZOOM으로 대회가 진행이 되었는데 코로나 전에는 대회가 열리는 국가에 직접 가서 발표를 했다고 한다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f4e886ed263018a79fc1d49f64d7f09b/b1584/Pasted%20image%2020230718172141.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 137.16216216216216%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAbCAYAAAB836/YAAAACXBIWXMAABYlAAAWJQFJUiTwAAAEGUlEQVRIx31VZ3PbRhDV//8n+pixE2usjHscyyWm2AAQLCAJNnSABNj5su+AoyBPJpx52r3d02L73UB+l8sF9d/5fEaapoiiSCGO4yslgiBAGIY4nU749f9veNCgoTrq8v/jtVHiRgvGYwetZhPdbhf9fl/R4XAI07LQarXQ6XRgGAba7TZMoT2RW6aJkdwpf5VBsrvdFo4ox70eptMpnPEYI8fBdDLBlPzIwUTkY9uWOxYmcm8iH3XE6Mx1n4V+QwfjLMfCjxDGKYIohh9GCoEgJOKkPIuOPEHeC0rdOi9wOB7LHB6OZ7z9OcTrBwsd05ZwbfR6Nmz7CT3xiGmw7d71bNfQlXSwWMog/6RJguViAc/zsFyusBB+tSrpcrlUckLLFtXd+XwO3/eRZRkOh0NpkJWiIBGj/ArbhaCMlHLN6zNp/W5RFDjqkGmQXriSXHrAosxmM/V17V3dW1Lql9pT8ZA0z/Mng7qJSUOh2+1WfZFhaMpKkif2+30pJxUd9bRzNZjEMgVRqBCF4ZVnWPSOk8FccTquPKeIEyOReHKnECeUwdPpjL4zgzWcwB5NMRxLuL4YCmL5UDlyzJsePZ3r8ix8pdvtdlXbiMF30jZ/fO7i/quJdz96eP3VwucGW8JCr2oTDYsTIlCtU+k4QUma6La5YJMl2KSxUPEgCpAlEbL0qeoMUy8KgqHXFwcLx7xWIZ+kSkup6gKuVC+Qy+vNBuv1WlWOlNhUsjol9J1nbcO8aGgDBPuvzms9+Xqfkl49pEGGROhe0/32X2dWmOf6h+nps0kp+5D5yhRljuoT8mvOdG61x5TTQ06MMhiHkvTQh++tEAYyGdV00BsiSeJavjbPvKNMh0zc7A8n3D8Y+O19A6/+auL3T7JM2y21VJuycIlO14Bhlu1hyt60NCxTnbmMr9uGVpdeoHaiF3IfZqJkOCk29Eg8K8IptslCvMyl31Klj0UfxSwkC1fbNmXsOfgQOPMC7UGCR1v6Ma8ensUXuI079I0GzulUiTpyp2FF+GlKXrPD9YFSG5sGU0n+ZV+g+fM7nL4Jz3XgTUfIvQkOK3lbHt/DMX5Is/voi47FCpIQfrKSvB1U7s7nSzV64mrAIpgN3P35Emb7G5pv7tD5eI/EHSCTMEejoRhLsd4e8ertnbw3QyRiNAx8OJMZvDR/bnDpSV95LUSDjziHDSSjTzAe34gnMxnHVD1aM5mkTb6Vqu5ly8RoS7Gstinp2qHYHXHS62t/OMosuiiiDnL/EXncwTY14LsP8OM5kk2hlmkQhJL4IyLXlwJlcAYDRCsPl6PsSVkw3FqlhxK/7wcY+QNYqw7M8T9oj74L/4heMIa7WGE+c+HKJvfmM3wYzGXDGBjLe/zixUvc3t7i299fpCClwX8BnEnv94T9M90AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Alt text&quot;
+        title=&quot;Alt text&quot;
+        src=&quot;/static/f4e886ed263018a79fc1d49f64d7f09b/fcda8/Pasted%20image%2020230718172141.png&quot;
+        srcset=&quot;/static/f4e886ed263018a79fc1d49f64d7f09b/12f09/Pasted%20image%2020230718172141.png 148w,
+/static/f4e886ed263018a79fc1d49f64d7f09b/e4a3f/Pasted%20image%2020230718172141.png 295w,
+/static/f4e886ed263018a79fc1d49f64d7f09b/fcda8/Pasted%20image%2020230718172141.png 590w,
+/static/f4e886ed263018a79fc1d49f64d7f09b/efc66/Pasted%20image%2020230718172141.png 885w,
+/static/f4e886ed263018a79fc1d49f64d7f09b/c83ae/Pasted%20image%2020230718172141.png 1180w,
+/static/f4e886ed263018a79fc1d49f64d7f09b/b1584/Pasted%20image%2020230718172141.png 1342w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;영어로 발표를 해야하기 때문에 참가 문서, 소개 문서, 발표 PPT 등 전부를 한글로 초안을 작성하고 번역을 하는 식으로 해서 필요한 문서를 작성했다. 논문과 같은 학술 문서를 작성해본적이 없어서 팀원들의 도움과 지도교수님의 첨삭을 통해서 문서를 계속 초안에서 최종까지 날밤세면서 작성을 했다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1268347e318e44c5ad89faf2de5e2ecf/e1596/998AB42A-941D-4225-BC78-972AE1942C64_1_102_o.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAQCAwX/xAAVAQEBAAAAAAAAAAAAAAAAAAACAf/aAAwDAQACEAMQAAAB0EZUmuCYV//EABsQAAIDAAMAAAAAAAAAAAAAAAABAgMRBBMh/9oACAEBAAEFAnXhbJRFPB8tj7bIN+//xAAVEQEBAAAAAAAAAAAAAAAAAAAAIf/aAAgBAwEBPwFX/8QAFREBAQAAAAAAAAAAAAAAAAAAACH/2gAIAQIBAT8BR//EAB0QAAIBBAMAAAAAAAAAAAAAAAABERIhIjEDMqH/2gAIAQEABj8C7eFLIex4qxUnZvSJ5Fkz/8QAGxABAAMAAwEAAAAAAAAAAAAAAQARITFRYUH/2gAIAQEAAT8hAeu4tk0eoJMBiM+BcNblqnnJRA9AaZ//2gAMAwEAAgADAAAAEAvf/8QAFhEBAQEAAAAAAAAAAAAAAAAAAQAR/9oACAEDAQE/ENSBG3//xAAXEQEBAQEAAAAAAAAAAAAAAAABABFB/9oACAECAQE/EMGQPb//xAAcEAEAAgMAAwAAAAAAAAAAAAABABEhQXExUbH/2gAIAQEAAT8QBZh4ZvkrPqFiqKXVMAjKqLoF9l52ABUIAI6vOiOQRMhXrXJ//9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Alt text&quot;
+        title=&quot;Alt text&quot;
+        src=&quot;/static/1268347e318e44c5ad89faf2de5e2ecf/1c72d/998AB42A-941D-4225-BC78-972AE1942C64_1_102_o.jpg&quot;
+        srcset=&quot;/static/1268347e318e44c5ad89faf2de5e2ecf/a80bd/998AB42A-941D-4225-BC78-972AE1942C64_1_102_o.jpg 148w,
+/static/1268347e318e44c5ad89faf2de5e2ecf/1c91a/998AB42A-941D-4225-BC78-972AE1942C64_1_102_o.jpg 295w,
+/static/1268347e318e44c5ad89faf2de5e2ecf/1c72d/998AB42A-941D-4225-BC78-972AE1942C64_1_102_o.jpg 590w,
+/static/1268347e318e44c5ad89faf2de5e2ecf/a8a14/998AB42A-941D-4225-BC78-972AE1942C64_1_102_o.jpg 885w,
+/static/1268347e318e44c5ad89faf2de5e2ecf/fbd2c/998AB42A-941D-4225-BC78-972AE1942C64_1_102_o.jpg 1180w,
+/static/1268347e318e44c5ad89faf2de5e2ecf/e1596/998AB42A-941D-4225-BC78-972AE1942C64_1_102_o.jpg 2048w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;그렇게 해서 문서를 계속계속 수정하다 보니 발표 당일이 되었고 내 차례가 오기까지 다른 참가 조의 발표를 같이 있던 팀원 들과 모니터링 하면서 기다리고 있었다 영어로 발표를 해야하기 때문에 개인적인 시간에 영어 발음과 작성한 발표 대본을 계속 읽고 다른 사람들한테 들려주면서 연습을 했었고 전날 밤에는 꿈에서 영어로 말하는 지경까지 왔었다 (한동안 영어로 생각까지 했다..)&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c66174da24900c8d60742ec8b40e053d/21e8f/Pasted%20image%2020230718172936.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 62.16216216216216%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAADX0lEQVQozx2RWUycZRSGf2MsskqkLNPiMC1TFmkqbSxMO0BaljDAYAICNZRa0MTaNFGJMdUUTC0xMXpBTYOApkSrrYFoVS5qC9IC7ehkwhbW4Z9hth9mY1gUbXr3+MHFuThfTp7vOeeVnk+MJy4hngSVit2qJFGJJCbvQZWyl2RNMqoXVKJPRKVWkZal5WB2BoeOZJJzPJuiUj1VtQYMVUWUGHTkHlEjRcY+hyZtP5rMVJJS1aQfzkRfnMPJMr2oE5RXGznVWM9b756npa2Frusd9N7+katftfPJ559x5ct29MZyDhXkUlmZg3SyopCK1yp552IzX3/bycD93xibGMZiGWF0dIiJMTNul0zQ78Fht+J2yqK3Mzm9wNSYhRnbHF90XCNOu48yowA2XDhLXVMtfX032QiuoDhkAitOVn1OgisOfIqdZbeMTZ4RICvLigPnkpU7gxZu/HCL3u+7ebu5mcTMDAqKspGKqgyUVhu4ees7/t3w41+2E/K7WF91sRZ0sRHyEPQ6MZtGka3TO7ZLtnnGx03cG7yLzWblg9ZLRKdoKDHqkSobXuEl/VGuXmvnyVYI3zYw4BZA9w40FHAyM2vBYZthTbxvf+iQ58Wck4DXw+OtTTq6Onkqdjf5ZQVI5acqiU1J5f0PL+4Ybq9oGhnAZZ/dMVXcVnpudDM3bcEjVlWci1gXxrELy23T1cAKv/x6m4j4JLJ0LyPlFucTlayhoalJ3M0t7udgaKAf6+wELnmBZRGC372Ez2PDNje1Y/rI3C8CWhDgeRSPE9PDYfalH2D/i+lIx0ryiNdqqaiuxuNYFEAXow/uMTn2CK/iwiv/iU82E/Rt31VhQ5lkU5nin40A6wGFv9cDIignh4/loM7QIpXWlGOoryPPYBBWk4SEpV9ZYjO0wpPHa/y3FcQvQvEuO0QoMwyPDDJ0/y53fu/nm+tdtF7+mLNvNqE9mEHC3jikusYaOn/qQZ19FJPpIfLiAn+ZTTwY+YO+n3tp+7SN8xfOcbq+lnJDIVWFOl4t0REWHcMzEeGERz3LrvCniY4OIzZmF9LphhJyTuiEbhqNZ6q49F4jb9SWkpd9gONZai6fK6b7IyM9V+rpaX2drjP5DLbUoN6TQFhEBDExUQIWSWRkOJERYfwP6VZ69Iu+D2UAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Alt text&quot;
+        title=&quot;Alt text&quot;
+        src=&quot;/static/c66174da24900c8d60742ec8b40e053d/fcda8/Pasted%20image%2020230718172936.png&quot;
+        srcset=&quot;/static/c66174da24900c8d60742ec8b40e053d/12f09/Pasted%20image%2020230718172936.png 148w,
+/static/c66174da24900c8d60742ec8b40e053d/e4a3f/Pasted%20image%2020230718172936.png 295w,
+/static/c66174da24900c8d60742ec8b40e053d/fcda8/Pasted%20image%2020230718172936.png 590w,
+/static/c66174da24900c8d60742ec8b40e053d/efc66/Pasted%20image%2020230718172936.png 885w,
+/static/c66174da24900c8d60742ec8b40e053d/c83ae/Pasted%20image%2020230718172936.png 1180w,
+/static/c66174da24900c8d60742ec8b40e053d/21e8f/Pasted%20image%2020230718172936.png 1684w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;드디어 발표 차례가 왔고 ZOOM의 화면 공유를 누르면서 발표를 시작했다. 발표를 끝나고 다른 나라의 참가하시는 분들의 질문까지 잘 답변해서 성공적으로 마무리를 했다. 발표가 끝나고 손이 벌벌떨렸는데.. 아직까지 생각하면 어떻게 했는지 의문이다. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/952d52d1de7278047d444e826594ba0f/0faf1/Pasted%20image%2020230718173439.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 52.02702702702703%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAACO0lEQVQozy2QWU/bUBCFDWQlOE5s33hL7Njxkg0IS2lE2VTS9qWlregiQEilVdv//wu+TlwejuZo7syZc64Wug5pOGCepuzmGa+O9nn/esnj5yv+3q/4+W3F77s3/Llb8ev7NT9uL7m5PmGvKGQ+JY9CYt8l6Nn0Om00X9mErluKTkYxi0nOcjHj3fkBDzenPH254PHTOQ8fz3i6PeP+w5LV6T6TOKF4Fhv0FK7ZxdJ30JTRwbUsIs9jFPbJhyHjeEgRx4IR0zRnnhVlzYcjsigWV8NnZx4DR+HbFsow6Gxvo1m6TqAsPNvGV6p0GweBOA5FICqFx2skyf8j0sujqBSL3B6BbeJ0OuKuRbvZQJvEDl/fzkkHDn2Jvx5K+uK275MEvvQDiReJaFRGDF1fXDlioidCXVR77ayFXm8I6mi9rs5+EXAyj1juDTmeRlwvc86PUi6OM65ernkm/zYp614WMkvlv5NAEniSRsl3WXLAoFmtogVGi4OhzdDUSSyDYbdd1lR1GAlyx5RqUng2mWMx7zuMhRciMg3sciZV670djK1NtGMRu70sSN0OfrtFbLcFBokMZk5XFk1yWR7L8ti3Zc4kE6TyZjUaGJUKOxubNDUNa2sDLbV1lrshL2YhC4l+OB1wNOkzG7kcSl0Uftk/lv6aHwhfzkMOxwFFqIjdLn0xMXAMVL2C5rXqzL0OM0Gu2sz8LqG+jSWXVa2GXa3gNmr4zTpqzetVvEYVv+zVSu6IUK9Wwaxs8g9QiRImcOD0ngAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Alt text&quot;
+        title=&quot;Alt text&quot;
+        src=&quot;/static/952d52d1de7278047d444e826594ba0f/fcda8/Pasted%20image%2020230718173439.png&quot;
+        srcset=&quot;/static/952d52d1de7278047d444e826594ba0f/12f09/Pasted%20image%2020230718173439.png 148w,
+/static/952d52d1de7278047d444e826594ba0f/e4a3f/Pasted%20image%2020230718173439.png 295w,
+/static/952d52d1de7278047d444e826594ba0f/fcda8/Pasted%20image%2020230718173439.png 590w,
+/static/952d52d1de7278047d444e826594ba0f/efc66/Pasted%20image%2020230718173439.png 885w,
+/static/952d52d1de7278047d444e826594ba0f/c83ae/Pasted%20image%2020230718173439.png 1180w,
+/static/952d52d1de7278047d444e826594ba0f/0faf1/Pasted%20image%2020230718173439.png 1956w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;결과는 대상을 수상 했고. 결과를 보자마자 지도해주신 교수님과 팀원 들에게 전화로 감사한 말을 전했다. 프로젝트를 여기까지 준비한 과정이 짧지 않고 2학기 동안 진행 했었고 이 과정 속에는 팀장으로 미흡한 부분도 있었고 발표를 위해 프로젝트를 밤세 준비하며 많은 신경을 쓰다보니 스트레스도 많이 받았었다 하지만 좋은 결과로 보답을 받아 좋았다.&lt;/p&gt;
+&lt;h2 id=&quot;한국전자통신연구원-인턴-수행&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%95%9C%EA%B5%AD%EC%A0%84%EC%9E%90%ED%86%B5%EC%8B%A0%EC%97%B0%EA%B5%AC%EC%9B%90-%EC%9D%B8%ED%84%B4-%EC%88%98%ED%96%89&quot; aria-label=&quot;한국전자통신연구원 인턴 수행 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;한국전자통신연구원 인턴 수행&lt;/h2&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d8566032398bdb79d572cc2829530496/086f9/IMG_1061.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 42.567567567567565%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAJABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIDBP/EABUBAQEAAAAAAAAAAAAAAAAAAAEA/9oADAMBAAIQAxAAAAHvvO4ID//EABcQAAMBAAAAAAAAAAAAAAAAAAABIEH/2gAIAQEAAQUCUYf/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAaEAEBAAIDAAAAAAAAAAAAAAAAASExQVFx/9oACAEBAAE/Ice09Wpyhdv/2gAMAwEAAgADAAAAEOfP/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8QJ//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABkQAAIDAQAAAAAAAAAAAAAAAAERADFxEP/aAAgBAQABPxAiwDB6oSbgDuW12v/Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Alt text&quot;
+        title=&quot;Alt text&quot;
+        src=&quot;/static/d8566032398bdb79d572cc2829530496/1c72d/IMG_1061.jpg&quot;
+        srcset=&quot;/static/d8566032398bdb79d572cc2829530496/a80bd/IMG_1061.jpg 148w,
+/static/d8566032398bdb79d572cc2829530496/1c91a/IMG_1061.jpg 295w,
+/static/d8566032398bdb79d572cc2829530496/1c72d/IMG_1061.jpg 590w,
+/static/d8566032398bdb79d572cc2829530496/a8a14/IMG_1061.jpg 885w,
+/static/d8566032398bdb79d572cc2829530496/086f9/IMG_1061.jpg 973w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;12월달에 한국전자통신연구원 (ETRI)의 동계 연구연수생 지원했었다. 한국전자통신연구원에 지원하게 된 계기는 같은 학부 연구실의 졸업하신 선배가 연구실에 계셨고 이전에 많은 조언과 관심을 주셨는데 백엔드 개발을 처음 시작 했을 때 많은 도움을 받았었다 그래서 선배가 계신 연구실에 인턴으로 같이 근무를 해보고 싶었고 매우 운이 좋게 합격하게 되어 근무하게 되었다.&lt;/p&gt;
+&lt;p&gt;김해가 아닌 대전에서 2달 자취를 하면서 첫 회사 생활을 하게 되었다. 같은 대학교 형 두분과도 같이 합격하게 되어서 혼자가 아닌 셋이서 함께 출근과 퇴근 그리고 헬스... 하게 되어서 하루하루가 매우 알차고 바쁘게 지냈다.&lt;/p&gt;
+&lt;p&gt;업무는 첫주 때 부터 연구실에서 적용하던 인증 서비스가 구 버전이라 최신 버전을 조사해서 한번 어떤지 써보고 발표를 해달라고 하셔서 첫날에 맥을 세팅하고 바로 업무를 시작했다.. 그렇게 하루에 업무 시간내내 코딩과 자료 조사를 하게 되었는데 업무의 강도는 연구실과 부서마다 다르겠지만 나에겐 괜찮았다. ETRI 인턴을 하기 전에 관련 분야에 대해 이미 공부를 했었기 때문에 괜찮았다 그래서 하루하루 코딩의 재미를 느끼고 평소에는 공식 문서도 깊게 안읽었지만 진짜 공식문서를 꿈에서 까지 상상할 정도로 읽었다.&lt;/p&gt;
+&lt;p&gt;같이온 형들은 자기 관련 관심 전공과 다른 업무를 하고 있거나 하루종일 논문을 읽고 분석하고 계셨는데 만약 ETRI 인턴에 대해 관심이 있는 분이라면 논문에 대해서 평소 관심있거나 자주 읽는다면 지원하는 연구실의 진행하는 연구 과제를 잘 보고 지원하기를 바란다 의미있는 2달을 보내고싶다면.&lt;/p&gt;
+&lt;p&gt;결론은 ETRI 인턴 한번즘은 해보는 것을 추천한다. 나는 좋은 경험과 많은 성장을 했고 대학교에서 쉽게 못 느끼는 박사님들의 지식에 감탄하며 나도 저렇게 지식이 깊었으면 하며 의의를 두었다.&lt;/p&gt;
+&lt;h2 id=&quot;artscope-플랫폼-사이트-개발&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#artscope-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%82%AC%EC%9D%B4%ED%8A%B8-%EA%B0%9C%EB%B0%9C&quot; aria-label=&quot;artscope 플랫폼 사이트 개발 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Artscope 플랫폼 사이트 개발&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/ef315b8aad0233900a7df95308f5668a/1.gif&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+&lt;p&gt;22년도 여름방학때 부산 금정구 금샘미술관에 좋은 기회로 전시에 참가했다. 개발자가 미술관에 전시라니? 나의 작품은 아니고 부산시에서 활동하시는 작가님의 전시 작품을 위해 개발자로 참가했다. 관람하는 관객들의 모습을 카메라로 촬영해 다른 화면에 그 모습은 영상 이펙트를 씌워 실시간으로 화면에 보여주는 것인데. 작품과 관객이 상호작용하는 그런 것을 하자고 전시 전에 얘기를 나눴고 같이 개발자로 참가한 친구와 함께 얼굴 인식 프로그램과 인식한 사진을 서버로 전송해서 파일로 저장하는 프로그램을 개발했다. 위 움짤한 그때 전시한 작품의 모습이다. (오른쪽에는 관람객의 모습이 보이고 왼쪽엔 일정 시간 이후에 인식한 모습을 이펙트를 씌워 보여준다.)&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5e1ae62dc78ff4d6449e98d6d16df72a/eee07/Pasted%20image%2020230718175726.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 112.16216216216218%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAACXBIWXMAABYlAAAWJQFJUiTwAAAFhUlEQVQ4y62VWUxc1x3GrxdUNW4VtepDn1q1SuVGbR/aSE0qp22cuA3qQy03VtKExHZk3LgkBKiNDXZswHhsYGCMCYbBMBuz3VmZfWUY8Awz4JWBwSyOiVJsExKnUROwo7z8cmYUKep7r/TT+R/pnk/fd+7/niPdubtCbmaOD5bv8v94pJWVVRZvLbEsBNfW1lhfX2d97RvWBA/WH7D64TIf3vs391fv8snHK/z3P6t89ulHPHzwKeuf3+ez+/f44vOPkN5bvM1MbrbI1PVpcjdmuHFtukixvpojLxLYDErMfU0ErV3EHL2kgwayIQO2I9WEVI3kL5lZvmpFWlpaYmFhocj8/Pw39UKhnmdxcZHbt5dwGZU4Lp4gJqtIWJVkA2rsLYdQPPYkExX1vJ+WuZ21IM3PzzExMcHU1BRzc3PkcrkiN2/eJJ/PMzk5yfT0DB6TEltPLVFzCzF9I2lbI+baMjS/eIbZ1+v5IG4gnzQgzc7OCsGsWDQtHC6QmxJRp3JFtwXRguANMfdaO7H3HSOkP0lUV8+w9jAe5V5OV/yTpGeIO+lBMt4epEziCqOBYTKJNMngKCFbjFQ8S164yiQzTN+YZiwwQk9bHYq6PbSfLKdDIHfX0dFwgBffep13vWESLjVJuxLJb4rQf2YQl8YjGMLS7cBjCDISGsPR78al9aBRmGk+Xklt9T6O1x7kSPV+ulqqUbUdpqKyjJdqjtJ94Syei4eRFq6Ok5ItzCQC3EzHyYfNXHdpmE36yEdtpC16guY4Qe8gtsFOPHIvXrmHoFNNWLiKePrx2rsZHuom6uxCmk5FSGubGNeeYtxyjtRAEyl9C+OmdsbtvUzK51jMTXI9G2PE3U8maiUzLHMpbiEatBDwWRgJy4T8MomQLCJ7XPQoT6PuUNCraqWvsw216izqrg56etXotFpuida5kgrg03Zg6mzE5hYugwNo5AGa+zR0aHR0GQxY7YNCMBTFYLFjtLkxWJ2YHZ5iPSi7iqNZkMpcZnLUR1jE1OmVOIMavAENfp9WrNXTrTFiMBuJBoxIv3nlOCVPv8F3dlTxSIHn3mbLc5VsefYtvru9gke27efHf3oDr8NAYtiEK6rHIwT9fp3YVwMRt5mQ3U7MZScTE4392J5WpGcOs6G0Hul5wZ+PIu2oFYgv9mwN0tNv8mjpIYZcJoajBlz+fnx+LX6vEHQbCdhl3CYXQ1YXl8JCcOubaqSdZyh5ScnG3a1ibKfkxTY27Gxm884mpNJjfP+FJlxOE4mwjiHvRXzeAfxuHQGHGb9sxznowW0pCIrIW4+IjXztPCXlosv3vcvLJzrZ845o0Jfb2fx3Me5S8L1X2vF4bUwmRLygloiIG/WK2iHjMTux6X1EhuykIwXBBjvSwX5KKjVsqh7k1+X1/LKsio0V/Wza341UpuIH5RfQGPpx6DrQ97UxIJr44vk2bFodPqtX9KOTdNRCSiD9XOFBqhI/9REbWw+1U1VzgB2l2/lR+Qk215jYeKCHH1ZpUZ5X0aNqRnnmHc61NnCmqR6DukO4spIKGwRGUkWHrX6kQyY2NHj5XdkeTlfu5B+7nuQnf9iOVC1e2NvNJpFgwCIT9sgEvA6BnUjQTWYswrWJBJfH41z5GmmrMijcyWxpcPD71/axe3cpzYpGNFYrNc7LHPVe41TwOlPz7/F+4excvMXdlRXmxGk0MpxgbGxMnFaTZLITjGeyQrCl4NDKt4/J/PTVt/nZtj+SvDZTvB/urH75P/fFw4cPWb5zr1hPZceo2/tX9OdOkEqnhfAoo6OjQlDhE3toZGOdg28VRJ//G7994VWeaDbyq5YhHj9p5SmFA1sgRiwSJi5cqU4d4+BfnuJfu7Zx4exxkskk8XicRCLBV0KM/lJbuvTYAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Alt text&quot;
+        title=&quot;Alt text&quot;
+        src=&quot;/static/5e1ae62dc78ff4d6449e98d6d16df72a/fcda8/Pasted%20image%2020230718175726.png&quot;
+        srcset=&quot;/static/5e1ae62dc78ff4d6449e98d6d16df72a/12f09/Pasted%20image%2020230718175726.png 148w,
+/static/5e1ae62dc78ff4d6449e98d6d16df72a/e4a3f/Pasted%20image%2020230718175726.png 295w,
+/static/5e1ae62dc78ff4d6449e98d6d16df72a/fcda8/Pasted%20image%2020230718175726.png 590w,
+/static/5e1ae62dc78ff4d6449e98d6d16df72a/efc66/Pasted%20image%2020230718175726.png 885w,
+/static/5e1ae62dc78ff4d6449e98d6d16df72a/c83ae/Pasted%20image%2020230718175726.png 1180w,
+/static/5e1ae62dc78ff4d6449e98d6d16df72a/eee07/Pasted%20image%2020230718175726.png 1628w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;올해는 작품 전시에 직접적으로 참가는 안하고 부산시 작가분들이나 예술을 좋아하는 일반인들이 작품을 전시하거나 공모를 할 수 있는 것을 한번 만들어 보자고 얘기를 나눴고 그 결과 Artscope라는 사이트를 만들었고 나는 백엔드 개발을 수행했다. &lt;/p&gt;
+&lt;p&gt;Artscope의 백엔드 개발자로 개발하면서 사이트 특성상 작가분들의 영상 파일이나 이미지 파일이 대부분 해상도가 높고 용량이 크다는 요구사항이 있어서 AWS의 S3로 정적 파일 저장소를 구성하고 이미지나 영상 파일들을 빠르게 사이트에 뿌릴 수 있도록 AWS Cloudfront과 AWS Lambda를 통해서 이미지를 최적화 처리를 하는 시스템을 적용했다 그 결과 해상도가 높은 2K 이상의 이미지를 기존에 5초 이상 받아온 것을 0.5초 이하로 밀리세컨드 단위로 받아올 수 있도록 성능을 개선했다.
+또한 모니터링과 로그에 대해서도 신경쓰게 되었는데. 로그를 한곳에 모아서 모니터링을 할 수 있도록 ELK 스택을 도입하게 되었고 운영중인 스프링 어플리케이션의 다양한 메트릭 수집과 추적을 위한 Naver의 Pinpoint도 도입해서 운용하고 있다. &lt;/p&gt;
+&lt;p&gt;처음 사이트를 배포하게 되니 많은 사용자들이 찾아와 주셨는데. Artscope는 실제 미술이나 예술계에 활동하시는 작가분들이 자신의 전시 이력이나 관련 정보를 작성할 수 있는데. 사이트에서 하나하나 작품을 감상하다가 하단에 위치한 작가 프로필을 보다보면 부산시에 있는 작가 뿐만 아니라 해외에 전시를 하신 분들까지 사이트에 찾아 와서 자신의 작품을 올려주시니 감회가 새로웠다. Artscope는 평균적으로 WAU는 250명 정도였고 사이트에 평균 머무는 시간이 4분정도로 많은 관심을 가져주셨다. 사이트에 올라온 작품의 수도 약 150개 이상이 업로드 되었고 작가 정보를 입력해주신 분들은 약 40명 정도로 찾아와서 작가 정보를 기입하신 분들에게 대해 매우 감사하다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/dfe8ca0d5b891668c56f716491787b33/5faa8/Pasted%20image%2020230718180941.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 94.5945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAABYlAAAWJQFJUiTwAAACAklEQVQ4y5VUi3KCMBDk/7+urVMfqIC8QXmKKKBebw9DtVVHM3OTBJLN3u0mWhDGNNWXNJsbtK12hHY+n4e4nr/SND+IaGms6HM0obLc/ltwDf4s1FotXicElvOlRWma035/kKg52q67AX7W1H+trvfUtC01TUO7XU2bJKU0ywW84hJg4fF4HDadTqch7jJ8dOJ6k9LH11hK4XFZ9IVJhmnTdLak8XROKBXmK9u9BQSrLC8oL0rK81LG5bYixw14sUeeHzLrjGzHJ9cLKIzWEgDEurbtbgETXmytXDIsm0F8YQMQACoAz49kjP/qIJTkngu0JM0EQAUAbN4IoRAAQ6/YqkPvgQnDDddKLY7izbAJKSlQOAHfE2YFMSDSQ9tA1et0wBAHAATChFEsB3Vd99Q6Q8ooOMBsxxNWAO9T79MUhsI8EuE6Zndgi+EARNO00v+KwmkAxL+IATUDZolvOERMz5bBd2RgsU0QpuX0BC6139V1zxBMTFY4ulghitfCGD1sUfB13FaV3B4YHmVAYIy7X7HtCmaurq0GJuOJTpPZgnR+IAxzRaPvqaT8bpOUURdlZrDAHEq+8zDc+BBgMDcoA/RVoEcPhhgbxYeiCvDV9O6+h1lWCCDAIH/LL88QMu+t0cqL1MdThtgALwIYvagopk5ESZQD1sEFUA/Dte/+th+vpbgsrJ9k9AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Alt text&quot;
+        title=&quot;Alt text&quot;
+        src=&quot;/static/dfe8ca0d5b891668c56f716491787b33/fcda8/Pasted%20image%2020230718180941.png&quot;
+        srcset=&quot;/static/dfe8ca0d5b891668c56f716491787b33/12f09/Pasted%20image%2020230718180941.png 148w,
+/static/dfe8ca0d5b891668c56f716491787b33/e4a3f/Pasted%20image%2020230718180941.png 295w,
+/static/dfe8ca0d5b891668c56f716491787b33/fcda8/Pasted%20image%2020230718180941.png 590w,
+/static/dfe8ca0d5b891668c56f716491787b33/efc66/Pasted%20image%2020230718180941.png 885w,
+/static/dfe8ca0d5b891668c56f716491787b33/c83ae/Pasted%20image%2020230718180941.png 1180w,
+/static/dfe8ca0d5b891668c56f716491787b33/5faa8/Pasted%20image%2020230718180941.png 1444w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+이용자들의 피드백을 수용할 수 있도록 설문조사도 만들었고 8명의 소중한 피드백을 주셨고 사이트를 현재까지 개선하고 있다. 사이트를 몇번 배포해 본적은 있지만 이렇게 오래 운영하고 있는건 처음이다. 좋은 기회로 올해도 이런 프로젝트를 진행하게 되어서 몹시 기쁘다. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIEA//EABUBAQEAAAAAAAAAAAAAAAAAAAMC/9oADAMBAAIQAxAAAAG6fdDuQcYf/8QAGRAAAwADAAAAAAAAAAAAAAAAAAECEBEh/9oACAEBAAEFAnJco0Jj7j//xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAwEBPwFn/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQIBAT8BJ//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEABj8CX//EABoQAAICAwAAAAAAAAAAAAAAAAARATEQIXH/2gAIAQEAAT8hgSEtX0hILcn/2gAMAwEAAgADAAAAEMwf/8QAFhEBAQEAAAAAAAAAAAAAAAAAAQAR/9oACAEDAQE/EMhJf//EABURAQEAAAAAAAAAAAAAAAAAABEA/9oACAECAQE/EGzf/8QAGxABAQEAAgMAAAAAAAAAAAAAAREAITFRcYH/2gAIAQEAAT8QSjQnY4jpY4GMwiAnhut7F0JUH5k3/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Alt text&quot;
+        title=&quot;Alt text&quot;
+        src=&quot;/static/02be733908a0ac3739a35c75b7188c99/1c72d/IMG_5895.jpg&quot;
+        srcset=&quot;/static/02be733908a0ac3739a35c75b7188c99/a80bd/IMG_5895.jpg 148w,
+/static/02be733908a0ac3739a35c75b7188c99/1c91a/IMG_5895.jpg 295w,
+/static/02be733908a0ac3739a35c75b7188c99/1c72d/IMG_5895.jpg 590w,
+/static/02be733908a0ac3739a35c75b7188c99/a8a14/IMG_5895.jpg 885w,
+/static/02be733908a0ac3739a35c75b7188c99/fbd2c/IMG_5895.jpg 1180w,
+/static/02be733908a0ac3739a35c75b7188c99/d2602/IMG_5895.jpg 4032w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+    &lt;/span&gt;
+Artscope는 실제 작가분들의 작품을 전시하거나 공모 받고 있고 (사이트에 작품을 업로드하게 되면 금샘미술관에 공모하겠는지 묻고 있다) 그 결과 7월 한달 동안 부산 금정구 금샘미술관에 실제 작품들이 전시하고 있다. 관심이 있는 분이라면 &lt;a href=&quot;https://artscope.kr&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://artscope.kr&lt;/a&gt; 를 찾아와 주시거나 부산에 거주하고 있다면 금샘미술관으로 가보시길!&lt;/p&gt;
+&lt;h2 id=&quot;이제는&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%9D%B4%EC%A0%9C%EB%8A%94&quot; aria-label=&quot;이제는 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;이제는.&lt;/h2&gt;
+&lt;p&gt;4학년으로 취업 준비를 하고 있다. 저번주에 진행한 2023 토스 SLASH 코딩 테스트를 봐었는데 알고리즘 문제와 서술형 문제에 생각보다 해맸고 좋은 결과를 받지 못했다. 토스라는 앱을 고등학교 처음 토스앱이 출시할 때 부터 사용하고 있고(그때 당시에 등록할 수 있는 은행이 별로 없던걸로 기억) 내 삶에 매우 편리한 부분을 제공해서 이 회사에 많은 관심을 가지고 있고 꼭 백엔드 개발자로 들어가고 싶다는 생각이 예전부터 있었다. 이번 코테를 통해서 아직 내가 많이 부족하다는 것을 느꼈고 와중에 번아웃 + 감기가 오게 되서 그런지 코테 이후론 개발이나 공부를 안하고 집에서 휴식을 취하고 있었다. 이제는 내 현재를 잘 파악하고 정비해서 천천히라도 내가 꿈꾸는 회사에 도전하고 다시 번아웃을 이기고 달려보려고 한다. 글을 잘 못쓰지만 마지막까지 읽어주신 분들에게 감사하며 글을 마친다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[K8S] ArgoCD Notification을 이용해 Discord Webhook으로 알림을 보내보자]]></title><description><![CDATA[개요 ArgoCD에서는 알림 기능을 제공하는데 해당 기능을 사용하면 ArgoCD에서 사용되는 Application(예: Argo를 통해 배포한 k8s object)을 지속적으로 모니터링하고 상태의 변경 사항을 알릴 수 있다. ArgoCD에서는 Tri…]]></description><link>https://hoon9901.github.io/argocd-notification/</link><guid isPermaLink="false">https://hoon9901.github.io/argocd-notification/</guid><pubDate>Wed, 24 May 2023 12:09:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 530px; &quot;
     &gt;
@@ -2237,41 +2540,4 @@ Prometheus는 모니터링 시스템으로서 안정성을 위해 설계되었�
 &lt;p&gt;해당 문제를 해결하기 위해 Redis에 인증번호를 저장하고 유효 시간동안 인증 처리를 해보자.&lt;/p&gt;
 &lt;p&gt;다음 글에서 계속..&lt;/p&gt;
 &lt;h1 id=&quot;레퍼런스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4&quot; aria-label=&quot;레퍼런스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;레퍼런스&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://dev-aiden.com/spring/Spring-%EC%9D%B4%EB%A9%94%EC%9D%BC-%EB%B0%9C%EC%86%A1/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;[Spring] SMTP 서버를 이용한 이메일 발송&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Spring] 빈 객체의 생성과 관리 범위(@Scope 어노테이션)]]></title><description><![CDATA[싱글톤 범위 위 코드에서  객체와  객체는 동일한 객체이다.  스프링 컨테이너는 빈 객체를 한 개만 생성한다. 한 식별자에 대해 한 개의 객체만 존재하는 빈은 싱글톤() 범위()를 갖는다. 별도 설정을 하지 않으면 빈은 싱글톤 범위를 갖는다 프로토타…]]></description><link>https://hoon9901.github.io/bean_scope_annotation/</link><guid isPermaLink="false">https://hoon9901.github.io/bean_scope_annotation/</guid><pubDate>Tue, 16 Aug 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;싱글톤-범위&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8B%B1%EA%B8%80%ED%86%A4-%EB%B2%94%EC%9C%84&quot; aria-label=&quot;싱글톤 범위 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;싱글톤 범위&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt; client1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ctx&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;client&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt; client2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ctx&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;client&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;위 코드에서 &lt;code class=&quot;language-text&quot;&gt;client1&lt;/code&gt; 객체와 &lt;code class=&quot;language-text&quot;&gt;client2&lt;/code&gt; 객체는 동일한 객체이다. &lt;/p&gt;
-&lt;p&gt;스프링 컨테이너는 빈 객체를 한 개만 생성한다. 한 식별자에 대해 한 개의 객체만 존재하는 빈은 싱글톤(&lt;code class=&quot;language-text&quot;&gt;Singleton&lt;/code&gt;) 범위(&lt;code class=&quot;language-text&quot;&gt;Scope&lt;/code&gt;)를 갖는다. 별도 설정을 하지 않으면 빈은 싱글톤 범위를 갖는다&lt;/p&gt;
-&lt;h2 id=&quot;프로토타입-범위&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EB%B2%94%EC%9C%84&quot; aria-label=&quot;프로토타입 범위 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로토타입 범위&lt;/h2&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// client 빈의 범위가 프로토타입&lt;/span&gt;
-&lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt; client1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ctx&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;client&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt; client2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ctx&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;client&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;CLient&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;위 코드에 서 &lt;code class=&quot;language-text&quot;&gt;client&lt;/code&gt; 빈의 범위가 프로토타입이면 &lt;code class=&quot;language-text&quot;&gt;client1&lt;/code&gt; 과 &lt;code class=&quot;language-text&quot;&gt;client2&lt;/code&gt; 는 서로 다른 객체이다.&lt;/p&gt;
-&lt;p&gt;사용 빈도가 낮지만 빈의 범위를 프로토타입으로 지정할 수 있다. 프로토타입으로 지정하면 빈 객체를 구할 때 마다 매번 새로운 객체를 생성한다.&lt;/p&gt;
-&lt;h3 id=&quot;포로토타입-범위의-라이프사이클&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8F%AC%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EB%B2%94%EC%9C%84%EC%9D%98-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4&quot; aria-label=&quot;포로토타입 범위의 라이프사이클 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;포로토타입 범위의 라이프사이클&lt;/h3&gt;
-&lt;p&gt;프로토타입 범위를 갖는 빈은 완전한 라이프사이클을 따르지 않는다. 스프링 컨테이너는 프로토타입의 빈 객체를 생성하고 프로퍼티를 설정하고 초기화 작업까지는 수행하지만, 컨테이너를 종료한다고 해서 반드시 생성한 프로토타입 빈 객체의 소멸 메서드를 실행하지는 않는다. &lt;strong&gt;따라서 프로토타입 범위의 빈을 사용할 때는 빈 객체의 소멸 처리를 직접해야한다&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;scope-어노테이션&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#scope-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98&quot; aria-label=&quot;scope 어노테이션 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;@Scope 어노테이션&lt;/h2&gt;
-&lt;h3 id=&quot;프로토타입-범위-지정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EB%B2%94%EC%9C%84-%EC%A7%80%EC%A0%95&quot; aria-label=&quot;프로토타입 범위 지정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;프로토타입 범위 지정&lt;/h3&gt;
-&lt;p&gt;특정 빈을 프로토타입 범위로 지정하려면 다음과 같이 사용하면 된다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Scope&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;prototype&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt; client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-	client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setHost&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; client&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;@Bean 어노테이션과 함께 @Scope 어노테이션을 “prototype” 값을 갖도록 한다&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;싱글톤-범위-지정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8B%B1%EA%B8%80%ED%86%A4-%EB%B2%94%EC%9C%84-%EC%A7%80%EC%A0%95&quot; aria-label=&quot;싱글톤 범위 지정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;싱글톤 범위 지정&lt;/h3&gt;
-&lt;p&gt;싱글톤 범위를 명시적으로 지정하고 싶다면 다음과 같이 사용하면 된다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;initMethod &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;connect&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; destroyMethod &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;close&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token annotation punctuation&quot;&gt;@Scope&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;singleton&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Client2&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;client2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;token class-name&quot;&gt;Client2&lt;/span&gt; client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Client2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-	client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setHost&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; client&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;@Bean 어노테이션과 함께 @Scope 어노테이션을 “singleton” 값을 갖도록 한다&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;&lt;a href=&quot;https://dev-aiden.com/spring/Spring-%EC%9D%B4%EB%A9%94%EC%9D%BC-%EB%B0%9C%EC%86%A1/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;[Spring] SMTP 서버를 이용한 이메일 발송&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
