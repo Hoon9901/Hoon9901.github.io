@@ -1,5 +1,5 @@
 ---
-title: '[AWS] CodeDeploy, Github action, docker-compose를 이용한 CI/CD 구축'
+title: '[AWS] CodeDeploy, Github action, docker-compose를 이용한 CI/CD 구축 그리고 시행착오'
 date: 2023-07-28 19:17:00
 tags:
   - AWS
@@ -592,14 +592,7 @@ AcessDeniedException 에러가 발생했는데 이는 IAM Role에 CodeDeploy에 
 2023-07-25T00:00:00 ERROR [codedeploy-agent(8749)]: InstanceAgent::Plugins::CodeDeployPlugin::CommandPoller: Cannot reach InstanceService: Aws::CodeDeployCommand::Errors::UnrecognizedClientException - The security token included in the request is invalid.
 ```
 
-IAM 권한에 대한 문제는 없었는데 지속적으로 Agent에서 에러가 발생했습니다 Agent 로그 상에서도 
-```Aws::CodeDeployCommand::Errors::UnrecognizedClientException - The security token included in the request is invalid.```
-Secret token이 유효하지 않다고 메시지가 보였습니다.
-
-IAM 액세스 키나 EC2 IAM 역활도 여러 권한을 추가하고 Agent를 재설치하거나 EC2를 재시작해도 해결이 되지 않아 CodeDeploy Agent aws\_wire_log를 활성화하여 해당 로그를 확인해봤습니다.
-
 - aws codedeploy agent aws_wire log
-
 ```bash
 opening connection to codedeploy-commands.ap-northeast-2.amazonaws.com:443...
 opened
@@ -620,6 +613,9 @@ read 107 bytes
 Conn keep-alive
 I, [2023-07-26T07:15:57.958765 #25534]  INFO -- : [Aws::CodeDeployCommand::Client 400 0.017194 0 retries] poll_host_command(host_identifier:"arn:aws:ec2:ap-northeast-2:539239817397:instance/i-0e9fe7b11be081a65") Aws::CodeDeployCommand::Errors::UnrecognizedClientException The security token included in the request is invalid.
 ```
+
+```Aws::CodeDeployCommand::Errors::UnrecognizedClientException - The security token included in the request is invalid.```
+Agent 로그(agent.log, agent_aws_wire.log)에서도 해당 메시지가 보였습니다. 
 
 AWS CodeDeploy Server로 Agent가 주기적으로 요청을 보내는데 이때, 요청에 대한 응답이 400 Bad Request로 오고 `The security token included in the request is invalid` 라는 메시지가 포함되어 있었습니다.
 
