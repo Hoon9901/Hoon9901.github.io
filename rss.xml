@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 28 Jul 2023 10:19:56 GMT</lastBuildDate><item><title><![CDATA[[AWS] CodeDeploy, Github action, docker-compose를 이용한 CI/CD 구축]]></title><description><![CDATA[Artscope 서비스를 AWS에 배포하기 위해 CI/CD를 구축하였는데 구축 과정과 시행착오를 기록했습니다. 기존에는 개발 환경에서 깃허브로 커밋을 하게 되면 (develop 브랜치) GitAction을 통해서 Build와 Test과정을 진행하게 …]]></description><link>https://hoon9901.github.io/aws-codedeploy/</link><guid isPermaLink="false">https://hoon9901.github.io/aws-codedeploy/</guid><pubDate>Fri, 28 Jul 2023 19:17:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;http://artscope.kr&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Artscope&lt;/a&gt; 서비스를 AWS에 배포하기 위해 CI/CD를 구축하였는데 구축 과정과 시행착오를 기록했습니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 28 Jul 2023 10:29:33 GMT</lastBuildDate><item><title><![CDATA[[AWS] CodeDeploy, Github action, docker-compose를 이용한 CI/CD 구축 그리고 시행착오]]></title><description><![CDATA[Artscope 서비스를 AWS에 배포하기 위해 CI/CD를 구축하였는데 구축 과정과 시행착오를 기록했습니다. 기존에는 개발 환경에서 깃허브로 커밋을 하게 되면 (develop 브랜치) GitAction을 통해서 Build와 Test과정을 진행하게 …]]></description><link>https://hoon9901.github.io/aws-codedeploy/</link><guid isPermaLink="false">https://hoon9901.github.io/aws-codedeploy/</guid><pubDate>Fri, 28 Jul 2023 19:17:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;http://artscope.kr&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Artscope&lt;/a&gt; 서비스를 AWS에 배포하기 위해 CI/CD를 구축하였는데 구축 과정과 시행착오를 기록했습니다.&lt;/p&gt;
 &lt;p&gt;기존에는 개발 환경에서 깃허브로 커밋을 하게 되면 (develop 브랜치) GitAction을 통해서 Build와 Test과정을 진행하게 되는데
 Docker 이미지를 저장소에 업로드 하게 되고 온프레미스로 운영중인 개발 서버의 ArgoCD가 해당 이미지를 감지하여 Kubernetes 오브젝트로 배포를 (CD) 진행하게 됩니다. 개발 환경까지는 배포가 자동으로 진행되지만 배포 환경 (main 브랜치)에서는 업로드된 도커 이미지를 직접 가져와 AWS EC2로 배포해야하는 번거로움이 있었습니다.&lt;/p&gt;
 &lt;p&gt;그래서 이번에 AWS CodeDeploy를 이용해 배포 환경까지 자동으로 배포를 진행하고자 합니다.
@@ -652,14 +652,8 @@ networks:
 /opt/codedeploy-agent/bin/&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;/lib/codedeploy-agent.rb:90:in `&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;main&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&apos;
 &lt;span class=&quot;token number&quot;&gt;2023&lt;/span&gt;-07-25T00:00:00 ERROR &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;codedeploy-agent&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8749&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;: InstanceAgent::Plugins::CodeDeployPlugin::CommandPoller: Cannot reach InstanceService: Aws::CodeDeployCommand::Errors::UnrecognizedClientException - The security token included &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; the request is invalid.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;IAM 권한에 대한 문제는 없었는데 지속적으로 Agent에서 에러가 발생했습니다 Agent 로그 상에서도
-&lt;code class=&quot;language-text&quot;&gt;Aws::CodeDeployCommand::Errors::UnrecognizedClientException - The security token included in the request is invalid.&lt;/code&gt;
-Secret token이 유효하지 않다고 메시지가 보였습니다.&lt;/p&gt;
-&lt;p&gt;IAM 액세스 키나 EC2 IAM 역활도 여러 권한을 추가하고 Agent를 재설치하거나 EC2를 재시작해도 해결이 되지 않아 CodeDeploy Agent aws_wire_log를 활성화하여 해당 로그를 확인해봤습니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;aws codedeploy agent aws_wire log&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;
+&lt;p&gt;aws codedeploy agent aws_wire log&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;opening connection to codedeploy-commands.ap-northeast-2.amazonaws.com:443&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
 opened
 starting SSL &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; codedeploy-commands.ap-northeast-2.amazonaws.com:443&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
@@ -678,6 +672,10 @@ reading &lt;span class=&quot;token number&quot;&gt;107&lt;/span&gt; bytes&lt;spa
 &lt;span class=&quot;token builtin class-name&quot;&gt;read&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;107&lt;/span&gt; bytes
 Conn keep-alive
 I, &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2023&lt;/span&gt;-07-26T07:15:57.958765 &lt;span class=&quot;token comment&quot;&gt;#25534]  INFO -- : [Aws::CodeDeployCommand::Client 400 0.017194 0 retries] poll_host_command(host_identifier:&quot;arn:aws:ec2:ap-northeast-2:539239817397:instance/i-0e9fe7b11be081a65&quot;) Aws::CodeDeployCommand::Errors::UnrecognizedClientException The security token included in the request is invalid.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Aws::CodeDeployCommand::Errors::UnrecognizedClientException - The security token included in the request is invalid.&lt;/code&gt;
+Agent 로그(agent.log, agent&lt;em&gt;aws&lt;/em&gt;wire.log)에서도 해당 메시지가 보였습니다. &lt;/p&gt;
 &lt;p&gt;AWS CodeDeploy Server로 Agent가 주기적으로 요청을 보내는데 이때, 요청에 대한 응답이 400 Bad Request로 오고 &lt;code class=&quot;language-text&quot;&gt;The security token included in the request is invalid&lt;/code&gt; 라는 메시지가 포함되어 있었습니다.&lt;/p&gt;
 &lt;p&gt;이를 통해 Agent가 AWS CodeDeploy Server로 요청을 보낼 때, 요청에 대한 인증이 실패하고 있음을 알 수 있었습니다.&lt;/p&gt;
 &lt;p&gt;저는 처음에 IAM 사용자나 EC2 역활이 제대로 aws configure에 등록되지 않았나 싶어서 액세스 키를 새롭게 발급해서 등록하거나, EC2 역활을 새롭게 생성해서 다시 등록해봐도 해결이 되지 않았습니다 그리고 Agent도 여러번 삭제했지만 해결이 되지 않았습니다.&lt;/p&gt;
