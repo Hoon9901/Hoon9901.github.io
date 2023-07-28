@@ -61,7 +61,7 @@ keywords :
         String storeFileName = UUID.randomUUID() + "." + ext;
         String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-        try {
+        try 
             String key = savePath + now + "/" + storeFileName;
             File temp = new File(savePath + now + "/");
 
