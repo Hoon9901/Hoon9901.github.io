@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 06 Dec 2023 08:13:20 GMT</lastBuildDate><item><title><![CDATA[23년도 하반기 회고 - 우물 안 개구리]]></title><description><![CDATA[벌써 12월 상반기 회고를 작성한게 얼마안된거 같은데 이제 하반기 회고를 작성할 시기가 되었다.
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://hoon9901.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 06 Dec 2023 08:21:06 GMT</lastBuildDate><item><title><![CDATA[23년도 하반기 회고 - 우물 안 개구리]]></title><description><![CDATA[벌써 12월 상반기 회고를 작성한게 얼마안된거 같은데 이제 하반기 회고를 작성할 시기가 되었다.
 이전 회고와 달리 미루지 않고 글을 올리려고 마음을 먹어서.. 올 한해 내가 무엇을 얻고 깨닫게 되었는지 얘기해볼려고 한다. 본격 취준생 여름방학 8월달…]]></description><link>https://hoon9901.github.io/23-second-half/</link><guid isPermaLink="false">https://hoon9901.github.io/23-second-half/</guid><pubDate>Wed, 06 Dec 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;벌써 12월 상반기 회고를 작성한게 얼마안된거 같은데 이제 하반기 회고를 작성할 시기가 되었다.
 이전 회고와 달리 미루지 않고 글을 올리려고 마음을 먹어서.. 올 한해 내가 무엇을 얻고 깨닫게 되었는지 얘기해볼려고 한다.&lt;/p&gt;
 &lt;h2 id=&quot;본격-취준생&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%B3%B8%EA%B2%A9-%EC%B7%A8%EC%A4%80%EC%83%9D&quot; aria-label=&quot;본격 취준생 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;본격 취준생&lt;/h2&gt;
@@ -62,7 +62,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/9da6dd1b2e80f640cfd5506b445a3d74/62da8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.41.17.png&quot;
+    href=&quot;/static/9da6dd1b2e80f640cfd5506b445a3d74/62da8/2.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -75,13 +75,13 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Alt text&quot;
         title=&quot;Alt text&quot;
-        src=&quot;/static/9da6dd1b2e80f640cfd5506b445a3d74/fcda8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.41.17.png&quot;
-        srcset=&quot;/static/9da6dd1b2e80f640cfd5506b445a3d74/12f09/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.41.17.png 148w,
-/static/9da6dd1b2e80f640cfd5506b445a3d74/e4a3f/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.41.17.png 295w,
-/static/9da6dd1b2e80f640cfd5506b445a3d74/fcda8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.41.17.png 590w,
-/static/9da6dd1b2e80f640cfd5506b445a3d74/efc66/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.41.17.png 885w,
-/static/9da6dd1b2e80f640cfd5506b445a3d74/c83ae/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.41.17.png 1180w,
-/static/9da6dd1b2e80f640cfd5506b445a3d74/62da8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.41.17.png 1262w&quot;
+        src=&quot;/static/9da6dd1b2e80f640cfd5506b445a3d74/fcda8/2.png&quot;
+        srcset=&quot;/static/9da6dd1b2e80f640cfd5506b445a3d74/12f09/2.png 148w,
+/static/9da6dd1b2e80f640cfd5506b445a3d74/e4a3f/2.png 295w,
+/static/9da6dd1b2e80f640cfd5506b445a3d74/fcda8/2.png 590w,
+/static/9da6dd1b2e80f640cfd5506b445a3d74/efc66/2.png 885w,
+/static/9da6dd1b2e80f640cfd5506b445a3d74/c83ae/2.png 1180w,
+/static/9da6dd1b2e80f640cfd5506b445a3d74/62da8/2.png 1262w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -101,7 +101,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/88c2bda7852bea3f6899a4db07a387ba/a016c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.46.04.png&quot;
+    href=&quot;/static/88c2bda7852bea3f6899a4db07a387ba/a016c/3.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -114,11 +114,11 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Alt text&quot;
         title=&quot;Alt text&quot;
-        src=&quot;/static/88c2bda7852bea3f6899a4db07a387ba/fcda8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.46.04.png&quot;
-        srcset=&quot;/static/88c2bda7852bea3f6899a4db07a387ba/12f09/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.46.04.png 148w,
-/static/88c2bda7852bea3f6899a4db07a387ba/e4a3f/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.46.04.png 295w,
-/static/88c2bda7852bea3f6899a4db07a387ba/fcda8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.46.04.png 590w,
-/static/88c2bda7852bea3f6899a4db07a387ba/a016c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.46.04.png 762w&quot;
+        src=&quot;/static/88c2bda7852bea3f6899a4db07a387ba/fcda8/3.png&quot;
+        srcset=&quot;/static/88c2bda7852bea3f6899a4db07a387ba/12f09/3.png 148w,
+/static/88c2bda7852bea3f6899a4db07a387ba/e4a3f/3.png 295w,
+/static/88c2bda7852bea3f6899a4db07a387ba/fcda8/3.png 590w,
+/static/88c2bda7852bea3f6899a4db07a387ba/a016c/3.png 762w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -133,7 +133,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/98d01554272e7734d4901d1da0e29a83/898f6/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.47.01.png&quot;
+    href=&quot;/static/98d01554272e7734d4901d1da0e29a83/898f6/4.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -146,11 +146,11 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Alt text&quot;
         title=&quot;Alt text&quot;
-        src=&quot;/static/98d01554272e7734d4901d1da0e29a83/fcda8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.47.01.png&quot;
-        srcset=&quot;/static/98d01554272e7734d4901d1da0e29a83/12f09/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.47.01.png 148w,
-/static/98d01554272e7734d4901d1da0e29a83/e4a3f/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.47.01.png 295w,
-/static/98d01554272e7734d4901d1da0e29a83/fcda8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.47.01.png 590w,
-/static/98d01554272e7734d4901d1da0e29a83/898f6/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202023-12-06%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.47.01.png 798w&quot;
+        src=&quot;/static/98d01554272e7734d4901d1da0e29a83/fcda8/4.png&quot;
+        srcset=&quot;/static/98d01554272e7734d4901d1da0e29a83/12f09/4.png 148w,
+/static/98d01554272e7734d4901d1da0e29a83/e4a3f/4.png 295w,
+/static/98d01554272e7734d4901d1da0e29a83/fcda8/4.png 590w,
+/static/98d01554272e7734d4901d1da0e29a83/898f6/4.png 798w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
