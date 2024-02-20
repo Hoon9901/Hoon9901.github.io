@@ -4,7 +4,7 @@ module.exports = {
   description: `Hoon's Backend Dev Blog`,          // (* Required)
   author: `Hoon`,                         // (* Required)
   language: 'ko-KR',                        // (* Required) html lang, ex. 'en' | 'en-US' | 'ko' | 'ko-KR' | ...
-  siteUrl: 'https://hoon9901.github.io',                      // (* Required)
+  siteUrl: 'https://seonghoon.xyz',                      // (* Required)
     // ex.'https://junhobaik.github.io'
     // ex.'https://junhobaik.github.io/' << X, Do not enter "/" at the end.
 
@@ -19,7 +19,7 @@ module.exports = {
   company: '',
   location: 'Korea',
   email: 'shonn.dev@gmail.com',
-  website: 'https://hoon9901.github.io',           // ex.'https://junhobaik.github.io'
+  website: 'https://seonghoon.xyz',           // ex.'https://junhobaik.github.io'
   linkedin: '',                                                          // ex.'https://www.linkedin.com/in/junho-baik-16073a19ab'
   facebook: '',                                                          // ex.'https://www.facebook.com/zuck' or 'https://www.facebook.com/profile.php?id=000000000000000'
   instagram: '',                                                         // ex.'https://www.instagram.com/junhobaik'
