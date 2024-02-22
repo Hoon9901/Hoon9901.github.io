@@ -217,7 +217,7 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
     // ...
 
 
-    // 해당 메소드를 통해 includeFilters에 등록된 어노테이션을 기반으로 클래스를 찾는다.
+    // 해당 메소드를 통해 includeFilters에 등록된 어노테이션을 기반으로 클래스가 컴포넌트 인지 판별한다
 	protected boolean isCandidateComponent(MetadataReader metadataReader) throws IOException {
 		for (TypeFilter tf : this.excludeFilters) {
 			if (tf.match(metadataReader, getMetadataReaderFactory())) {
