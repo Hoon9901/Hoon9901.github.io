@@ -245,5 +245,5 @@ includeFilters는 List<TypeFilter> 타입으로 기본적으로 `@Component`, `@
 Java 표준 스펙인 CDI를 이용해 여러 Java EE 컴포넌트간에 통합적으로 사용할 수 있는 컨텍스트와 의존성 주입을 지원하는 방법을 알 수 있다.
 
 해당 방법을 꼭 알고 사용할 필요는 없지만 Java 진영에서 예전부터 이러한 기술을 표준 스펙으로 제공하고 있었음을 알 수 있다.
-따라서 Spring이 아닌 Java 진영의 여러 IoC 컨테이너를 사용할 때 해당 기술을 사용할 수 있음을 알 수 있다.
+따라서 Spring Framework가 아닌 Java 진영의 여러 IoC 컨테이너를 사용할 때 해당 기술을 사용할 수 있다.
 
