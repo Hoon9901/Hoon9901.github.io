@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url> <loc>https://hoon9901.github.io/23-second-half/</loc> <lastmod>2023-12-06</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/aws-codedeploy/</loc> <lastmod>2023-07-28</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/23-first-half/</loc> <lastmod>2023-07-18</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/argocd-notification/</loc> <lastmod>2023-05-24</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/image-upload-view/</loc> <lastmod>2023-05-02</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/aws-s3-image-resize/</loc> <lastmod>2023-04-12</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/aws-s3-cloudfront/</loc> <lastmod>2023-04-05</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/wakatime-is-dead/</loc> <lastmod>2023-03-30</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/cert-manager-begin/</loc> <lastmod>2023-03-14</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/what-is-nestjs/</loc> <lastmod>2023-02-10</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/what-is-prometheus/</loc> <lastmod>2023-02-09</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/springboot-mail-auth-smtp-gmail/</loc> <lastmod>2022-10-08</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/bean_scope_annotation/</loc> <lastmod>2022-08-16</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/bean_custom_method/</loc> <lastmod>2022-07-22</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/spring-bean-init-and-disposable/</loc> <lastmod>2022-07-14</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/react-tts/</loc> <lastmod>2022-07-13</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/filedetect-springfileserver/</loc> <lastmod>2022-07-06</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/spring-how-to-h2-jpa-setting/</loc> <lastmod>2022-07-05</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/spring-bean-lifecycle/</loc> <lastmod>2022-06-28</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/component-scan-conflict/</loc> <lastmod>2022-06-27</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/component_scan/</loc> <lastmod>2022-06-24</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/autowired_and_manual_injection/</loc> <lastmod>2022-06-23</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/spring_autowired/</loc> <lastmod>2022-06-23</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/injection_object_is_bean/</loc> <lastmod>2022-03-21</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/spring-cloud-config/</loc> <lastmod>2022-03-07</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/springboot-disord-webhook/</loc> <lastmod>2022-02-19</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/spring-jpa-N+1-problem/</loc> <lastmod>2022-01-28</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/springboot-jwt-tutorial5/</loc> <lastmod>2022-01-14</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/springboot-jwt-tutorial4/</loc> <lastmod>2022-01-13</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/springboot-jwt-tutorial3/</loc> <lastmod>2022-01-12</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/json-web-token/</loc> <lastmod>2022-01-10</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/springboot-jwt-tutorial2/</loc> <lastmod>2022-01-08</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/springboot-jwt-tutorial1/</loc> <lastmod>2022-01-07</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/asdf-java/</loc> <lastmod>2022-01-05</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/spring-security-1/</loc> <lastmod>2022-01-04</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/msa-related-term/</loc> <lastmod>2021-09-28</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/gatsby-blog-start/</loc> <lastmod>2021-09-28</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/springboot-application-properties-extern/</loc> <lastmod>2021-09-27</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/search/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://hoon9901.github.io/tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/jakarta-injection-api/</loc> <lastmod>2024-02-22</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/23-second-half/</loc> <lastmod>2023-12-06</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/aws-codedeploy/</loc> <lastmod>2023-07-28</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/23-first-half/</loc> <lastmod>2023-07-18</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/argocd-notification/</loc> <lastmod>2023-05-24</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/image-upload-view/</loc> <lastmod>2023-05-02</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/aws-s3-image-resize/</loc> <lastmod>2023-04-12</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/aws-s3-cloudfront/</loc> <lastmod>2023-04-05</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/wakatime-is-dead/</loc> <lastmod>2023-03-30</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/cert-manager-begin/</loc> <lastmod>2023-03-14</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/what-is-nestjs/</loc> <lastmod>2023-02-10</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/what-is-prometheus/</loc> <lastmod>2023-02-09</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/springboot-mail-auth-smtp-gmail/</loc> <lastmod>2022-10-08</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/bean_scope_annotation/</loc> <lastmod>2022-08-16</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/bean_custom_method/</loc> <lastmod>2022-07-22</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/spring-bean-init-and-disposable/</loc> <lastmod>2022-07-14</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/react-tts/</loc> <lastmod>2022-07-13</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/filedetect-springfileserver/</loc> <lastmod>2022-07-06</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/spring-how-to-h2-jpa-setting/</loc> <lastmod>2022-07-05</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/spring-bean-lifecycle/</loc> <lastmod>2022-06-28</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/component-scan-conflict/</loc> <lastmod>2022-06-27</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/component_scan/</loc> <lastmod>2022-06-24</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/autowired_and_manual_injection/</loc> <lastmod>2022-06-23</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/spring_autowired/</loc> <lastmod>2022-06-23</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/injection_object_is_bean/</loc> <lastmod>2022-03-21</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/spring-cloud-config/</loc> <lastmod>2022-03-07</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/springboot-disord-webhook/</loc> <lastmod>2022-02-19</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/spring-jpa-N+1-problem/</loc> <lastmod>2022-01-28</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/springboot-jwt-tutorial5/</loc> <lastmod>2022-01-14</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/springboot-jwt-tutorial4/</loc> <lastmod>2022-01-13</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/springboot-jwt-tutorial3/</loc> <lastmod>2022-01-12</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/json-web-token/</loc> <lastmod>2022-01-10</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/springboot-jwt-tutorial2/</loc> <lastmod>2022-01-08</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/springboot-jwt-tutorial1/</loc> <lastmod>2022-01-07</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/asdf-java/</loc> <lastmod>2022-01-05</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/spring-security-1/</loc> <lastmod>2022-01-04</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/msa-related-term/</loc> <lastmod>2021-09-28</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/gatsby-blog-start/</loc> <lastmod>2021-09-28</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/springboot-application-properties-extern/</loc> <lastmod>2021-09-27</lastmod> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/search/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://seonghoon.xyz/tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
