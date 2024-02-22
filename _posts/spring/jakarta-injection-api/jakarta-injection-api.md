@@ -235,7 +235,8 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 
 ```
 
-isCandidateComponent() 메소드를 통해 includeFilters에 등록된 어노테이션을 기반으로 클래스를 찾는다.
+isCandidateComponent() 메소드를 통해 includeFilters에 등록된 어노테이션을 이용하여 metadataReader (패키지에 있는 클래스 정보) 와 filter를 하나씩 match 하면서 컴포넌트 후보 판별을 수행한다, 즉 스캔된 클래스가 Component 후보 인지 판별하게 된다.
+
 includeFilters는 List<TypeFilter> 타입으로 기본적으로 `@Component`, `@ManagedBean`, `@Named` 어노테이션을 필터로 등록되어 있다.
 
 즉 `@Named` 어노테이션이 스프링 컨테이너에 Bean으로 등록되는 이유는 `ClassPathBeanDefinitionScanner` 클래스 내부에서 `ClassPathScanningCandidateComponentProvider` 클래스를 통해 `@Named` 어노테이션이 등록된 클래스를 찾아 Bean으로 등록하기 때문이다.
