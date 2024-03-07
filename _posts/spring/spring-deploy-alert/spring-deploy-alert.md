@@ -157,8 +157,7 @@ json 형식의 메시지를 만들고 프로필을 담아 Webhook을 전송하�
 public class WebApplication {  
   
     public static void main(String[] args) {  
-        ConfigurableApplicationContext context = SpringApplication.run(WebApplication.class, args);  
-        }  
+        SpringApplication.run(WebApplication.class, args);    
     }
   
     @Bean  
