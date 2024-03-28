@@ -1,4 +1,187 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://seonghoon.xyz</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 07 Mar 2024 11:07:06 GMT</lastBuildDate><item><title><![CDATA[[Spring] 서버가 정상적으로 배포되면 알림을 보낼 수 있는 서비스 구현하기]]></title><description><![CDATA[매번 개발 서버나 프로덕션 서버에 배포 한 후 따로 팀원들에게 "서버 방금 올렸습니다~" 라고 전하는게 귀찮을 수 있다. 
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://seonghoon.xyz</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 28 Mar 2024 08:57:56 GMT</lastBuildDate><item><title><![CDATA[Hibernate 6.4 부터 SoftDelete를 공식적으로 지원한다]]></title><description><![CDATA[기존에는 SoftDelete를 구현할려면 @Where 와 @SQLDelete 를 사용했어야했다. 는 Repository의  메서드를 호출했을 때, 대신 호출되는 SQL을 지정해주는 어노테이션인데 이를 통해 UPDATE 방식으로 삭제 처리를 하고 를 …]]></description><link>https://seonghoon.xyz/jpa-softdelete-annotation/</link><guid isPermaLink="false">https://seonghoon.xyz/jpa-softdelete-annotation/</guid><pubDate>Thu, 28 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;기존에는 SoftDelete를 구현할려면 @Where 와 @SQLDelete 를 사용했어야했다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Where&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;clause &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;deleted = false&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@SQLDelete&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sql &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;UPDATE member SET deleted = true WHERE id = ?&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@GeneratedValue&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;boolean&lt;/span&gt; deleted&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@SQLDelete&lt;/code&gt;는 Repository의 &lt;code class=&quot;language-text&quot;&gt;delete()&lt;/code&gt; 메서드를 호출했을 때, 대신 호출되는 SQL을 지정해주는 어노테이션인데 이를 통해 UPDATE 방식으로 삭제 처리를 하고 &lt;code class=&quot;language-text&quot;&gt;@Where&lt;/code&gt;를 통해 삭제되지 않은 데이터만 조회할 수 있다.&lt;/p&gt;
+&lt;p&gt;이렇게 해서 SoftDelete를 구현할 수 있었지만, Hibernate 6.4 버전부터는 JPA에서 공식적으로 이를 SoftDelete를 지원하도록 하는 &lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt; 어노테이션을 제공한다.&lt;/p&gt;
+&lt;h2 id=&quot;1-softdelete&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-softdelete&quot; aria-label=&quot;1 softdelete permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. @SoftDelete&lt;/h2&gt;
+&lt;p&gt;Spring Data JPA 경우 3.2.1 이상, Hibernate 6.4 이상부터 지원한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token import&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;hibernate&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;annotations&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;SoftDelete&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@SoftDelete&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;columnName &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;deleted&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@GeneratedValue&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt; 어노테이션을 사용하면 JPA가 자동으로 bool 타입의 &lt;code class=&quot;language-text&quot;&gt;deleted&lt;/code&gt; 컬럼을 추가하고 delete() 메소드 호출 시 &lt;code class=&quot;language-text&quot;&gt;deleted&lt;/code&gt; 컬럼을 true로 변경해주는 쿼리를 자동으로 생성해준다.
+&lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt; 어노테이션을 사용하면 &lt;code class=&quot;language-text&quot;&gt;@Where&lt;/code&gt; 와 &lt;code class=&quot;language-text&quot;&gt;@SQLDelete&lt;/code&gt; 어노테이션을 사용하지 않아도 되기 때문에 코드가 간결해지고 유지보수하기 좋게 된다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt;는 다음 3가지 주요 기능을 제공한다&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;strategy&lt;/code&gt; : 삭제 방식을 지정할 수 있다. (기본값은 &lt;code class=&quot;language-text&quot;&gt;SoftDeleteType.DELETED&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;columnName&lt;/code&gt; : 삭제 컬럼의 이름을 지정할 수 있다. (기본값은 &lt;code class=&quot;language-text&quot;&gt;deleted&lt;/code&gt; 컬럼명)&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;converter&lt;/code&gt; : 삭제 컬럼의 데이터 타입을 지정할 수 있다. (기본값은 Bool 타입의 &lt;code class=&quot;language-text&quot;&gt;TrueFalseConverter&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;11-softdelete-컬럼-이름-변경하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-softdelete-%EC%BB%AC%EB%9F%BC-%EC%9D%B4%EB%A6%84-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0&quot; aria-label=&quot;11 softdelete 컬럼 이름 변경하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1 @SoftDelete 컬럼 이름 변경하기&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token import&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;hibernate&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;annotations&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;SoftDelete&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@SoftDelete&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;columnName &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;is_deleted&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@GeneratedValue&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;만약에 &lt;code class=&quot;language-text&quot;&gt;deleted&lt;/code&gt; 컬럼의 이름을 변경하고 싶다면 &lt;code class=&quot;language-text&quot;&gt;columnName&lt;/code&gt; 속성을 사용하면 된다.&lt;/p&gt;
+&lt;h3 id=&quot;12-softdelete-삭제-방식-변경하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-softdelete-%EC%82%AD%EC%A0%9C-%EB%B0%A9%EC%8B%9D-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0&quot; aria-label=&quot;12 softdelete 삭제 방식 변경하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2 @SoftDelete 삭제 방식 변경하기&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt; 는 삭제 방식도 변경할 수 있다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token import&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;hibernate&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;annotations&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;SoftDelete&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token import&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;hibernate&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;annotations&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;SoftDeleteType&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@SoftDelete&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;strategy &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SoftDeleteType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;ACTIVE&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@GeneratedValue&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;SoftDeleteType.ACTIVE&lt;/code&gt; 는 &lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;이면 삭제되지 않는 것 즉 활성화된 것을 의미한다.
+&lt;code class=&quot;language-text&quot;&gt;SoftDeleteType.DELETED&lt;/code&gt;는 기본 전략인데 &lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;이면 삭제된 것을 의미하고 &lt;code class=&quot;language-text&quot;&gt;false&lt;/code&gt;이면 삭제되지 않은 것을 의미한다.&lt;/p&gt;
+&lt;h3 id=&quot;13-softdelete-converter를-이용해-bool이-아닌-다른-데이터-타입으로-삭제-표시하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#13-softdelete-converter%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-bool%EC%9D%B4-%EC%95%84%EB%8B%8C-%EB%8B%A4%EB%A5%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85%EC%9C%BC%EB%A1%9C-%EC%82%AD%EC%A0%9C-%ED%91%9C%EC%8B%9C%ED%95%98%EA%B8%B0&quot; aria-label=&quot;13 softdelete converter를 이용해 bool이 아닌 다른 데이터 타입으로 삭제 표시하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.3 @SoftDelete Converter를 이용해 BOOL이 아닌 다른 데이터 타입으로 삭제 표시하기&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt;는 &lt;code class=&quot;language-text&quot;&gt;Converter&lt;/code&gt;를 통해 &lt;code class=&quot;language-text&quot;&gt;Bool&lt;/code&gt; 타입이 아닌 다른 데이터 타입으로 삭제 표시 할 수 있다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token import&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;hibernate&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;annotations&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;SoftDelete&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token import&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;hibernate&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;annotations&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;SoftDeleteType&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token import&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;hibernate&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;type&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;YesNoConverter&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@SoftDelete&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;strategy &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SoftDeleteType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;ACTIVE&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; converter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;YesNoConverter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@GeneratedValue&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;YesNoConverter&lt;/code&gt;를 사용하면 &lt;code class=&quot;language-text&quot;&gt;Y&lt;/code&gt;와 &lt;code class=&quot;language-text&quot;&gt;N&lt;/code&gt; 문자로 삭제 표시를 할 수 있다.&lt;/p&gt;
+&lt;p&gt;그리고 여러 Convert를 사용해 다르게 삭제 표시를 할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;NumericBooleanConverter&lt;/code&gt; : &lt;code class=&quot;language-text&quot;&gt;1&lt;/code&gt;과 &lt;code class=&quot;language-text&quot;&gt;0&lt;/code&gt;으로 삭제 표시를 할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;TrueFalseConverter&lt;/code&gt; : &lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;와 &lt;code class=&quot;language-text&quot;&gt;false&lt;/code&gt;로 삭제 표시를 할 수 있다.&lt;/p&gt;
+&lt;h2 id=&quot;2-기존-where-와-sqldelete-방식에서-softdelete-방식으로-변경하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-%EA%B8%B0%EC%A1%B4-where-%EC%99%80-sqldelete-%EB%B0%A9%EC%8B%9D%EC%97%90%EC%84%9C-softdelete-%EB%B0%A9%EC%8B%9D%EC%9C%BC%EB%A1%9C-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0&quot; aria-label=&quot;2 기존 where 와 sqldelete 방식에서 softdelete 방식으로 변경하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. 기존 @Where 와 @SQLDelete 방식에서 @SoftDelete 방식으로 변경하기&lt;/h2&gt;
+&lt;p&gt;기존 &lt;code class=&quot;language-text&quot;&gt;@Where&lt;/code&gt; 와 &lt;code class=&quot;language-text&quot;&gt;@SQLDelete&lt;/code&gt; 방식에서 &lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt; 방식으로 변경하고 싶다면 &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@SoftDelete&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 추가&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// @Where(clause = &quot;deleted = false&quot;) // 제거&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// @SQLDelete(sql = &quot;UPDATE member SET deleted = true WHERE id = ?&quot;) // 제거&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@GeneratedValue&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// private boolean deleted; // @SoftDelete 어노테이션을 사용하면 deleted 컬럼을 추가하지 않아도 된다.&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt; 어노테이션을 추가하고 &lt;code class=&quot;language-text&quot;&gt;@Where&lt;/code&gt; 와 &lt;code class=&quot;language-text&quot;&gt;@SQLDelete&lt;/code&gt; 어노테이션을 제거하면 간단하게 된다.&lt;/p&gt;
+&lt;h2 id=&quot;3-manytoone-관계에서-softdelete-사용하기-위해선&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-manytoone-%EA%B4%80%EA%B3%84%EC%97%90%EC%84%9C-softdelete-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%B4%EC%84%A0&quot; aria-label=&quot;3 manytoone 관계에서 softdelete 사용하기 위해선 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. ManyToOne 관계에서 SoftDelete 사용하기 위해선&lt;/h2&gt;
+&lt;p&gt;ManyToOne 관계에서 &lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt;를 사용하려면 즉시 전략으로 연관 관계를 조회해야한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@SoftDelete&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Post&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@GeneratedValue&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; content&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@ManyToOne&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;fetch &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;FetchType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;EAGER&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; member&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 즉시 로딩 (SoftDelete)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;만약에 지연 로딩 전략을 사용하면 &lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt;를 사용할 수 없다. 컴파일 시 다음과 같은 &lt;code class=&quot;language-text&quot;&gt;UnsupportedMappingException&lt;/code&gt; 예외가 발생한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;UnsupportedMappingException: To-one attribute cannot be mapped as LAZY as its associated entity is defined with @SoftDelete&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;일반적으로 @ManyToOne에서 가리키는 엔티티(One쪽)가 삭제되면 지연 로딩 시 &lt;code class=&quot;language-text&quot;&gt;EntityNotFoundException&lt;/code&gt;이 발생하는데
+&lt;code class=&quot;language-text&quot;&gt;FetchType.EAGER&lt;/code&gt;로 변경하면 초기화 시 엔티티를 가져오고 프록시가 호출되지 않으므로 작동하게 된다.
+그리고 해당 엔티티를 사용하게 되면 삭제되었기 때문에 DB에 조회되지 않고 &lt;code class=&quot;language-text&quot;&gt;null&lt;/code&gt;을 반환하게 된다.&lt;/p&gt;
+&lt;p&gt;따라서 &lt;code class=&quot;language-text&quot;&gt;@ManyToOne&lt;/code&gt; 관계에서 &lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt;를 사용하려면 &lt;strong&gt;즉시 로딩 전략&lt;/strong&gt;을 사용해야한다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/26ba261ab2c91811addf0a1c9e07e5c4/5caea/image.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 101.35135135135135%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAACIklEQVQ4y52UW3KcMBRE2YxjkAChF0i8Z5hx2eV4/8vpNPLYTipJJcxHF5QQR+deCbJcNFiGK97aKza74OJ6XP2ExUYMcYbuJoimg7QDpO5QFAoF3/lbMqkczssLXqcX9G5G040YphXb+AxjAlTjIaSGTDGQlYUsb/n5/pZspw7zFe16QdNvNOlRW4JchHQTKpoWQmGvJC/2qN/yi+EHsCNQdQt8OyIEmtLuUbFE06PgtWS5yse0YGkiKu3hA8crfYO+wxNwJDCen2DiCYpGmnZtmBiC/Q5oWZ5BwbK/0nBMJ6svSwKF0IjjhrBsiNMFYVgxr1ectmeEeYPpCFQWQvy53Pc0n8nKSqGqNRtfselMWfO+5mpVuspSYZ9T1g3n/TuZ6zxCDHDeQxvD3mloa9J9rdThZNY6xC5yI9i3toUnuGka1DXNq/pwspqNdX6EtTZFa5YvxN3hLhewzmLbtpTdcH8gpbwr2f7ybrYsC6ZpSoMfwHvACWi4Aeu6IsbI3tUoy/JuywR0NFxpmKAhJKD8sNwnHoBn3woaOofT5YJ+mqFou4/lfJjfYOKIYSdyzDx335cRbyf+vnguW/GIIHM4blhx1PBJPmLwHc7OYNE1Ahdo828YigdcxcOn5X8Dd4DQPIOh5xdioXgOa23SRi1cLBf7xCNAWeCB33JlW7Tc5TgMsHFAYz0Wlp4MjwBflcCoG1yswtkorE2FSNCU31fyDxHvbDpC1p5vAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;alt text&quot;
+        title=&quot;alt text&quot;
+        src=&quot;/static/26ba261ab2c91811addf0a1c9e07e5c4/fcda8/image.png&quot;
+        srcset=&quot;/static/26ba261ab2c91811addf0a1c9e07e5c4/12f09/image.png 148w,
+/static/26ba261ab2c91811addf0a1c9e07e5c4/e4a3f/image.png 295w,
+/static/26ba261ab2c91811addf0a1c9e07e5c4/fcda8/image.png 590w,
+/static/26ba261ab2c91811addf0a1c9e07e5c4/efc66/image.png 885w,
+/static/26ba261ab2c91811addf0a1c9e07e5c4/5caea/image.png 996w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+조회 시 JOIN ON 절에 &lt;code class=&quot;language-text&quot;&gt;is_deleted=false&lt;/code&gt; 조건이 추가되어 삭제되지 않은 데이터만 조회되는 모습이다.&lt;/p&gt;
+&lt;p&gt;즉시 전략으로 N+1 문제를 방지할 수 있으나, Many 쪽에서 연관객체 조회 시 별도의 &lt;code class=&quot;language-text&quot;&gt;null&lt;/code&gt; 체크를 해야하고 &lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt;를 적용한 엔티티는 연관 관계 조회 시 성능적으로 잘 고려해서 사용해야한다.&lt;/p&gt;
+&lt;h2 id=&quot;4-flyway를-사용하고-있다면&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-flyway%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B3%A0-%EC%9E%88%EB%8B%A4%EB%A9%B4&quot; aria-label=&quot;4 flyway를 사용하고 있다면 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Flyway를 사용하고 있다면&lt;/h2&gt;
+&lt;p&gt;만약에 Flyway를 사용하고 있어 JPA가 자동으로 DDL(ddl-auto)을 생성하지 않는다면
+Flyway가 자동으로 &lt;code class=&quot;language-text&quot;&gt;deleted&lt;/code&gt; 컬럼을 추가하지 않으므로 &lt;strong&gt;&lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt;를 사용하려면 &lt;code class=&quot;language-text&quot;&gt;deleted&lt;/code&gt; 컬럼을 직접 추가해야한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TABLE&lt;/span&gt; member &lt;span class=&quot;token keyword&quot;&gt;ADD&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;COLUMN&lt;/span&gt; deleted &lt;span class=&quot;token keyword&quot;&gt;BOOLEAN&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;FALSE&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;만약 기존에 &lt;code class=&quot;language-text&quot;&gt;is_deleted&lt;/code&gt; 컬럼으로 SoftDelete를 직접하고 있고 &lt;code class=&quot;language-text&quot;&gt;@SoftDelete&lt;/code&gt;를 적용하게 된다면&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token import&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;org&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;hibernate&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;annotations&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;SoftDelete&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;token annotation punctuation&quot;&gt;@SoftDelete&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;columnName &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;is_deleted&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@GeneratedValue&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Long&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt; name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// private boolean is_deleted; // @SoftDelete 어노테이션을 사용하면 is_deleted 컬럼을 추가하지 않아도 된다.&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;columnName 속성을 사용해 컬럼 이름을 변경하면 지정된 &lt;code class=&quot;language-text&quot;&gt;is_deleted&lt;/code&gt; 컬럼으로 JPA는 삭제 처리를 한다.&lt;/p&gt;
+&lt;h2 id=&quot;레퍼런스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4&quot; aria-label=&quot;레퍼런스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;레퍼런스&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://hibernate.org/orm/releases/6.4/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Hibernate 6.4 Release Note&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.jboss.org/hibernate/orm/6.4/javadocs/org/hibernate/annotations/SoftDelete.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Hibernate 6.4 SoftDelete API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.jboss.org/hibernate/orm/6.4/userguide/html_single/Hibernate_User_Guide.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Hibernate 6.4 UserGuide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.baeldung.com/java-hibernate-softdelete-annotation&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://www.baeldung.com/java-hibernate-softdelete-annotation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[[Spring] 서버가 정상적으로 배포되면 알림을 보낼 수 있는 서비스 구현하기]]></title><description><![CDATA[매번 개발 서버나 프로덕션 서버에 배포 한 후 따로 팀원들에게 "서버 방금 올렸습니다~" 라고 전하는게 귀찮을 수 있다. 
 우아하고 개발자스럽게 불필요한 행위없이 서버가 정상적으로 배포되면 자동으로 디스코드에 알림을 보내는 서비스를 만들어보자. 일단…]]></description><link>https://seonghoon.xyz/spring-deploy-alert/</link><guid isPermaLink="false">https://seonghoon.xyz/spring-deploy-alert/</guid><pubDate>Thu, 07 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 371px; &quot;
@@ -140,8 +323,7 @@ json 형식의 메시지를 만들고 프로필을 담아 Webhook을 전송하�
 &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;WebApplication&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;  
   
     &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; args&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;  
-        &lt;span class=&quot;token class-name&quot;&gt;ConfigurableApplicationContext&lt;/span&gt; context &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SpringApplication&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;WebApplication&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; args&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;  
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;  
+        &lt;span class=&quot;token class-name&quot;&gt;SpringApplication&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;WebApplication&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; args&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;    
     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
   
     &lt;span class=&quot;token annotation punctuation&quot;&gt;@Bean&lt;/span&gt;  
@@ -2858,296 +3040,4 @@ S3 버킷에 대해 &lt;code class=&quot;language-text&quot;&gt;GetObject&lt;/co
 &lt;p&gt;&lt;img src=&quot;https://blog.kakaocdn.net/dn/bNlRAh/btrnBzNjJZb/kf5n4Yw0xlfszmzTfWNPM0/img.png&quot;&gt;
 &lt;img src=&quot;https://blog.kakaocdn.net/dn/cVU1N0/btrnHSebQNc/TfigOAnI0JSSk3dKoB1H4K/img.png&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;레퍼런스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4&quot; aria-label=&quot;레퍼런스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;레퍼런스&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://jw910911.tistory.com/110&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://jw910911.tistory.com/110&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[Wakatime] 와카타임이 갑자기 죽었다. won't send heartbeat due to backoff 오류 해결법]]></title><description><![CDATA[이 문서는 필자가 와카타임 작동이 안되는 문제를 해결하는 과정을 담았습니다.  빠르게 결론부터 보고 싶으시면은 해결법을 봐주세요. 오류 내용  
-이번주에 갑자기 와카타임이 갑자기 측정이 안된것을 확인. 인텔리제이에서도 와카타임이  로 뜨고 작업 시간…]]></description><link>https://seonghoon.xyz/wakatime-is-dead/</link><guid isPermaLink="false">https://seonghoon.xyz/wakatime-is-dead/</guid><pubDate>Thu, 30 Mar 2023 22:10:33 GMT</pubDate><content:encoded>&lt;p&gt;이 문서는 필자가 와카타임 작동이 안되는 문제를 해결하는 과정을 담았습니다. &lt;/p&gt;
-&lt;p&gt;빠르게 결론부터 보고 싶으시면은 해결법을 봐주세요.&lt;/p&gt;
-&lt;h1 id=&quot;오류-내용&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%98%A4%EB%A5%98-%EB%82%B4%EC%9A%A9&quot; aria-label=&quot;오류 내용 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;오류 내용&lt;/h1&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/0617378925629b6891120f777c29245b/0b6f4/0.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 29.72972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABpElEQVQY01WPzU4TYRhGexUmbiRgBgbmfzqdoQWmlAScYptSrYkI1kBp4s+ChTu27rHQSKiRNBKMK3cuQDfGSxDNlCbWYEpoWhZ6BcevhI2Lk7zJ+yTPeSLHJy2OGy2+hT9ptNo0f53RPO0KLmj+vuC084d27y9n5106nS7n/9G7ov/r0RaZyM7eAZuv3vByZ4+t3TrbtTqV2j6V1wdUdvfZqr3l3YeP1L+cUDkKqX4K2e7zuUH16AfVw+9Uxb15GPL+a0gkngoYGrMYMVyG9RiSaiNPZdEyqwzbE9yQFDKFJWZKG1yfecRQusxgIJhbYWDhOQOFDW4GJa5NFymsvyAyHeQYs+MYno/uCpwEdrCIlX+C7QeM6A6F5RLZ/D1kRceMuhi2i6lpqLP3UXKPsU0TSVYprpSJ+HNZZGsczZ1EjU2gC6z0Ikq2jJOavzS+s7TKbWEp6a7I+SInsGKMBkXk/DpG1GNQdVheeyYM0zmUWAIznkQf97ESSQz/FmpynmhyVpR5l4aZuw8YNT1MsaS/xhDF2lQaPbWA5U0iaQ4P157yD0NjD0HZawHnAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/0617378925629b6891120f777c29245b/fcda8/0.png&quot;
-        srcset=&quot;/static/0617378925629b6891120f777c29245b/12f09/0.png 148w,
-/static/0617378925629b6891120f777c29245b/e4a3f/0.png 295w,
-/static/0617378925629b6891120f777c29245b/fcda8/0.png 590w,
-/static/0617378925629b6891120f777c29245b/efc66/0.png 885w,
-/static/0617378925629b6891120f777c29245b/0b6f4/0.png 984w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 344px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/431f5c8df38055a1502c62b5aa178b86/75d93/1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlklEQVQY063KSQ6CMBgF4F5FEgdiFBA1oS3SAVIWSgt6IVd66yeg7ICViy/v/QPxxBP/RBbqhXnvUd7EnvhxiTnryGAVFlgGg/w3f3PQ3TYHAxIGW0zZ73zQ5AytMkjBoWSKXGcQGe9Tq0vbGZRI+346RiCUpxjDWgllKEwJ62pcK4vKOri66bO5P2C77hxu7a37kVrjAznHsaxX3T7WAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/431f5c8df38055a1502c62b5aa178b86/75d93/1.png&quot;
-        srcset=&quot;/static/431f5c8df38055a1502c62b5aa178b86/12f09/1.png 148w,
-/static/431f5c8df38055a1502c62b5aa178b86/e4a3f/1.png 295w,
-/static/431f5c8df38055a1502c62b5aa178b86/75d93/1.png 344w&quot;
-        sizes=&quot;(max-width: 344px) 100vw, 344px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-이번주에 갑자기 와카타임이 갑자기 측정이 안된것을 확인.&lt;/p&gt;
-&lt;p&gt;인텔리제이에서도 와카타임이 &lt;code class=&quot;language-text&quot;&gt;initialized&lt;/code&gt; 로 뜨고 작업 시간 측정이 안되더라
-그래서 플러그인을 재설치했지만 해결하지 못했음.&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/525717b80528d049c616dc392d462975/898f6/2.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 75.67567567567568%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAACUUlEQVQ4y31T227TQBD1/z/wwgNVHxr+gQdAFCIuUlugakEtzcV27Nj1Pb7f7eQws4qjNClYOvLsnp2zZ2Z3pYWuYxVFMC0Lc1mGrCiQVRWKukAQhgijWMBxXET0d30fhmnA8z04rgPbcWARl2QZLq6+Q+Kkqm7Qti02APr1Gl3fC6wpXm82aIir6lrEA183jYiZayjmT9N0SLrtQfVTZHGEJElRliW6rnuCmsSSJNlhWNMTOGbw5hm5lBa2jxvNweTPnbBfVZVYzLsy2HlRFLCoJbZtU+kO4jgW8wyO0zQVOXmeQ1JJ8HphQ53PoFE/OZF3arel/E+QRdgxC/bUhq2gJwTl6QTT2QymaSKkvv5LkBHRIR463AlyyT9VG8psCmvrwPM80bchaRB0XVeIceLg8FjQ8fFL9zCfPCAikpvLC59zOGzGZe4cHpas2SzoYrlQRQ85eRDbF2QxBpe8fyhHPdTI4Q310LVMcdf2nR0KsjsWGzZ99lC4h7eaC5l6aJiPyItSXPQBddMiy6lkmwT9gEpMd2uY43GSZnTBO7odJLgKV0jiAKY2R+AYKBMPbRHRvW+36Oj5lEhCFymhSgP0dcpvCps2R5WFyJMADeV0dQHpeuZh9MnG6VsVJ+9NvHhj4NW5j9G3DGdfUwL9v8R4PXZw+sHCy3c2Tj4GOCN+9HmF0Xibf+5hfB9Dmi193D82mFoNbvUKF3KJyz3w+Ida4s6oBX+lVLhUaH5e0Aur8HtZCe5Gr/FgpJDCMBD2qQ5g0+yVegDmjvjmyXxb5/gLBhJteqlFLo0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/525717b80528d049c616dc392d462975/fcda8/2.png&quot;
-        srcset=&quot;/static/525717b80528d049c616dc392d462975/12f09/2.png 148w,
-/static/525717b80528d049c616dc392d462975/e4a3f/2.png 295w,
-/static/525717b80528d049c616dc392d462975/fcda8/2.png 590w,
-/static/525717b80528d049c616dc392d462975/898f6/2.png 798w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-WakaTime 인텔리제이 플러그인이 위치한 곳을 확인해봄. jar 형식으로 플러그인이 등록되어있는데 클린 삭제하면 될거 같아서 해당 파일을 삭제 후 IDE를 다시 실행하니 플러그인이 삭제됨. 그 후 다시 플러그인을 설치해도 같은 증상.&lt;/p&gt;
-&lt;p&gt;혹시나 API Key 형식이 이번에 &lt;code class=&quot;language-text&quot;&gt;waka_&lt;/code&gt; 접두사가 붙은 형식으로 바뀌었길래 그 문제가 싶어서
-API Key를 다시 넣어주기 위해 Wakatime config 파일이 위치한 &lt;code class=&quot;language-text&quot;&gt;~/.wakatime.cfg&lt;/code&gt;  를 열어보고 API Key를 다시 등록했다.&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 437px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/75e0f3bb7e44012c65beeb83182b0585/5a428/3.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 54.05405405405405%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA8ElEQVQoz63RTUvDQBAG4FmT2Y+oiJfmoN70oEKNbSTRk0orSXNSsRHSnvL/f8PrbKmlB7G25vAwuzAzvMtS27Zomgbvb6+opx/4rGvMZzOURYG7NEWeZcj+IF+iMNRQAUOxgZIz7YUgot3FvRgX/RSD5wn6jwXyJ0l2wLjShGujBG3kewdWIT7cByVJgvFohKos8VJVmAxvMD8OccuEB0vIze/upWcoC6dHAcaX5yBjDJgZWmuwcHI/cRpnjrdyKjORNSDnHKy18PX7HFi3EyOzi4Q+3TqzVrfhZ35c+B+rJ3dlsdCn7GxhFEWrD+nCF64mBk3y0TDvAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/75e0f3bb7e44012c65beeb83182b0585/5a428/3.png&quot;
-        srcset=&quot;/static/75e0f3bb7e44012c65beeb83182b0585/12f09/3.png 148w,
-/static/75e0f3bb7e44012c65beeb83182b0585/e4a3f/3.png 295w,
-/static/75e0f3bb7e44012c65beeb83182b0585/5a428/3.png 437w&quot;
-        sizes=&quot;(max-width: 437px) 100vw, 437px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;그래도 같은 증상으로 안됬다. &lt;/p&gt;
-&lt;p&gt;이제는 로그를 확인해야할 것 같아서 &lt;code class=&quot;language-text&quot;&gt;.wakatime.cfg&lt;/code&gt; 설정 파일에 &lt;code class=&quot;language-text&quot;&gt;debug = true&lt;/code&gt;로 debug를 활성화하여 인텔리제이 IDE 로그를 확인해봤다.&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 573px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/aeaa12d7fbf97a8ba5843973ce0c6210/3c024/4.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 115.54054054054055%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAYAAAALHW+jAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEgElEQVQ4y22VWXPadhTFeW+fM1N3mmZqBwNGSCBWL8RLHKdJmkzzlqd+jMw009Q7NjaxsdkkECC0sNtOvuDp+Qvjxm0ezogRw2/uPffci2/mlyAe+iX4pThC0TSyz37D23d/4Oeggh9mFzDzOIyZuW/rR/7uwaMAvnvwE75/8NCTT4kqUKJRyLKMWCyG7Z09VKo6ShUNmm5AqxvQhcRnveGpRlW1OoxWBx/++ghJjiDK3wqOLxJfhKwkEFaSkKJJ5I4LaJk2avUmbLePbn/kqdcfotcbotsdwKXEd73BGPsHR1D4ezWehqqm4JMSq5CUDDKpDawuPsPJSRFtuwenfwVneA13wGd/TI0IGsJxB3CcASy7j9H4Mw4P84ipGSSTK0ilsvCFgjKCARkr8iKeJ9ZRyJ9Db3ZYYRtlrYmG6cAZXMPujWATZBMkYJ1OF4PhDba3DzA7G8L8fAR+euoLcxhSJI5VNYut5Abyx5/QbFv0qkX/2nfPtumyuuE94JDAnZ1D+OclhBZiCIXoYZTlSkoKCXXZKzmXO4VWa6BUqvFp4PKyhmKxAnMKdG5btvoecHf3CEHCJDnpySeFVSiSimzsCbKpVZwenqLJVislDdVKHS4hXfppd9myO7yDWlbPA27vHOAxoxVkzIR8qppGJp3Bm8QW3i2/xvnhGdpaG1UCdb0Ns9ND25oMyRI+3g7GskTL1/8HRiIJ9s8cLohKE8ixBZ2VlQksl3UU2fJlWYPTG/9bpTMBjkbX9JBADkP45wEX2H9gXvaMlcJxHNPDlsEpE1rnQFwPMGlz6p/jiMH0vNgI4NxsEPP+MAJiylJEZShTUGIZbDKHxaNzmATq1QYMrYWuzSDfwmx3ItedQMdXN9jnIkj0PrH2EtHMOluW44jIKhZXNrHMF4XDAqyWjSarE0Cb8XCnwxBPejgJeB9XV5+xlztBSEkjuriOiLrEYIveAwrSS+vYXHmBk/0TLzaXF1WcnZdQ4WdLtEn/LOEhJaC2V+GXSbAfzcPPcPt5MFhhEsLH5NIafl99DS1fgtl2UG90uCkGTFEVJ9whaCqL7zoEDsY3XoVhJkXJZBFNpCdTFtNJs+TNzVconhbRaTkw6GO9ZU1WT+w05YEJ+xq4e3CMEDctEs9AjibEUOIeMENgdusF8oUzNPTm5HQ1mijVdFZaR5MXyOCOCy8twjoi2KPJLs+x3QB3WeyzT5LidxWubr1E/tM5mi0TdZ4vnaoQVqpq3n00DPP20vQI/E+wpzmctpxZ2kDmyQYOcnnCWqhxjzWuoNlxvTVrtW0vzFOYeN/jWfv49x78X29KmHsc4PlaXH6KBI/D3m6OsAYuLireplQYcAEWuROTFddG6K7C7f37q7dwe3ZSjM3z7CsUDgrelbm4rFI1FM5KKBE83ZSpvOMw+tYuywksEChi83btDfSTMkxvyhZaDLXOkDfYnsPL7Q6Fxp4c/iVc3XzB3l7uPnA6ZRHstae/IrdzhPJZlafL4HBcAh1UeXArTZNqT2RQ9Qb/ezp4//7Pe8B/AFqIP3Yvhf3/AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/aeaa12d7fbf97a8ba5843973ce0c6210/3c024/4.png&quot;
-        srcset=&quot;/static/aeaa12d7fbf97a8ba5843973ce0c6210/12f09/4.png 148w,
-/static/aeaa12d7fbf97a8ba5843973ce0c6210/e4a3f/4.png 295w,
-/static/aeaa12d7fbf97a8ba5843973ce0c6210/3c024/4.png 573w&quot;
-        sizes=&quot;(max-width: 573px) 100vw, 573px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;인텔리제이의 로그를 확인하는 방법은 &lt;code class=&quot;language-text&quot;&gt;Help - Show Log in folder&lt;/code&gt; 를 눌러서 &lt;code class=&quot;language-text&quot;&gt;idea.log&lt;/code&gt; 파일을 열어보면된다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token number&quot;&gt;2023&lt;/span&gt;-03-30 &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;:22:10,598 &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;690863&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;   FINE - WakaTime - Executing CLI: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;/Users/seonghun/.wakatime/wakatime-cli-darwin-arm64, --entity, /Users/seonghun/Desktop/dev/art-be/src/main/java/com/example/codebase/ArtBackendApplication.java, --time, &lt;span class=&quot;token number&quot;&gt;1680175310.3830&lt;/span&gt;, --key, XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXbada, --lines-in-file, &lt;span class=&quot;token number&quot;&gt;31&lt;/span&gt;, --alternate-project, art-be, --alternate-language, JAVA, --plugin, idea/2023.1 idea-wakatime/14.1.4, --extra-heartbeats&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;token number&quot;&gt;2023&lt;/span&gt;-03-30 &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;:22:10,612 &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;690877&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;   WARN - WakaTime - Cannot run program &lt;span class=&quot;token string&quot;&gt;&quot;/Users/seonghun/.wakatime/wakatime-cli-darwin-arm64&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;, No such &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; or directory
-java.io.IOException: Cannot run program &lt;span class=&quot;token string&quot;&gt;&quot;/Users/seonghun/.wakatime/wakatime-cli-darwin-arm64&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;, No such &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; or directory
-	at java.base/java.lang.ProcessBuilder.start&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ProcessBuilder.java:1143&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at java.base/java.lang.ProcessBuilder.start&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ProcessBuilder.java:1073&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at java.base/java.lang.Runtime.exec&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Runtime.java:594&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at java.base/java.lang.Runtime.exec&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Runtime.java:453&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at com.wakatime.intellij.plugin.WakaTime.sendHeartbeat&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;WakaTime.java:305&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at com.wakatime.intellij.plugin.WakaTime.processHeartbeatQueue&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;WakaTime.java:298&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at com.wakatime.intellij.plugin.WakaTime.access&lt;span class=&quot;token variable&quot;&gt;$000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;WakaTime.java:52&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at com.wakatime.intellij.plugin.WakaTime&lt;span class=&quot;token variable&quot;&gt;$3&lt;/span&gt;.run&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;WakaTime.java:159&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at java.base/java.util.concurrent.Executors&lt;span class=&quot;token variable&quot;&gt;$RunnableAdapter&lt;/span&gt;.call&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Executors.java:539&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at java.base/java.util.concurrent.FutureTask.runAndReset&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;FutureTask.java:305&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor&lt;span class=&quot;token variable&quot;&gt;$ScheduledFutureTask&lt;/span&gt;.run&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ScheduledThreadPoolExecutor.java:305&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ThreadPoolExecutor.java:1136&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at java.base/java.util.concurrent.ThreadPoolExecutor&lt;span class=&quot;token variable&quot;&gt;$Worker&lt;/span&gt;.run&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ThreadPoolExecutor.java:635&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at java.base/java.lang.Thread.run&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Thread.java:833&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-Caused by: java.io.IOException: &lt;span class=&quot;token assign-left variable&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;, No such &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; or directory
-	at java.base/java.lang.ProcessImpl.forkAndExec&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Native Method&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at java.base/java.lang.ProcessImpl.&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;init&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ProcessImpl.java:314&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at java.base/java.lang.ProcessImpl.start&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ProcessImpl.java:244&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	at java.base/java.lang.ProcessBuilder.start&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ProcessBuilder.java:1110&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;. &lt;span class=&quot;token number&quot;&gt;13&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;more&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;로그를 살펴보니 &lt;code class=&quot;language-text&quot;&gt;.wakatime/wakatime-cli-darwin-arm64&lt;/code&gt; 파일이 없어서 wakatime-cli 실행을 하지 못한다고 나와있다. wakatime-cli를 다시 설치해보자&lt;/p&gt;
-&lt;p&gt;wakatime-cli의 실행은 공식문서에 나온대로
-&lt;code class=&quot;language-text&quot;&gt;python3 -c &quot;$(wget -q -O - https://raw.githubusercontent.com/wakatime/vim-wakatime/master/scripts/install_cli.py)&quot;&lt;/code&gt;
-해당 명령어를 실행하면 되는데 다음과 같은 에러가 뜨면서 설치가 되지 않았다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;WakaTime Install&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Downloading wakatime-cli&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
-&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;WakaTime Install&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; GitHub API Response &lt;span class=&quot;token number&quot;&gt;304&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;WakaTime Install&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Downloading wakatime-cli from https://github.com/wakatime/wakatime-cli/releases/download/&lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&quot;v1.70.1
-&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; v1.68.3&lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&quot;&lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&quot;&lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&quot;/wakatime-cli-darwin-arm64.zip
-&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;WakaTime Install&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Traceback &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:
-  File &lt;span class=&quot;token string&quot;&gt;&quot;&amp;lt;string&gt;&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;198&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; downloadCLI
-  File &lt;span class=&quot;token string&quot;&gt;&quot;&amp;lt;string&gt;&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;469&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; download
-  File &lt;span class=&quot;token string&quot;&gt;&quot;/opt/homebrew/Cellar/python@3.10/3.10.6_2/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;216&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; urlopen
-    &lt;span class=&quot;token builtin class-name&quot;&gt;return&lt;/span&gt; opener.open&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;url, data, &lt;span class=&quot;token function&quot;&gt;timeout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  File &lt;span class=&quot;token string&quot;&gt;&quot;/opt/homebrew/Cellar/python@3.10/3.10.6_2/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;519&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;open&lt;/span&gt;
-    response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; self._open&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;req, data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  File &lt;span class=&quot;token string&quot;&gt;&quot;/opt/homebrew/Cellar/python@3.10/3.10.6_2/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;536&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; _open
-    result &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; self._call_chain&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self.handle_open, protocol, protocol +
-  File &lt;span class=&quot;token string&quot;&gt;&quot;/opt/homebrew/Cellar/python@3.10/3.10.6_2/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;496&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; _call_chain
-    result &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; func&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;*args&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  File &lt;span class=&quot;token string&quot;&gt;&quot;/opt/homebrew/Cellar/python@3.10/3.10.6_2/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;1391&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; https_open
-    &lt;span class=&quot;token builtin class-name&quot;&gt;return&lt;/span&gt; self.do_open&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;http.client.HTTPSConnection, req,
-  File &lt;span class=&quot;token string&quot;&gt;&quot;/opt/homebrew/Cellar/python@3.10/3.10.6_2/Frameworks/Python.framework/Versions/3.10/lib/python3.10/urllib/request.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;1348&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; do_open
-    h.request&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;req.get_method&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, req.selector, req.data, headers,
-  File &lt;span class=&quot;token string&quot;&gt;&quot;/opt/homebrew/Cellar/python@3.10/3.10.6_2/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;1282&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; request
-    self._send_request&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;method, url, body, headers, encode_chunked&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  File &lt;span class=&quot;token string&quot;&gt;&quot;/opt/homebrew/Cellar/python@3.10/3.10.6_2/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;1293&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; _send_request
-    self.putrequest&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;method, url, **skips&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  File &lt;span class=&quot;token string&quot;&gt;&quot;/opt/homebrew/Cellar/python@3.10/3.10.6_2/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;1127&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; putrequest
-    self._validate_path&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;url&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  File &lt;span class=&quot;token string&quot;&gt;&quot;/opt/homebrew/Cellar/python@3.10/3.10.6_2/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/client.py&quot;&lt;/span&gt;, line &lt;span class=&quot;token number&quot;&gt;1227&lt;/span&gt;, &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; _validate_path
-    raise InvalidURL&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;f&lt;span class=&quot;token string&quot;&gt;&quot;URL can&apos;t contain control characters. {url!r} &quot;&lt;/span&gt;
-http.client.InvalidURL: URL can&lt;span class=&quot;token string&quot;&gt;&apos;t contain control characters. &apos;&lt;/span&gt;/wakatime/wakatime-cli/releases/download/&lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&quot;v1.70.1&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;n&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; v1.68.3&lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&quot;&lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&quot;&lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&quot;/wakatime-cli-darwin-arm64.zip&lt;span class=&quot;token string&quot;&gt;&apos; (found at least &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;n&apos;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;WakaTime Install&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Finished extracting wakatime-cli.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;살펴보니 &lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;http.client.InvalidURL: URL can&apos;t contain control characters. &apos;/wakatime/wakatime-cli/releases/download/&quot;&quot;&quot;v1.70.1\n= v1.68.3&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;/wakatime-cli-darwin-arm64.zip&apos; (found at least &apos;\n&apos;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;유효하지 않는 URL&lt;/strong&gt; 로 확인되는데. 해당 경로중에 문제되어 보이는 부분은 무수한 따옴표로 둘러싸인 부분이다. 아마 내부적으로 파싱이 잘못된것으로 보이인다.  Wakatime 내부 작동이 어디선가 잘못됬거나 설정이 꼬인것으로 보인다. 그리고 와카타임의 로그를 살펴보면 (와카타임 로그 파일의 위치는 &lt;code class=&quot;language-text&quot;&gt;~/.waktime.log&lt;/code&gt; )&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{&quot;caller&quot;:&quot;cmd/run.go:292&quot;,&quot;file&quot;:&quot;Terminal&quot;,&quot;func&quot;:&quot;cmd.runCmd&quot;,&quot;level&quot;:&quot;error&quot;,&quot;message&quot;:&quot;failed to run command: sending heartbeat(s) failed: rate limited: won&apos;t send heartbeat due to backoff&quot;,&quot;now&quot;:&quot;2023-03-30T20:45:14+09:00&quot;,&quot;os/arch&quot;:&quot;darwin/arm64&quot;,&quot;plugin&quot;:&quot;iterm2-wakatime/0.0.1&quot;,&quot;time&quot;:1680176714.53137,&quot;version&quot;:&quot;v1.70.1&quot;}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;won&apos;t send heartbeat due to backoff&lt;/code&gt; 오류가 발생하는데 다음과 같은 해결방법을 따라하면 해결된다.&lt;/p&gt;
-&lt;h1 id=&quot;해결법&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%95%B4%EA%B2%B0%EB%B2%95&quot; aria-label=&quot;해결법 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;해결법&lt;/h1&gt;
-&lt;p&gt;와카타임 개발자에 &lt;a href=&quot;https://github.com/wakatime/wakatime-cli/issues/770&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;따르면&lt;/a&gt;
-&lt;code class=&quot;language-text&quot;&gt;won&apos;t send heartbeat due to backoff&lt;/code&gt; means previously there was a connection error so it&apos;s waiting a while.
-You can reset the rate limit backoff by deleting &lt;code class=&quot;language-text&quot;&gt;~/.wakatime-internal.cfg&lt;/code&gt;. What error message do you see after deleting the internal file&lt;/p&gt;
-&lt;p&gt;즉 와카타임 에러 중에 &lt;code class=&quot;language-text&quot;&gt;won&apos;t send heartbeat due to backoff&lt;/code&gt; 가 발생하면 해당 wakatime-internal.cfg 파일을 삭제하라고 한다. &lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/aa8110c1492576d2de33f012ad2170e2/c6ff8/5.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 56.75675675675676%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABJ0lEQVQoz+2PTU/CQBBAK6Xd7nZbtgX7AcWAJ0NMjBe4GBMVuRIu/gH1YPErxpP6359YEo1iJHr28DIzOzMvs9Z0dsbT8wvl3QPz+0fmN7ecX1xyVc4py2um0xlHxyeMTyfrGU+wim6f0WjI8OCQnb19BrsDer0eWZaRJEkVO90OeTsnS9OqruJX3t4XWDqM8X3Ndr9H0mphGgbPk1iW9Y7rC0Rb4zQlItOI1EcWIV6ukd0QWzsf841oE60DWgtZURTkeU4YhsRxTDNuEpsIpRV+GuB3DXrLIJoKmWq8RONGssrryl0KTZTgugKp5OJSH6VU1bCdOo7xEIEg0JJG5CNCj5pX/3T9CiZOvm3YdRtbOdSc2s+CFeHiy8ti43eL64XWv/BvvAKjrv7k5WUTfAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/aa8110c1492576d2de33f012ad2170e2/fcda8/5.png&quot;
-        srcset=&quot;/static/aa8110c1492576d2de33f012ad2170e2/12f09/5.png 148w,
-/static/aa8110c1492576d2de33f012ad2170e2/e4a3f/5.png 295w,
-/static/aa8110c1492576d2de33f012ad2170e2/fcda8/5.png 590w,
-/static/aa8110c1492576d2de33f012ad2170e2/efc66/5.png 885w,
-/static/aa8110c1492576d2de33f012ad2170e2/c6ff8/5.png 1088w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;
-그리고 해당 파일에 내용을 보면 cli_version 이 아까 파이썬으로 설치했을때 실패한 로그와 비슷하지 않는가?.. wakatime 내부 설정 파일이 잘못되서 발생한 오류였던것!
-( 왜 저런 식으로 된지는 이유를 모르겠다. )&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/90a9c69edc3b2946bebc4e8081e48cef/339e3/6.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 66.89189189189189%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAADQ0lEQVQ4y0WTy28bZRTF/RewRkIqpE4Tx55xPB7b8fj9SJw28SNK4kdju05ip3GchwN5lCYiommTUpWCAqoqkU2hlA2ER4tQk0gIVSDBgh3tnhWFf+LH9SCVxdG936c757v33DOWo+9P+OrxMV8+esLj4594JPjuyVO++UHy0184efobP//+jB+fv+Dk2d+cvsQ/nP7xl+CFmR8Lfn3+JxZ3II5DD6B4Qma0awMo8TFcI1XscndOcVOcXcRXv8HrE2/TXdjC2sHkFc5W97GWd+ktbvFqZo2rBw/+J1S9IROK248mZNp4C6eRxOb0UJ5dIJpIYVdcODUvTrePfnsffdkF7Ik8LlXlbHcvO7v7WPRg4iWhInD5QkJYQc3MoUdSOOLjVOZXiaQy2NwGqi+COhBDdXmwj7fpH7mEbkToCmTYuX5TCEMJFF9QikIyohB38tgo9lgWb2wYx2CKUr1FZChNn+aXh4M4PEF6VZ1Q+iIfHX7Gg88fMlptsbl9Dct8e5PZ1iqNpTWWN7ZZXt+mubJOQ+6mm21mmsvsvf8xK5vvmOe55TWW1rZYFCytXeXdm3e4cetDWu0NDj/9AosnlDTHdfmjGPFhDOnKFxmS/LwZveFBZhbaRIez2GXkzjk8NCoSpPHHUrgGRAJfGJt0f/3WB1gUaf+c6qHH6TWhytkrj/RLUadYkcWUpueJCoHbiMnDEXP0DrmpvdRrgQRWd5hr+7exVBuLTM00KdUuS5w3N1pttJiszArqjEvc3Nmj3npTiC9TktpCtW4iX22YNcXaHGPFMp/cf4glW7zEhVye4VyB0cky5ek6uWJN8grpySlS2TyrV3aErEkqPc6FdI50vsZUY5lCuUZ6okQmXxEJstw9vC8jS9vdWhDrxAZdEwf0BCbocQ3gDJ2XkcP09vvMToxIkjN6kq71IzZqOhGfgx5vHLfIo4kMr3U72H3vjizFb4hBt3FmlnCGx+gr3UPVfTj9cTQjSkfjikhgJLOUs7p8tMK32zY2J604hTAa/2+B3YoubjgQHxriv+hFegv30Cp3UUba8rd4TZN3tm+Tbju6GoM5kkGVr1uvcPTWGXJDuixH3CG+1GRZb/S52Lt9wL+yeAjUg3vp3wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Untitled&quot;
-        title=&quot;Untitled&quot;
-        src=&quot;/static/90a9c69edc3b2946bebc4e8081e48cef/fcda8/6.png&quot;
-        srcset=&quot;/static/90a9c69edc3b2946bebc4e8081e48cef/12f09/6.png 148w,
-/static/90a9c69edc3b2946bebc4e8081e48cef/e4a3f/6.png 295w,
-/static/90a9c69edc3b2946bebc4e8081e48cef/fcda8/6.png 590w,
-/static/90a9c69edc3b2946bebc4e8081e48cef/efc66/6.png 885w,
-/static/90a9c69edc3b2946bebc4e8081e48cef/339e3/6.png 977w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;해당 파일을 삭제하니 정상적으로 되는 모습이다..&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;&lt;a href=&quot;https://jw910911.tistory.com/110&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://jw910911.tistory.com/110&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
