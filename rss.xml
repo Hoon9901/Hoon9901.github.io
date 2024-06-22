@@ -1,4 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://seonghoon.xyz</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 28 Mar 2024 08:57:56 GMT</lastBuildDate><item><title><![CDATA[Hibernate 6.4 부터 SoftDelete를 공식적으로 지원한다]]></title><description><![CDATA[기존에는 SoftDelete를 구현할려면 @Where 와 @SQLDelete 를 사용했어야했다. 는 Repository의  메서드를 호출했을 때, 대신 호출되는 SQL을 지정해주는 어노테이션인데 이를 통해 UPDATE 방식으로 삭제 처리를 하고 를 …]]></description><link>https://seonghoon.xyz/jpa-softdelete-annotation/</link><guid isPermaLink="false">https://seonghoon.xyz/jpa-softdelete-annotation/</guid><pubDate>Thu, 28 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;기존에는 SoftDelete를 구현할려면 @Where 와 @SQLDelete 를 사용했어야했다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hoon's Blog | Feed]]></title><description><![CDATA[Hoon's Backend Dev Blog]]></description><link>https://seonghoon.xyz</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 22 Jun 2024 14:25:55 GMT</lastBuildDate><item><title><![CDATA[이제는 주니어 개발자]]></title><description><![CDATA[23년도 하반기 회고 에 이어서. 작년 8월부터 시작한 취준이 끝났다. 이제는 주니어 개발자로 일하고 있다. 개발자는 서울에 가야한다는 생각으로 서울권이나 수도권 회사 지원을 예전 부터 했었는데 취준 기간이 점점 길어지며 이제는 아무데나 당장 취직을…]]></description><link>https://seonghoon.xyz/24-first-story/</link><guid isPermaLink="false">https://seonghoon.xyz/24-first-story/</guid><pubDate>Sat, 22 Jun 2024 22:47:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://seonghoon.xyz/23-second-half/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;23년도 하반기 회고&lt;/a&gt; 에 이어서.&lt;/p&gt;
+&lt;p&gt;작년 8월부터 시작한 취준이 끝났다. 이제는 주니어 개발자로 일하고 있다.&lt;/p&gt;
+&lt;p&gt;개발자는 서울에 가야한다는 생각으로 서울권이나 수도권 회사 지원을 예전 부터 했었는데 취준 기간이 점점 길어지며 이제는 아무데나 당장 취직을 하고 싶다는 생각이 들었고 내 자신에 대해 후회와 회의감이 들면서 나를 갉아먹고 있었다.&lt;/p&gt;
+&lt;p&gt;밤에 잠에 들려고 누워있으면 불안감과 잡생각, 그리고 언제까지 해야할까라는 생각이 들며 잠이 오지 않고 새벽 늦게 눈꺼풀이 강제로 닫혀있을 때 까지 핸드폰을 봤다.&lt;/p&gt;
+&lt;p&gt;밤낮이 바뀌고 마음이 계속 꺾이니 이러면 안될것같아 책이라도 읽을려고 이것저것 찾다가  &lt;a href=&quot;https://product.kyobobook.co.kr/detail/S000200329012&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;기분이 태도가 되지 말자&lt;/a&gt; 라는 책을 보게되었다. 이 책을 읽고 나름 생각 정리가 되었다 현명한 삶을 살기 위해서는 내 감정을 조절할 줄 알아야 하고 더 나아가 &apos;나&apos;를 다스릴 수 있다고 한다 라는 내용이고 가볍게 읽기 편해서 심적으로 힘들때가 오면 이 책을 읽고 감정을 조절하고 잡생각들을 잊기 위해 노력했다.&lt;/p&gt;
+&lt;p&gt;이러한 노력덕인지 내 자신에 대한 회의감에서 벗어나 자신감을 기르게 되었고 내 자신에게 &apos;조금만 더 노력해보자&apos; 라는 말을 계속 건냈다. 내가 이 시기를 계속 이겨낼 수 있는 버팀목이 된것같다.&lt;/p&gt;
+&lt;p&gt;작년에 이어 올해는 약 10% 정도의 확률로 서류 전형을 합격하고 이후 채용 과정을 진행했다. 그동안 여러 회사들의 면접을 보며 나만의 데이터베이스도 구축했고 이력서와 포폴도 꾸준하게 튜닝 파인을 하면서 이번에 합격 하지 않아도 다음에 합격할 수 있는 성장기를 지낸 것 같다.&lt;/p&gt;
+&lt;p&gt;그런 성장할 수 있다는 생각이 면접 시 많은 긴장을 하지 않게하도록 해준것 같다. 예전에는 면접장 들어가면 내가 잘못 대답해서 떨어지면 어떡하지? 잘 할 수 있을까 라며 긴장했었는데 이제는 적절한 긴장과 여유를 통해 면접관들과 티키타카 대화하게 되었다. 이때 내가 &apos;성장했구나&apos; 라는 생각과 &apos;이렇게 계속 하면 될거같다&apos; 라는 생각이 들었다.&lt;/p&gt;
+&lt;p&gt;그렇게 매일매일 코테 준비와 기업 조사, 이력서와 포폴 기반으로 예상 질문을 정리하며 이러한 반복적인 일상이 점차 쌓여 1개의 질문에서 300개에 달하는 예상 질문을 정리하고 코테 1문제에서 200개가 넘는 문제를 풀었다 그렇게 계속 달리다보니 목적지에 도달하게 되었다.&lt;/p&gt;
+&lt;h3 id=&quot;이제는-주니어-개발자&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%9D%B4%EC%A0%9C%EB%8A%94-%EC%A3%BC%EB%8B%88%EC%96%B4-%EA%B0%9C%EB%B0%9C%EC%9E%90&quot; aria-label=&quot;이제는 주니어 개발자 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;이제는 주니어 개발자&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/760cada8886568e687ccf7360f4158e1/10017/1.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75.67567567567568%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAQL/xAAXAQADAQAAAAAAAAAAAAAAAAABAgMF/9oADAMBAAIQAxAAAAHmRmLoIKAz/8QAGRAAAwEBAQAAAAAAAAAAAAAAAAECEQMh/9oACAEBAAEFAuz27Y4Wt+kn/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECAxESMf/aAAgBAwEBPwFVqUR654f/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAZEAADAAMAAAAAAAAAAAAAAAAAASEQMUH/2gAIAQEABj8CfRSmiYZ//8QAGxAAAwACAwAAAAAAAAAAAAAAAAERMUFRYbH/2gAIAQEAAT8h4UH2MmT2oltpoo9Tdn//2gAMAwEAAgADAAAAEMcP/8QAGREAAwADAAAAAAAAAAAAAAAAAAERIUGR/9oACAEDAQE/EEBXRmROH//EABYRAQEBAAAAAAAAAAAAAAAAAAEQEf/aAAgBAgEBPxAcZ//EAB0QAQADAAEFAAAAAAAAAAAAAAEAESExQVFxgbH/2gAIAQEAAT8QoGBRjZkKnEZGz3Lh0u6eYFBLtOx0irnmj8J//9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;왓챠 웰컴기프트&quot;
+        title=&quot;왓챠 웰컴기프트&quot;
+        src=&quot;/static/760cada8886568e687ccf7360f4158e1/1c72d/1.jpg&quot;
+        srcset=&quot;/static/760cada8886568e687ccf7360f4158e1/a80bd/1.jpg 148w,
+/static/760cada8886568e687ccf7360f4158e1/1c91a/1.jpg 295w,
+/static/760cada8886568e687ccf7360f4158e1/1c72d/1.jpg 590w,
+/static/760cada8886568e687ccf7360f4158e1/a8a14/1.jpg 885w,
+/static/760cada8886568e687ccf7360f4158e1/fbd2c/1.jpg 1180w,
+/static/760cada8886568e687ccf7360f4158e1/10017/1.jpg 1471w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6948a54f7f1dbaf585334a851787b5ec/9568a/2.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 133.1081081081081%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAbABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAABAADAQX/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAv/aAAwDAQACEAMQAAABEoSpvsWT7wnFMLOP/8QAGxAAAwADAQEAAAAAAAAAAAAAAAECAxESISL/2gAIAQEAAQUCWRQaG5kccmGmh7p/LNz00t5PDLK5ls//xAAXEQADAQAAAAAAAAAAAAAAAAAAEBFB/9oACAEDAQE/AcK//8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPwEf/8QAHhAAAQMEAwAAAAAAAAAAAAAAAQAQEQISITFBUWH/2gAIAQEABj8CsGu2gleIzpSVkBW0iKQ4PLf/xAAdEAEAAgIDAQEAAAAAAAAAAAABABEhMUFhgVGh/9oACAEBAAE/IWvdOeozhMV34YbRZMddQpUtg4VeRwhoH1nPflwiEwsZV23FDbzP/9oADAMBAAIAAwAAABCrMQ7/xAAWEQEBAQAAAAAAAAAAAAAAAAARASD/2gAIAQMBAT8QCK4f/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQAQEf/aAAgBAgEBPxBLkZ//xAAfEAEAAgICAgMAAAAAAAAAAAABABEhMUFRYYGxwfD/2gAIAQEAAT8QKP07HmagYhEFF1L4p6nzDfPyXK49pfM1t/XiH5bhvaHSUTRY5W/1S6QA5yLd8au4Y9jKcxImpO0Y7G5qf//Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Alt text&quot;
+        title=&quot;Alt text&quot;
+        src=&quot;/static/6948a54f7f1dbaf585334a851787b5ec/1c72d/2.jpg&quot;
+        srcset=&quot;/static/6948a54f7f1dbaf585334a851787b5ec/a80bd/2.jpg 148w,
+/static/6948a54f7f1dbaf585334a851787b5ec/1c91a/2.jpg 295w,
+/static/6948a54f7f1dbaf585334a851787b5ec/1c72d/2.jpg 590w,
+/static/6948a54f7f1dbaf585334a851787b5ec/a8a14/2.jpg 885w,
+/static/6948a54f7f1dbaf585334a851787b5ec/fbd2c/2.jpg 1180w,
+/static/6948a54f7f1dbaf585334a851787b5ec/9568a/2.jpg 3024w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;고2때 왓챠플레이를 알게되었고 영화를 좋아하다 보니 평점을 매기고 기록하는 용도로 왓챠피디아를 애용했는데 이제는 왓챠에서 주니어 서버 개발자로 일하게 되었다.&lt;/p&gt;
+&lt;p&gt;이제 정말 내가 회사를 다니는 직장인이라는게 실감이 안나면서 왓챠의 문화와 분위기에 놀라며 매일 출근할 때 마다 한배에 탄 기분에 스며들고 기쁘게 강남 출퇴근을 하고 있다.&lt;/p&gt;
+&lt;p&gt;Java와 스프링을 여태까지 공부하고 주로 개발했는데 새로운 언어와 기술 스택을 배워야한다는 컨텍스트 스위칭 비용이 나름 있지만 이때까지 학교에서 공부할때도 그렇고 기본기와 언어와 도구에 매몰되지 않는 서버 개발자가 되기 위해 노력해왔기에 성장 비용으로 하루하루 출근할 때 마다 새로운것들과 내가 배우고 축적한 기반들에 차곡차곡 쌓아 올리고 있다.&lt;/p&gt;
+&lt;p&gt;왓챠의 서비스들을 구성하는 기술들을 하루하루 접하고 알아가니 너무 재밌다 진짜 서버 개발자를 꿈꿔왔을때 부터 지금까지 많은 분들이 이용하는 서비스의 개발자로 일하고 싶었는데 그렇게 되어서 너무 좋다 또한 제일 좋은 복지는 동료라고 생각하는데 대단한 분들과 함께 일을하고 매일 얘기하면서 많은 것을 물어보고 있다.&lt;/p&gt;
+&lt;p&gt;왓챠를 이용해주시는 분들에게 더 좋은 서비스를 제공할 수 있도록 주니어 개발자로써 정진할 것이다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Hibernate 6.4 부터 SoftDelete를 공식적으로 지원한다]]></title><description><![CDATA[기존에는 SoftDelete를 구현할려면 @Where 와 @SQLDelete 를 사용했어야했다. 는 Repository의  메서드를 호출했을 때, 대신 호출되는 SQL을 지정해주는 어노테이션인데 이를 통해 UPDATE 방식으로 삭제 처리를 하고 를 …]]></description><link>https://seonghoon.xyz/jpa-softdelete-annotation/</link><guid isPermaLink="false">https://seonghoon.xyz/jpa-softdelete-annotation/</guid><pubDate>Thu, 28 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;기존에는 SoftDelete를 구현할려면 @Where 와 @SQLDelete 를 사용했어야했다.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;java&quot;&gt;&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token annotation punctuation&quot;&gt;@Entity&lt;/span&gt;
 &lt;span class=&quot;token annotation punctuation&quot;&gt;@Where&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;clause &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;deleted = false&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;token annotation punctuation&quot;&gt;@SQLDelete&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sql &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;UPDATE member SET deleted = true WHERE id = ?&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
@@ -2826,218 +2904,4 @@ CloudFront 이벤트는 오리진 응답으로 선택한다.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://tech.wired.company/cloudfront%EC%99%80-aws-lambda-edge%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%B5%9C%EC%A0%81%ED%99%94-dab488c0ef35&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://tech.wired.company/cloudfront와-aws-lambda-edge를-활용한-이미지-최적화-dab488c0ef35&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://velog.io/@dankim/Lambdaedge-cloudFront-S3&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://velog.io/@dankim/Lambdaedge-cloudFront-S3&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://velog.io/@su-mmer/CloudFront%EC%99%80-LambdaEdge%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%A6%AC%EC%82%AC%EC%9D%B4%EC%A7%95&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://velog.io/@su-mmer/CloudFront와-LambdaEdge를-이용한-이미지-리사이징&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://medium.com/daangn/lambda-edge%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%98%EB%8A%94-on-the-fly-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%A6%AC%EC%82%AC%EC%9D%B4%EC%A7%95-f4e5052d49f3&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://medium.com/daangn/lambda-edge로-구현하는-on-the-fly-이미지-리사이징-f4e5052d49f3&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[[AWS] S3 리소스를 CloudFront를 통해 캐싱하자]]></title><description><![CDATA[S3에 CloudFront 적용하기 현재 개발중인 서비스에서 이미지를 불러오는것을 S3에서 직접적으로 가져와 사용하고 있는데
-서비스 특성상 이러한 이미지와 영상과 같은 미디어 파일들을 많이 사용되는 서비스 구조라 
-서비스의 구조가 많이 무거워지고 리…]]></description><link>https://seonghoon.xyz/aws-s3-cloudfront/</link><guid isPermaLink="false">https://seonghoon.xyz/aws-s3-cloudfront/</guid><pubDate>Wed, 05 Apr 2023 14:50:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;s3에-cloudfront-적용하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#s3%EC%97%90-cloudfront-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0&quot; aria-label=&quot;s3에 cloudfront 적용하기 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;S3에 CloudFront 적용하기&lt;/h1&gt;
-&lt;p&gt;현재 개발중인 서비스에서 이미지를 불러오는것을 S3에서 직접적으로 가져와 사용하고 있는데
-서비스 특성상 이러한 이미지와 영상과 같은 미디어 파일들을 많이 사용되는 서비스 구조라
-서비스의 구조가 많이 무거워지고 리소스 사용량이 상당히 늘어날 것 같아 캐싱을 적용하기 위해서
-AWS에서 제공하는 CDN인 CloudFront를 통해서 적용하는 과정을 알아보자.&lt;/p&gt;
-&lt;h2 id=&quot;cloudfront-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#cloudfront-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;cloudfront 생성 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;CloudFront 생성&lt;/h2&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/35ebd7ddbe54049c8a53fdba53be22f8/4ff83/1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 101.35135135135135%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAABwklEQVQ4y6VU2XKDMAzk//+t7Uzz2ulLOY0NBGxuomqdOCVc6bSeURSMvay0kjyZn+nDFxQKRYkqKE4E5UVBZVX9ybwgDOn9dKKX1zdKhKBKazqX5Z/NK/knThLSxlDdNFTX9dr29hdngOGBphApDcNA4ziuDPt93z81nGsY1DOMLiXnj0E7ftE0LbVtR03b8pcbGhgU63K5HBoW7nugmeUFhXFCIpU2D9hDLsEeofT8dRzubmys5z0H5Hz/A5iTyjLLNCvN7eI1VIQ9TRONC8PenPkd0DBgKiX5QchekSpKZqapqqB2ZcFtLheGvU2GyGGF0Dhf7tB0Y2CZbQhljd/tAkKQKBYcdm4FeQCagS9tFxCJhxgAu4fHSYefCzK3XVEAmLPKSikrjFKZfbYlxKXjymZvrUVhQLADELwxtS0bgOE/Dh3V4SZDqIqSGZ+wmbPaen4omy8/IN/3KZIFaVYcHeO6pus621bwS1YrwFLX9BmkdOaRhWLGRdd6DuwK2LLvD0O/h2yVZlb/XVDe09yzYIDefSiZPdvoGjepWo7Kji/kMIwiHg7p72bfjmnN8xDMJANicqMW3fw7ZLmw+Tz8BlQAGTe6kiJAAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;1&quot;
-        title=&quot;1&quot;
-        src=&quot;/static/35ebd7ddbe54049c8a53fdba53be22f8/fcda8/1.png&quot;
-        srcset=&quot;/static/35ebd7ddbe54049c8a53fdba53be22f8/12f09/1.png 148w,
-/static/35ebd7ddbe54049c8a53fdba53be22f8/e4a3f/1.png 295w,
-/static/35ebd7ddbe54049c8a53fdba53be22f8/fcda8/1.png 590w,
-/static/35ebd7ddbe54049c8a53fdba53be22f8/4ff83/1.png 843w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;CloudFront &gt; 배포 &gt; 생성으로 이동&lt;/li&gt;
-&lt;li&gt;원본 도메인은 사용중인 S3에 대한 도메인으로 선택&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/a4fff00b9b8c2b0f7ddedec8c391dd31/d125e/2.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 56.75675675675676%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABL0lEQVQoz51S0W6DMAzM///hHlYKhEKgLbQkEEjgZnul6jZpQ4t0chI5l7PPqus6VFUFO4yw04Jtrev6xHbes9QwDNBFgZaIz5cr6qaBo7v/EqtpmlCcSpi6htYFjmmG3loM4wjv/ZfkPSqVvli8H45IjinFRGJ3u+Pe9wLnBvCnrwp/gwoxihJPjyQSRgKTzPMMbgmfdxMyQZZrMsaImhCCEDFeifYuNRNBRr3LtEaSpjgkn+VvMc1znMqKzDpLFdMD3k/Sa2udeMA5LE6xooac7alfvN9K5T1jHL24zslxWbA8wPtI7QohSg5XE+NCLtPF2yGDMTWubYuSSq+Mkcg/8zix47tLDssKXV9haLh5ZHIqkUm67iaRVewx42kKJwc2gFQ4537M3vf5+8ukDxWLWmZNA2aUAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;2&quot;
-        title=&quot;2&quot;
-        src=&quot;/static/a4fff00b9b8c2b0f7ddedec8c391dd31/fcda8/2.png&quot;
-        srcset=&quot;/static/a4fff00b9b8c2b0f7ddedec8c391dd31/12f09/2.png 148w,
-/static/a4fff00b9b8c2b0f7ddedec8c391dd31/e4a3f/2.png 295w,
-/static/a4fff00b9b8c2b0f7ddedec8c391dd31/fcda8/2.png 590w,
-/static/a4fff00b9b8c2b0f7ddedec8c391dd31/d125e/2.png 737w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;S3 버킷 액세스에 대한 설정인데. S3에 대한 모든 접근은 차단하고 CloudFront를 통해서만 접근이 가능하게 할려면 OAI 설정은 체크한다. &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;그리고 배포를 생성함.&lt;/p&gt;
-&lt;h2 id=&quot;s3-버킷-권한-편집&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#s3-%EB%B2%84%ED%82%B7-%EA%B6%8C%ED%95%9C-%ED%8E%B8%EC%A7%91&quot; aria-label=&quot;s3 버킷 권한 편집 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;S3 버킷 권한 편집&lt;/h2&gt;
-&lt;p&gt;Amzone S3 &gt; 버킷으로 이동해서 버킷 권한을 편집한다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;Version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2008-10-17&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;Id&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;PolicyForCloudFrontPrivateContent&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;Statement&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;token property&quot;&gt;&quot;Sid&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;token property&quot;&gt;&quot;Effect&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Allow&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;token property&quot;&gt;&quot;Principal&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;token property&quot;&gt;&quot;AWS&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity OAI-Here&quot;&lt;/span&gt;
-            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;token property&quot;&gt;&quot;Action&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;s3:GetObject&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;token property&quot;&gt;&quot;Resource&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;arn:aws:s3:::your-s3-bucket-here/*&quot;&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;token property&quot;&gt;&quot;Sid&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;token property&quot;&gt;&quot;Effect&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Allow&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;token property&quot;&gt;&quot;Principal&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;token property&quot;&gt;&quot;AWS&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity OAI-Here&quot;&lt;/span&gt;
-            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;token property&quot;&gt;&quot;Action&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;s3:ListBucket&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;token property&quot;&gt;&quot;Resource&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;arn:aws:s3:::your-s3-bucket-here&quot;&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;자신에 맞게 수정하여 권한을 편집한다.
-S3 버킷에 대해 &lt;code class=&quot;language-text&quot;&gt;GetObject&lt;/code&gt; , &lt;code class=&quot;language-text&quot;&gt;ListBucket&lt;/code&gt; 동작에 대한 권한을 부여하여 CloudFront가 S3 이미지를 가져올 수 있도록 한다.&lt;/p&gt;
-&lt;h2 id=&quot;s3-퍼블릭-액세스-수정&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#s3-%ED%8D%BC%EB%B8%94%EB%A6%AD-%EC%95%A1%EC%84%B8%EC%8A%A4-%EC%88%98%EC%A0%95&quot; aria-label=&quot;s3 퍼블릭 액세스 수정 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;S3 퍼블릭 액세스 수정&lt;/h2&gt;
-&lt;p&gt;추가적으로 기존 백엔드 코드(예: 스프링부트)에서 S3 에 대해 이미지 리소스를 업로드하는 코드를 작성해서 S3에 대해 AccessKey와 SecretKey를 통해서 작업했다면 S3 퍼블릭 액세스를 다음과 같이 수정한다.&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/914fbc946a6bf5b40da86a60df79ee25/31aff/3.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 56.75675675675676%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABsUlEQVQoz3VSiY6bUAzk/3+w2RwcDwhXyHLDg0jTGWdbqe0WyXq2scfHOOj6HmEYIc9zyh1xnCBxDsuyYN93eO//lb/9sndvOcHnZ4fT6YwoinG9hThfriZlWaGuGzSPB5rm8db5Vnxrvm37pE29rlFWNeNarOuKoB8GOJchTlJ2liLNckTsUnK9RQhZSPqNU8jWK4kYf40znMIUjjkCNcCZbQ7DaNUlXddjnCbM82IjTNSnecY4Tm99mvlvpm9FP3s8pw37ceD1emHbNgQy2ucTl+sNSeI4TsNKG8FWLKyoIO93ezfuSw0cTP7uE2igoJ0LFZjGS9MMP04f+DhfbFT5tFMVlK2VaDQTFllYXA2IGJEYiKVx8bYH7TIj046gkbGdmv62Hffs6MswjCM79tb1+h1g0S22ZMdzUbJOx1ZgJGUGJL9YfZB1dfffkQVYDysuZDCK49/JGlVsSs/vhRWRT7bWIuIOI8J/EbgaOQbYjgKM7R4FooQ7QfTq2KUXvEuBZVxNUZR2p9qn3d8XcYcANfew7iiqxoLeh9sQoLTOJLox+cqq+tNmvA5c3f0a+ScoSz2GupKzCgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;3&quot;
-        title=&quot;3&quot;
-        src=&quot;/static/914fbc946a6bf5b40da86a60df79ee25/fcda8/3.png&quot;
-        srcset=&quot;/static/914fbc946a6bf5b40da86a60df79ee25/12f09/3.png 148w,
-/static/914fbc946a6bf5b40da86a60df79ee25/e4a3f/3.png 295w,
-/static/914fbc946a6bf5b40da86a60df79ee25/fcda8/3.png 590w,
-/static/914fbc946a6bf5b40da86a60df79ee25/31aff/3.png 823w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;다음과 같은 설정하면은 기존 백엔드 코드에 추가적인 설정 없이 이미지를 업로드하면 S3에 올라간다.&lt;/p&gt;
-&lt;p&gt;이제부턴 기존 S3 리소스 요청을 CloudFront 도메인을 통해서 수행하면된다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;기존 URL &lt;code class=&quot;language-text&quot;&gt;https://s3-url/image.jpeg&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;적용 후 URL &lt;code class=&quot;language-text&quot;&gt;https://cloudfront-url/image.jpeg&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;cache-확인&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#cache-%ED%99%95%EC%9D%B8&quot; aria-label=&quot;cache 확인 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Cache 확인&lt;/h2&gt;
-&lt;p&gt;CDN 도메인으로 변경한 후 기존 S3 리소스를 가져오듯이 요청을 보내면 다음과 같이 응답 헤더를 볼 수 있다.&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 563px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/a1ba6c5f85f71c2fe14942362c34bdf1/7cb89/4.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 47.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAABH0lEQVQoz42SjY6DIBCEff8X1JprvVNERQQUrdX+TBcuXGp6Sd3kC0pYdmeWyFoLxhj+i8fj8ZFwLkS0Xq9Q+gxZ9aikxjTP6Pse67piT7xe9nshJZZmRtkaZDnD6ZQhjmMcj0dwzj1SSiil/GqMQdd1nlB02yFt1sMFjZlQtx1qqbwFLllrDWdJSLrdbhvu9/ub/OhKkgt1xoEkx4VEkjGk6QGGZI/jiGEYPDNZsUe+77ChDrmeUAgNxisUee4lO5IkoQIpqqryXbnzy7J43Hfgr8OFflq7gJOPNclmJUeWZeTlCU0jvHfBM2dDWNu29QRPXYHNUL6ERfpT4vDNUEqDXBhIZSCa5m2SHyXLcYG0FwhtwWsBQ8N4fWN7cfEEs/24Npf/evoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;4&quot;
-        title=&quot;4&quot;
-        src=&quot;/static/a1ba6c5f85f71c2fe14942362c34bdf1/7cb89/4.png&quot;
-        srcset=&quot;/static/a1ba6c5f85f71c2fe14942362c34bdf1/12f09/4.png 148w,
-/static/a1ba6c5f85f71c2fe14942362c34bdf1/e4a3f/4.png 295w,
-/static/a1ba6c5f85f71c2fe14942362c34bdf1/7cb89/4.png 563w&quot;
-        sizes=&quot;(max-width: 563px) 100vw, 563px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;x-cache&lt;/code&gt; 를 보면은 최초 요청은 &lt;code class=&quot;language-text&quot;&gt;Miss from cloudfront&lt;/code&gt; 이고 새로고침을 통해서 다시 요청을 보내면 다음과 같이 바뀐다.&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 532px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/45b0197e13b19bf303df85d07a0e0cd9/89a37/5.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 54.05405405405405%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABSUlEQVQoz42Si46CMBBF+f8vFB9IBVooFCkoL8G7M00k6K6rk9xMIZ3Tmdt6URzhr7jf70v+T+u9HJ4pLC7mAl2U6PoePWkYho+gt8C06iG1Rd70aNoeudaw1uLbWMMcMK46pNRdKhOkSiHLMkgpEcexk6YDjDHI89zl8/ns1qxxHH93mBBQmgZhLJ12ux0OQeAKGNy2LW63m7OBxZDHep7nJ58dUBEwKlsIc0VU1BAiJEi3bJqmyel1tNcLe3x7koBhXmN7UtgGAof93nW52fjwfZ/yxqlpmq+89HTdI7Us8jLTiISACI+QCXmapm5sQf/Y26IoXF6LfeUJlg4VgUIa95SVCJMMQazgHyPo0roCvnEuYO8eWnvJ+WlkBnJ3Ki8hEoWqvmCgA8dpJi+vy01++3w8240oLwNM06EoK2jqquvat+Z/euA/xoFUdGPrLT8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;5&quot;
-        title=&quot;5&quot;
-        src=&quot;/static/45b0197e13b19bf303df85d07a0e0cd9/89a37/5.png&quot;
-        srcset=&quot;/static/45b0197e13b19bf303df85d07a0e0cd9/12f09/5.png 148w,
-/static/45b0197e13b19bf303df85d07a0e0cd9/e4a3f/5.png 295w,
-/static/45b0197e13b19bf303df85d07a0e0cd9/89a37/5.png 532w&quot;
-        sizes=&quot;(max-width: 532px) 100vw, 532px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Hit from cloudfront&lt;/code&gt; 로 바뀐것을 볼 수 있고. 리소스 요청에 대한 응답 시간도 크게 줄은것을 볼 수 있다. (개인 환경과, 인터넷 속도, 이미지 크기에 따라 다름)&lt;/p&gt;
-&lt;p&gt;필자는 리소스 36KB에 대해 약 120밀리세컨드로 받았고 그 후 캐싱된 이미지는 약 40밀리세컨드로 받아온 모습이다.&lt;/p&gt;
-&lt;p&gt;이로써 AWS Cloudfront로 S3 리소스 캐싱 작업을 수행했고.&lt;/p&gt;
-&lt;h2 id=&quot;cloudfront---s3-요금-정책&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#cloudfront---s3-%EC%9A%94%EA%B8%88-%EC%A0%95%EC%B1%85&quot; aria-label=&quot;cloudfront   s3 요금 정책 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;CloudFront - S3 요금 정책&lt;/h2&gt;
-&lt;p&gt;AWS 문서에 따르면 Cloudfront - S3 간에 전송된 데이터는 S3에서 요금이 부과되지 않는다.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://blog.kakaocdn.net/dn/dvQZ5Q/btrnFazzAb7/ttfyBK0Xn02p0BhX7b17cK/img.png&quot;&gt;&lt;/p&gt;
-&lt;p&gt;CloudFront와 S3 간에 대한 데이터는 요금이 부과되지 않는거지 Client (인터넷) 에서 CloudFront 간에 데이터 송수신 과 HTTP 요청에 대해선 부과된다. &lt;/p&gt;
-&lt;p&gt;자세한 요금은 다음 이미지를 참고하자&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://blog.kakaocdn.net/dn/bNlRAh/btrnBzNjJZb/kf5n4Yw0xlfszmzTfWNPM0/img.png&quot;&gt;
-&lt;img src=&quot;https://blog.kakaocdn.net/dn/cVU1N0/btrnHSebQNc/TfigOAnI0JSSk3dKoB1H4K/img.png&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;레퍼런스&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4&quot; aria-label=&quot;레퍼런스 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;레퍼런스&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://jw910911.tistory.com/110&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://jw910911.tistory.com/110&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;&lt;a href=&quot;https://medium.com/daangn/lambda-edge%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%98%EB%8A%94-on-the-fly-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%A6%AC%EC%82%AC%EC%9D%B4%EC%A7%95-f4e5052d49f3&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://medium.com/daangn/lambda-edge로-구현하는-on-the-fly-이미지-리사이징-f4e5052d49f3&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
